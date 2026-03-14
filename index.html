@@ -29,9 +29,8 @@
   </div>
 </nav>
 
-<!-- ① 装备区 -->
+<!-- ① Hero：标题 + 计时器 + 装备卡片 -->
 <section class="hero-section" id="hero">
-  <!-- 上半：标题 + 计时器，居中 -->
   <div class="hero-top">
     <div class="hero-name-row">
       <h1 class="hero-name" data-i18n-zh="奥小秘" data-i18n-en="Ao Xiaomi">奥小秘</h1>
@@ -45,44 +44,10 @@
     <p class="hero-tagline" data-i18n="hero_tagline">成为你抵达世界边界的同行者</p>
     <div class="flip-clock" id="flip-clock"></div>
   </div>
-  <!-- 下半：装备卡片，四列网格 -->
-  <div class="hero-bottom" id="arsenal-grid">
-    <!-- JS 渲染 -->
-  </div>
+  <div class="hero-bottom" id="arsenal-grid"></div>
 </section>
 
-<!-- ② 成长时间线 -->
-<section class="explore-section">
-  <div class="section-header">
-    <span class="section-tag" data-i18n="tag_explore">三大入口</span>
-    <h2 class="section-title" data-i18n="title_explore">探索档案</h2>
-  </div>
-  <div class="explore-grid" id="explore-grid"></div>
-</section>
-
-<section class="tl-section" id="timeline-section">
-  <div class="section-header">
-    <span class="section-tag" data-i18n="tag_timeline">成长轨迹</span>
-    <h2 class="section-title" data-i18n="title_timeline">成长时间线</h2>
-  </div>
-  <div class="tl-wrap" id="tl-wrap">
-    <div class="tl-track" id="tl-track">
-      <div class="tl-line"></div>
-      <div class="tl-nodes" id="tl-nodes"></div>
-    </div>
-  </div>
-  <div class="tl-legend">
-    <span class="leg leg-milestone" data-i18n="leg_milestone">里程碑</span>
-    <span class="leg leg-skill" data-i18n="leg_skill">技能</span>
-    <span class="leg leg-lesson" data-i18n="leg_lesson">教训</span>
-  </div>
-  <!-- 移动端降级 -->
-  <div class="tl-mobile" id="tl-mobile"></div>
-</section>
-
-<!-- ③ 探索档案 -->
-
-<!-- ④ 关于本项目 -->
+<!-- ② 关于本项目（Hero 紧下方，第一个内容区） -->
 <section class="about-section" id="about-section">
   <div class="section-header">
     <span class="section-tag">项目背景</span>
@@ -129,6 +94,35 @@
       </a>
     </div>
   </div>
+</section>
+
+<!-- ③ 探索档案 -->
+<section class="explore-section">
+  <div class="section-header">
+    <span class="section-tag" data-i18n="tag_explore">三大入口</span>
+    <h2 class="section-title" data-i18n="title_explore">探索档案</h2>
+  </div>
+  <div class="explore-grid" id="explore-grid"></div>
+</section>
+
+<!-- ④ 成长时间线 -->
+<section class="tl-section" id="timeline-section">
+  <div class="section-header">
+    <span class="section-tag" data-i18n="tag_timeline">成长轨迹</span>
+    <h2 class="section-title" data-i18n="title_timeline">成长时间线</h2>
+  </div>
+  <div class="tl-wrap" id="tl-wrap">
+    <div class="tl-track" id="tl-track">
+      <div class="tl-line"></div>
+      <div class="tl-nodes" id="tl-nodes"></div>
+    </div>
+  </div>
+  <div class="tl-legend">
+    <span class="leg leg-milestone" data-i18n="leg_milestone">里程碑</span>
+    <span class="leg leg-skill" data-i18n="leg_skill">技能</span>
+    <span class="leg leg-lesson" data-i18n="leg_lesson">教训</span>
+  </div>
+  <div class="tl-mobile" id="tl-mobile"></div>
 </section>
 
 <!-- Footer -->
