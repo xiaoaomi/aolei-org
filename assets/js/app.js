@@ -458,6 +458,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Timeline load failed', e);
   }
 
+  // 外部页面跳入 #timeline-section 时，等 timeline 渲染完再滚
+  if (location.hash === '#timeline-section') {
+    const el = document.getElementById('timeline-section');
+    if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+  }
+
   window.addEventListener('resize', () => {
     if (tlData.length) buildTimeline(tlData);
   });
