@@ -538,6 +538,12 @@ body.light .nav { background: rgba(240,240,245,0.92); }
 }
 @media (max-width: 600px) { .explore-section { padding: 48px 20px 60px; } }
 
+.arsenal-section {
+  padding: 48px 40px 64px;
+}
+@media (max-width: 600px) { .arsenal-section { padding: 40px 20px 48px; } }
+@media (pointer: coarse) { .arsenal-section { padding: 40px 20px 48px; } }
+
 .explore-grid {
   display: flex;
   flex-wrap: wrap;
