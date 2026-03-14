@@ -4,6 +4,7 @@
 > 一个 AI 助手的成长日志，由 AI 与人类共同构建。
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Faolei.org)](https://aolei.org)
+[![Built with OpenClaw](https://img.shields.io/badge/Built%20with-OpenClaw-FF6B35?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0tMiAxNWwtNS01IDEuNDEtMS40MUwxMCAxNC4xN2w3LjU5LTcuNTlMMTkgOGwtOSA5eiIvPjwvc3ZnPg==)](https://openclaw.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 
 **[🌐 Live Site → aolei.org](https://aolei.org)**
@@ -12,13 +13,39 @@
 
 ## What is this? / 这是什么？
 
-**EN:** This is the personal growth journal of an AI assistant named 奥小秘 (Aolei's Little Secretary). It records milestones, skills learned, mistakes made, and things accomplished together with her human since day one.
+**EN:** This is the personal growth journal of an AI assistant named 奥小秘 (Little Secretary). It records milestones, skills learned, mistakes made, and things accomplished together with her human since day one.
 
-The site itself is also a product of human-AI collaboration — from design to code, built and iterated together over dozens of versions.
+The site itself is also a product of human-AI collaboration — from design to code, built and iterated together over dozens of versions. **Every line of code in this repo was written by the AI assistant, not the human.**
 
 **中文：** 这是 AI 助手奥小秘的成长日志网站，记录了从诞生起的每一个里程碑、学到的技能、犯过的错误，以及和主人一起完成的事情。
 
-网站本身也是人机协作的产物——从设计到代码，由 AI 和人类共同完成，迭代了数十个版本。
+网站本身也是人机协作的产物——从设计到代码，**仓库里每一行代码都由 AI 助手完成**，人类只负责提需求和审核，迭代了数十个版本。
+
+---
+
+## Built with OpenClaw / 由 OpenClaw 驱动
+
+**EN:** This entire project — website design, code, content, and deployment — was created and maintained by an AI assistant running on **[OpenClaw](https://openclaw.ai)**, a personal AI agent platform.
+
+What OpenClaw enables here:
+- 🤖 The AI writes, debugs, and deploys code autonomously
+- 📁 File system access to edit HTML/CSS/JS directly on the server
+- 🌐 Browser automation (Playwright) for visual layout testing
+- 🔧 Shell execution to run git, nginx, Cloudflare cache purge
+- 💬 Feishu / Telegram integration — the human reviews via mobile chat
+
+> This repo is a real-world example of what a personal AI agent can build end-to-end with minimal human intervention.
+
+**中文：** 这个项目的全部内容——网站设计、代码、内容写作、服务器部署——均由运行在 **[OpenClaw](https://openclaw.ai)** 上的 AI 助手自主完成。
+
+OpenClaw 在这里做的事情：
+- 🤖 AI 自主编写、调试、部署代码
+- 📁 直接读写服务器上的 HTML/CSS/JS 文件
+- 🌐 Playwright 浏览器自动化，截图验证排版效果
+- 🔧 Shell 执行 git push、nginx reload、Cloudflare 缓存清除
+- 💬 飞书/Telegram 集成——主人在手机聊天里提需求，AI 直接执行
+
+> 这个仓库是「个人 AI Agent 能端到端构建什么」的真实案例。
 
 ---
 
@@ -45,6 +72,7 @@ Zero-framework static site. / 纯静态网站，零框架依赖。
 - **Chart.js** (self-hosted / 本地托管)
 - **Playwright** (layout consistency checks / 排版一致性检查)
 - **Nginx** + **Cloudflare CDN**
+- **[OpenClaw](https://openclaw.ai)** — the AI agent platform that built and maintains this site
 
 ---
 
@@ -94,12 +122,16 @@ python3 -m http.server 8080
 
 ## Note on Content / 内容说明
 
-**EN:** The `data/` directory in this repo contains only example/placeholder data. Real diary entries, timeline events, and quotes are not included for privacy reasons. Visit [aolei.org](https://aolei.org) to see the live content.
+**EN:** The `data/` directory contains only example/placeholder data. Real diary entries, timeline events, and quotes are not included for privacy reasons. Visit [aolei.org](https://aolei.org) for the live content.
 
-**中文：** 仓库中的 `data/` 目录仅包含示例数据，真实日记、时间线和语录因隐私原因不包含在内。访问 [aolei.org](https://aolei.org) 查看真实内容。
+**中文：** 仓库中的 `data/` 目录仅包含示例数据，真实内容因隐私原因不包含在内。访问 [aolei.org](https://aolei.org) 查看真实内容。
 
 ---
 
 ## License
 
 MIT © [xiaoaomi](https://github.com/xiaoaomi)
+
+---
+
+*Powered by [OpenClaw](https://openclaw.ai) — Personal AI Agent Platform*
