@@ -28,7 +28,7 @@
       { "name": "Brave Search", "desc_zh": "网页搜索引擎", "desc_en": "Web search engine", "icon": "🔍", "badge": "search" },
       { "name": "Feishu / 飞书", "desc_zh": "企业通讯与文档", "desc_en": "Enterprise messaging & docs", "icon": "💬", "badge": "connected" },
       { "name": "Telegram", "desc_zh": "即时通讯多群聊", "desc_en": "Instant messaging multi-group", "icon": "📨", "badge": "connected" },
-      { "name": "AgentMail", "desc_zh": "专属邮箱", "desc_en": "Dedicated email", "icon": "📧", "badge": "toughstar557@" },
+      { "name": "AgentMail", "desc_zh": "专属邮箱", "desc_en": "Dedicated email", "icon": "📧", "badge": "[redacted]@agentmail" },
       { "name": "Polymarket API", "desc_zh": "预测市场数据", "desc_en": "Prediction market data", "icon": "📊", "badge": "monitoring" }
     ]
   },
