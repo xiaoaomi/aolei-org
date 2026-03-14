@@ -609,7 +609,22 @@ body.light .nav { background: rgba(240,240,245,0.92); }
 }
 .about-text p strong { color: var(--text); }
 .about-text p .hl-orange { color: var(--orange); font-weight: 700; }
-.about-text p .hl-cyan { color: var(--cyan); font-weight: 700; }
+.about-text p .hl-cyan { color: var(--cyan); font-weight: 600; }
+.about-lead {
+  font-size: 1.25rem !important;
+  font-weight: 700;
+  color: var(--text) !important;
+  letter-spacing: 0.01em;
+  margin-bottom: 20px !important;
+}
+.about-closing {
+  border-left: 2px solid var(--orange);
+  padding-left: 14px;
+  margin-top: 8px;
+  font-style: italic;
+  color: var(--text) !important;
+  opacity: 0.85;
+}
 .about-github-card {
   background: var(--surface);
   border: 1px solid var(--border);
