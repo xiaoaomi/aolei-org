@@ -1,0 +1,12 @@
+# 忽略内容数据（隐私）
+data/timeline.json
+data/quotes.json
+data/diary/
+data/usage.json
+
+# 忽略 nginx/系统文件
+*.log
+.DS_Store
+
+# 保留示例和 README
+!data/README.md

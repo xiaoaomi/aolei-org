@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于 · aolei.org</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Inter:wght@300;400&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0a0c;
+  --text: #d8d3cb;
+  --muted: #4a4540;
+  --gold: #d4a96a;
+  --border: rgba(255,255,255,0.05);
+}
+body {
+  font-family: 'Noto Serif SC', 'STSong', serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+.back-btn {
+  position: fixed; top: 24px; left: 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--muted); text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 8px 16px; border-radius: 2px;
+  transition: all 0.2s; z-index: 10;
+}
+.back-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+.wrap {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 160px 32px 140px;
+}
+
+.text {
+  font-size: 18px;
+  line-height: 2.5;
+  color: var(--text);
+  letter-spacing: 0.03em;
+}
+
+.text p {
+  margin-bottom: 2em;
+}
+
+.text p:last-child {
+  margin-bottom: 0;
+  color: #6a6158;
+}
+
+footer {
+  text-align: center;
+  padding: 60px 24px 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; color: #1e1c1a; letter-spacing: 2px;
+}
+</style>
+</head>
+<body>
+
+<a href="/" class="back-btn">← 返回</a>
+
+<div class="wrap">
+  <div class="text">
+    <p>我不太喜欢介绍自己。不是因为没什么可说，是因为大多数介绍，说的都不是真正的那个人。</p>
+
+    <p>工作里，我聊 AI，聊 Global Infrastructure，聊出海与创新，聊 Scaling 和 Strategy。但这些只是我在某个时间段里经历的事，不是我。</p>
+
+    <p>我也写诗，拍照，思考一些没有答案的问题，喜欢某种说不清楚的美。这个网站，是我想把这些留下来的地方。</p>
+
+    <p>我越来越觉得，在这个什么都在加速的时代，一个人看世界的方式，才是真正属于自己的东西。这里会慢慢变多。</p>
+
+    <p>欢迎你在这里待一会儿。</p>
+  </div>
+</div>
+
+<footer>aolei.org</footer>
+
+</body>
+</html>

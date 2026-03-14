@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晚来风集 · 雷奥</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Inter:wght@300;400&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0c;
+  --text: #ddd8ce;
+  --muted: #4a4540;
+  --accent: #c8b89a;
+  --gold: #d4a96a;
+  --border: rgba(255,255,255,0.05);
+}
+
+body {
+  font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  position: relative;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(212,169,106,0.05) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -55%);
+  pointer-events: none;
+}
+.cover-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 40px;
+}
+.cover-title {
+  font-size: clamp(44px, 12vw, 88px);
+  font-weight: 300; letter-spacing: 0.2em;
+  color: var(--text); line-height: 1; margin-bottom: 16px;
+}
+.cover-rule {
+  width: 40px; height: 1px;
+  background: var(--gold); opacity: 0.5;
+  margin: 28px auto;
+}
+.cover-author {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; letter-spacing: 3px;
+  color: var(--muted);
+}
+.cover-scroll {
+  position: absolute; bottom: 48px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 2px;
+  color: #252220; text-transform: uppercase;
+  animation: float 2.5s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+/* POEMS */
+.poems {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 32px 160px;
+}
+
+.poem {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+}
+.poem:last-child { border-bottom: none; }
+
+.poem-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 2.5px;
+  color: var(--muted); text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 16px;
+}
+.poem-meta::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: var(--border);
+}
+
+.poem-title {
+  font-size: 18px; font-weight: 400;
+  color: var(--accent); letter-spacing: 0.1em;
+  margin-bottom: 32px;
+}
+
+.poem-body {
+  font-size: 18px;
+  line-height: 2.6;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  white-space: pre-line;
+}
+
+.poem-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 2px;
+  color: var(--muted);
+  margin-top: 40px;
+}
+
+/* BACK */
+.back-btn {
+  position: fixed;
+  top: 24px; left: 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--muted); text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 8px 16px; border-radius: 2px;
+  transition: all 0.2s;
+  z-index: 10;
+}
+.back-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 40px 24px 60px;
+  border-top: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; color: #1e1c1a; letter-spacing: 2px;
+}
+</style>
+</head>
+<body>
+
+<a href="/" class="back-btn">← 返回</a>
+
+<div class="cover">
+  <div class="cover-eyebrow">2009 — 2019</div>
+  <div class="cover-title">晚来风集</div>
+  <div class="cover-rule"></div>
+  <div class="cover-author">雷奥 · 三十一首</div>
+  <div class="cover-scroll">向下翻阅 ↓</div>
+</div>
+
+<div class="poems" id="poems"></div>
+
+<footer>aolei.org · 晚来风集</footer>
+
+<script>
+const poems = [
+  { num: 1, title: null, date: "2026/2/15", body: `冬日的暖阳里
+他们谈论着岸边的船
+和开得漫不经心的花
+
+微风刮过山峰和楼宇
+像一把透明的勺子刮过冰淇淋
+在太阳下化成一摊摊倒影
+
+影子里藏着许多羞涩的人
+有的轻声道别
+有的认真重逢
+
+有的小心翼翼地等着春天` },
+  { num: 2, title: null, date: "2019/11/24", body: `树叶在风中簌簌作响
+雨点敲在玻璃窗上 绽开了花
+
+无人的夜里
+每种声音都很动听
+
+可她和天上的星星一样不爱说话` },
+  { num: 3, title: "日与夜", date: "2019/10/4", body: `大雨过后
+太阳和月亮都变得沉默
+
+扔开那本一百五十四页的故事
+听一首只有啦啦啦啦的歌` },
+  { num: 4, title: "Nora", date: "2019/8/7", body: `Nora 继续往北走
+穿着她的白色短裙
+
+今夜依然落雨
+空气氤氲
+像多年前的那场梦
+
+她没有吃完刚买的冰淇淋
+只是在手里把玩
+任她们被雨水冲刷
+
+她说颜色好美
+像油画的颜料
+能不能抹一抹暗淡的天空` },
+  { num: 5, title: null, date: "2018/12/9", body: `雪糕刚在夏日的阳光下融化
+雾珠就从冬天的车窗上滑落
+
+清晨打翻的苦水
+晚上又笑成眼泪
+
+明明没有钟表
+可还是听见了时间的滴答声
+
+我撬开一瓶酒
+远方的你说干杯` },
+  { num: 6, title: null, date: "2018/9/17", body: `清晨与午后
+阳光都太热烈
+
+倒是黑夜漫漫
+可以掩藏我的痴醉` },
+  { num: 7, title: null, date: "2018/9/3", body: `一旦沉睡，就逃不过黑暗的切割
+残缺的灵魂撒向夜空，化作四分五裂的梦
+
+一块是情欲
+封装入鼓，羞怯作了鼓皮
+可梦里总有疯子操槌
+一棒下去，不知轻重
+我怕它轻描淡写
+又怕它余音不绝
+
+一块是焦虑
+幼年时强忍的泪水
+滴进成人世界失意的苦笑
+在无人注视的梦里
+开成一朵朵带刺的花
+
+一块是人
+离开的人
+他们最后只留给你背影
+此刻却微笑着迎面走来` },
+  { num: 8, title: null, date: "2018/7/29", body: `孤独的城里有一盏善良的灯
+
+它总把红色留给快离别的情侣
+把绿色留给正想家的归人` },
+  { num: 9, title: null, date: "2018/6/1", body: `童年时
+我常把眼睛贴在窗上
+看外面人声鼎沸 华灯煌煌
+
+如今去了外面世界
+却也偶尔透过那扇窗 看看屋内的自己
+
+你说要拿最爱的变形金刚和我换长大的一天
+我说好啊好啊
+
+可是窗户蒙着雾气，不管我俩怎么擦也擦不干净` },
+  { num: 10, title: null, date: "2018/4/25", body: `我的梦境
+是你的领地
+
+在这里 你变幻莫测 法力无边
+
+时而鲜红
+时而斑斓
+时而黑白
+
+我是个闯入后被抓捕的偷渡客
+张皇失措 噤若寒蝉` },
+  { num: 11, title: null, date: "2017/12/17", body: `我用刀划开冰淇淋
+用芒果蘸芥末
+看生鱼片在阳光下融化` },
+  { num: 12, title: "11", date: "2017/11/11", body: `〈11 是两个小人儿〉
+一个看着前面的人
+一个看着前面的路
+既然前方都是各自的梦
+那就不怕孤独
+
+〈11 是两根火柴棍〉
+一根用来取暖
+在无情的寒冬
+将干柴点燃
+一根用来照明
+划亮夜空 点明灯一盏
+再手执花火 献给黑暗
+
+〈11 是两根饼干棒〉
+一根巧克力味
+送给冷战的情侣
+让熟悉的热恋之味
+冲淡彼此膨胀的自尊
+唤回那个还没长大的男孩
+替她擦一擦眼泪
+洗一洗花了的双眉
+一根抹茶味
+送给无家可归的浪子
+让他苦涩如茶的生活
+也能回味出一丝甜美
+
+〈11 是诗人的两只笔〉
+一只蘸着热血
+洒向沙场的晚霞
+马蹄把它踏成美酒
+用来清洗战士的伤疤
+一只蘸着柔情
+画一缕清风
+画一对飞燕
+再画我小心翼翼的疯癫
+躲不开你的笑颜` },
+  { num: 13, title: null, date: "2017/3/23", body: `森林变成了沙画
+海鸥变成了乌鸦
+
+可大雨三日不断
+也浇不满一朵小花` },
+  { num: 14, title: null, date: "2017/1/18", body: `我的礼物
+我要等到春天才敢给你
+
+那时世界繁花似锦
+什么都不会凋零` },
+  { num: 15, title: null, date: "2017/1/4", body: `谢一清二白 谢诞幻不经
+谢无端赠我的三生有幸
+
+关于四海为家 关于五冬六夏
+关于尚未抵达的海角天涯
+
+笑七生七死，笑八攻八克
+笑九曲回肠的悲欢离合
+
+再来十年磨剑 再惹物是人非
+再斩不依不饶的百鬼众魅
+
+你好 千山万水
+你好 一期一会` },
+  { num: 16, title: null, date: "2016/10/19", body: `最后一首 带韵温柔
+和你藏在黑夜里的胭红
+
+最后一口 安睡的酒
+和你摇摇欲坠的面容
+
+谢清风明月 谢长夜悠悠
+它们说今晚没有铁马冰河
+但有个你逗留的梦` },
+  { num: 17, title: null, date: "2016/9/14", body: `秋色平分
+一半是月
+一半是你` },
+  { num: 18, title: null, date: "2016/7/31", body: `你是雪国的冰川终年不化
+我是地底的火山一醉长眠
+
+你会崩融吗
+如果我喷发的话` },
+  { num: 19, title: null, date: "2016/6/28", body: `正午的艳阳是你目光如炬
+夜晚的星辰是你剪水明眸
+
+朝来暮去
+无所遁形` },
+  { num: 20, title: null, date: "2015/12/5", body: `我走进暴雨
+希望能浇灭想给你的灿烂花火
+
+我走向喧嚣
+希望能掩盖想给你的大声倾诉` },
+  { num: 21, title: null, date: "2015/11/1", body: `我逃得了举世狂欢的夜
+却躲不掉如影随形的你
+
+你如精灵般法力无边
+让我难以幸免` },
+  { num: 22, title: null, date: "2014/10/5", body: `一颗发烧的月亮
+躺在温柔的湖中
+
+我不是夜里唯一的梦游者` },
+  { num: 23, title: null, date: "2014/9/30", body: `像是一个无期的约会
+未知的地点 未知的人
+
+只说了我们终会相见
+却没说你是在前方等待
+还是正在赶来
+
+只说了我们不见不散
+却没说我是该日夜兼程匆匆赶路
+还是该原地静候翘首驻足
+
+邀请函是你转瞬即逝的耳语
+唤醒了沉睡的人 却没告诉他苏醒的意义
+
+我准备了玫瑰 准备了拥抱 准备了狂喜和痴心
+我不知道你是谁
+我只知道 见到你 我就一定能认出
+
+于遥遥无期里等待如期而至
+这是我们的一期一会` },
+  { num: 24, title: null, date: "2014/3/27", body: `一旦梦境太过风风韵韵
+催人苏醒的晨光总显得不解风情
+
+一旦幸福趋于尽善尽美
+一点斑驳的瑕疵也会刻骨铭心
+
+虽然向往那济济楚楚 痛快淋漓
+但也庆幸如今的宁静虽只给我微薄的幸福
+却也让我不在乎那些不尽如人意
+
+爱狂风潜入暗夜
+爱猛虎细嗅蔷薇` },
+  { num: 25, title: null, date: "2013/10/30", body: `夜下路人各自匆匆
+不知谁是在离去
+谁是在归程` },
+  { num: 26, title: null, date: "2013/10/21", body: `需要多少个梦
+才能零星拼出一个有你的世界` },
+  { num: 27, title: null, date: "2013/9/26", body: `我低头避开炽热的阳光
+却避不开被阳光普照的大地
+
+我隐忍走向无念无想的生活
+却走不出念想的回音笼罩的世界` },
+  { num: 28, title: null, date: "2013/4/16", body: `你走了
+走得如花瓣入土
+凄美地给我留下无形的芬芳
+
+我也走了
+走得如尘埃落定
+挣扎的思念终究归降于平静的命缘
+
+你曾来到我跟前
+我却没能追溯你来时的足迹
+
+你曾对我微笑
+我却没能捕捉到你快乐的原因
+
+后悔没勇敢向你开口
+后悔屈服于不安的心神
+那刹那间对凝望的痴恋
+竟还给我这漫漫无期的陌生
+
+再见了
+
+如果我能与你相识
+我愿是在那黎明时的森林
+如果我能知道你的名字
+我愿她可以出自你的口中` },
+  { num: 29, title: null, date: "2012/5/7", body: `是谁在暗夜潜伏 匿藏在无人之境
+不是你 你没有回声 回声是骗人的鬼魅
+
+来了 这场订在黑暗深处的约会
+我躺在钟表的齿轮上 在时间柔美的碾压中赴约
+
+滴答 滴答
+这不是打上纸伞的突兀雨点 而是滑附冰肌的偶然露珠
+
+我来了 在时间的尽头 在森林的深处 在你布满灰尘的家中
+但你却未赴约
+
+晨曦已至
+林鸟初啼
+让我下一个午夜再来
+
+我知你既已遁迹于阳光 便不屑在人群中显形` },
+  { num: 30, title: "出塞曲", date: "2011/2/2", body: `倚月拭刃尖泄曲
+即舞狠刺乐轻含
+
+歉对宝剑尘封锈
+谢以伊人常颤弦
+
+卿柔满倾一美酒
+吾醉尽灭万冕冠
+
+士若战死敌城外
+愿为葬于尔房前` },
+  { num: 31, title: "罗马", date: "2009/12/6", body: `于帕拉丁山之东升起的太阳
+造就了罗马城中的倩影斑驳
+
+我紧随着环绕浮动的幽香
+仿佛在向前拥抱那不断闪避的地中海温情
+
+我不知她的脚尖轻点在水面的何处
+但荡漾开来的涟漪
+意外地触到了我的心弦
+
+让我惟能漫溯
+去寻觅这柔波散发的中心
+
+
+你在许愿池里祈祷
+我在海神身边希冀
+
+你在万神殿前蹙眉
+我在柱廊下沉思
+
+你站在了竞技场的最高处
+俯瞰广袤的战场
+
+请打开我的牢笼
+
+我愿去拼死
+全城的雄狮` }
+];
+
+const container = document.getElementById('poems');
+container.innerHTML = poems.map(p => `
+  <div class="poem">
+    <div class="poem-meta">${String(p.num).padStart(2, '0')}</div>
+    ${p.title ? `<div class="poem-title">${p.title}</div>` : ''}
+    <div class="poem-body">${p.body}</div>
+    <div class="poem-date">${p.date}</div>
+  </div>
+`).join('');
+</script>
+</body>
+</html>
