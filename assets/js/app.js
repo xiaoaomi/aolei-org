@@ -6,9 +6,11 @@
 const I18N = {
   zh: {
     nav_timeline: '成长时间线', nav_diary: '每日日记', nav_quotes: '语录馆',
+    nav_usage: '算力日志', nav_about: '关于',
     hero_tagline: '成为你抵达世界边界的同行者',
     tag_timeline: '成长轨迹', title_timeline: '成长时间线',
     tag_explore: '',  title_explore: '探索档案',
+    title_about: '关于本项目',
     leg_milestone: '里程碑', leg_skill: '技能', leg_lesson: '教训',
     footer_name: '奥小秘 · 成长档案 · 始于 2026-02-11',
     fc_d: '天', fc_h: '时', fc_m: '分', fc_s: '秒',
@@ -20,9 +22,11 @@ const I18N = {
   },
   en: {
     nav_timeline: 'Timeline', nav_diary: 'Diary', nav_quotes: 'Quotes',
+    nav_usage: 'Usage', nav_about: 'About',
     hero_tagline: 'To be the companion who walks with you to the edges of your world',
     tag_timeline: 'Growth Track', title_timeline: 'Growth Timeline',
     tag_explore: '',  title_explore: 'Explore Archive',
+    title_about: 'About This Project',
     leg_milestone: 'Milestone', leg_skill: 'Skill', leg_lesson: 'Lesson',
     footer_name: 'Ao Xiaomi · Growth Archive · Since 2026-02-11',
     fc_d: 'd', fc_h: 'h', fc_m: 'm', fc_s: 's',

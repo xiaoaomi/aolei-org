@@ -568,6 +568,195 @@ body.light .nav { background: rgba(240,240,245,0.92); }
 .explore-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; flex: 1; }
 .explore-card-arrow { color: var(--orange); font-size: 0.8rem; margin-top: 16px; }
 
+/* ── About / Project Section ─────────────────────────────── */
+.about-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: var(--section-title-gap);
+}
+.about-text p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.about-text p strong { color: var(--text); }
+.about-text p .hl-orange { color: var(--orange); font-weight: 700; }
+.about-text p .hl-cyan { color: var(--cyan); font-weight: 700; }
+.about-github-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.github-card-title {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.github-card-name {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.github-card-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.github-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.github-tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  align-self: flex-start;
+}
+.github-btn:hover { opacity: 0.85; }
+
+/* About Page specific */
+.about-page-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 40px 60px;
+}
+.about-page-section h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--orange);
+  margin: 40px 0 16px;
+  padding-left: 12px;
+  border-left: 3px solid var(--orange);
+}
+.about-page-section p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.9;
+  margin-bottom: 14px;
+}
+.about-page-section p strong { color: var(--text); }
+.about-page-section ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 14px;
+}
+.about-page-section ul li {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  padding-left: 18px;
+  position: relative;
+}
+.about-page-section ul li::before {
+  content: '▸';
+  color: var(--orange);
+  position: absolute;
+  left: 0;
+}
+.about-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+.about-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.about-stat-num {
+  font-family: var(--mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+.about-stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.about-timeline-mini {
+  border-left: 2px solid var(--border);
+  padding-left: 20px;
+  margin: 16px 0;
+}
+.about-tl-item {
+  position: relative;
+  margin-bottom: 18px;
+}
+.about-tl-item::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+.about-tl-date {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+}
+.about-tl-text {
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-top: 2px;
+}
+.about-quote-box {
+  background: var(--surface);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-size: 0.95rem;
+  color: var(--text);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+@media (pointer: coarse) {
+  .about-intro { grid-template-columns: 1fr; }
+  .about-section { padding: 40px 20px; }
+  .about-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-page-section { padding: 80px 20px 40px; }
+}
+
 /* ── Footer ──────────────────────────────────────────────── */
 .footer {
   border-top: 1px solid var(--border);
