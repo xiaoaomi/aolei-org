@@ -48,10 +48,10 @@
 
     data.forEach((q, i) => {
       const isZh = lang === 'zh';
-      const topic   = isZh ? q.topic_zh   : (q.topic_en   || q.topic_zh);
-      const closing = isZh ? q.closing_zh : (q.closing_en || q.closing_zh);
-      const lead    = isZh ? q.lead_zh    : (q.lead_en    || q.lead_zh);
-      const preview = lead ? lead.slice(0, 90) + (lead.length > 90 ? '…' : '') : '';
+      const topic    = isZh ? q.topic_zh    : (q.topic_en    || q.topic_zh);
+      const category = isZh ? q.category_zh : (q.category_en || q.category_zh || '');
+      const lead     = isZh ? q.lead_zh     : (q.lead_en     || q.lead_zh);
+      const preview  = lead ? lead.slice(0, 90) + (lead.length > 90 ? '…' : '') : '';
 
       const hue = HUES[i % HUES.length];
       const numStr = String(i + 1).padStart(2, '0');
@@ -64,6 +64,7 @@
       card.innerHTML = `
         <div class="qc-header">
           <div class="qc-num">${numStr}</div>
+          ${category ? `<div class="qc-category">${category}</div>` : ''}
           <div class="qc-topic">${topic}</div>
           <p class="qc-preview">${preview}</p>
         </div>

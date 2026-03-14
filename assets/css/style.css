@@ -858,6 +858,15 @@ body.light .nav { background: rgba(240,240,245,0.92); }
   pointer-events: none;
 }
 
+.qc-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: hsl(var(--hue), 60%, 60%);
+  margin-bottom: 6px;
+}
+
 .qc-topic {
   font-size: 1.05rem;
   font-weight: 700;
