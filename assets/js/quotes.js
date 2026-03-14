@@ -1,4 +1,4 @@
-/* quotes.js v5 — 语录馆索引页，点击跳单篇页 */
+/* quotes.js v6 — 语录馆索引页，按分类分区展示 */
 'use strict';
 
 (function () {
@@ -38,50 +38,87 @@
 
   const HUES = [18, 185, 265, 45, 210, 330, 90, 350];
 
+  // 分类顺序（保证固定顺序，新分类追加到末尾）
+  const CATEGORY_ORDER_ZH = ['存在与时间', '语言与思维', '人与AI'];
+  const CATEGORY_ORDER_EN = ['Existence & Time', 'Language & Thought', 'Humans & AI'];
+
+  function makeCard(q, globalIdx) {
+    const isZh = lang === 'zh';
+    const topic   = isZh ? q.topic_zh  : (q.topic_en  || q.topic_zh);
+    const lead    = isZh ? q.lead_zh   : (q.lead_en   || q.lead_zh);
+    const preview = lead ? lead.slice(0, 90) + (lead.length > 90 ? '…' : '') : '';
+    const hue     = HUES[globalIdx % HUES.length];
+    const numStr  = String(globalIdx + 1).padStart(2, '0');
+
+    const card = document.createElement('div');
+    card.className = 'qc-card';
+    card.style.setProperty('--hue', hue);
+    card.style.cursor = 'pointer';
+    card.innerHTML = `
+      <div class="qc-header">
+        <div class="qc-num">${numStr}</div>
+        <div class="qc-topic">${topic}</div>
+        <p class="qc-preview">${preview}</p>
+      </div>
+      <div class="qc-footer-bar">
+        <span class="qc-date">${q.date || ''}</span>
+        <span class="qc-btn">${t('read_more')} →</span>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      window.location.href = `quote.html?id=${encodeURIComponent(q.id || globalIdx)}`;
+    });
+    return card;
+  }
+
   function renderQuotes(data) {
     const container = document.getElementById('quotes-container');
     if (!container) return;
     container.innerHTML = '';
 
-    const grid = document.createElement('div');
-    grid.className = 'qc-grid';
+    const isZh = lang === 'zh';
 
+    // 按分类分组，保留原始索引
+    const groups = new Map();
     data.forEach((q, i) => {
-      const isZh = lang === 'zh';
-      const topic    = isZh ? q.topic_zh    : (q.topic_en    || q.topic_zh);
-      const category = isZh ? q.category_zh : (q.category_en || q.category_zh || '');
-      const lead     = isZh ? q.lead_zh     : (q.lead_en     || q.lead_zh);
-      const preview  = lead ? lead.slice(0, 90) + (lead.length > 90 ? '…' : '') : '';
-
-      const hue = HUES[i % HUES.length];
-      const numStr = String(i + 1).padStart(2, '0');
-
-      const card = document.createElement('div');
-      card.className = 'qc-card';
-      card.style.setProperty('--hue', hue);
-      card.style.cursor = 'pointer';
-
-      card.innerHTML = `
-        <div class="qc-header">
-          <div class="qc-num">${numStr}</div>
-          ${category ? `<div class="qc-category">${category}</div>` : ''}
-          <div class="qc-topic">${topic}</div>
-          <p class="qc-preview">${preview}</p>
-        </div>
-        <div class="qc-footer-bar">
-          <span class="qc-date">${q.date || ''}</span>
-          <span class="qc-btn">${t('read_more')} →</span>
-        </div>
-      `;
-
-      card.addEventListener('click', () => {
-        window.location.href = `quote.html?id=${encodeURIComponent(q.id || i)}`;
-      });
-
-      grid.appendChild(card);
+      const cat = (isZh ? q.category_zh : q.category_en) || (isZh ? '其他' : 'Other');
+      if (!groups.has(cat)) groups.set(cat, []);
+      groups.get(cat).push({ q, i });
     });
 
-    container.appendChild(grid);
+    // 按固定顺序排列分类，未知分类追加到末尾
+    const order = isZh ? CATEGORY_ORDER_ZH : CATEGORY_ORDER_EN;
+    const sortedCats = [
+      ...order.filter(c => groups.has(c)),
+      ...[...groups.keys()].filter(c => !order.includes(c))
+    ];
+
+    sortedCats.forEach(cat => {
+      const entries = groups.get(cat);
+
+      // 分类区块
+      const section = document.createElement('div');
+      section.className = 'qc-section-block';
+
+      // 分类标题
+      const header = document.createElement('div');
+      header.className = 'qc-section-header';
+      header.innerHTML = `
+        <h2 class="qc-section-title">${cat}</h2>
+        <span class="qc-section-count">${entries.length} 篇</span>
+      `;
+      section.appendChild(header);
+
+      // 分类下的卡片网格（瀑布流）
+      const grid = document.createElement('div');
+      grid.className = 'qc-grid';
+      entries.forEach(({ q, i }) => {
+        grid.appendChild(makeCard(q, i));
+      });
+      section.appendChild(grid);
+
+      container.appendChild(section);
+    });
   }
 
   function setLang(l) {

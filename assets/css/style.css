@@ -806,14 +806,39 @@ body.light .nav { background: rgba(240,240,245,0.92); }
 .page-subtitle { font-size: 0.88rem; color: var(--muted); max-width: 560px; line-height: 1.6; }
 
 /* Grid */
+/* ── Quotes Section Blocks ──────────────────────────────── */
+.qc-section-block {
+  padding: 0 40px;
+  margin-bottom: 60px;
+}
+.qc-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.qc-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.qc-section-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
 /* ── Quotes Grid — masonry via CSS columns ─────────────── */
 .qc-grid {
   column-count: 3;
   column-gap: 22px;
-  padding: 0 40px 80px;
+  padding: 0 0 8px;
 }
 @media (max-width: 1100px) { .qc-grid { column-count: 2; } }
-@media (max-width: 600px)  { .qc-grid { column-count: 1; padding: 0 16px 48px; } }
+@media (max-width: 600px)  { .qc-grid { column-count: 1; } }
 
 /* Card */
 .qc-card {
@@ -1197,7 +1222,8 @@ body.light .nav { background: rgba(240,240,245,0.92); }
   .diary-text { font-size: 0.85rem; }
 
   /* ── Quotes page ── */
-  .qc-grid { padding: 0 16px 48px; column-count: 1; }
+  .qc-grid { column-count: 1; }
+  .qc-section-block { padding: 0 16px; margin-bottom: 40px; }
   .qc-header { padding: 18px 18px 14px; }
   .qc-topic { font-size: 1rem; }
   .qc-preview { font-size: 0.78rem; }
