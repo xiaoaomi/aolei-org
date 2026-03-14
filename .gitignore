@@ -10,3 +10,10 @@ data/usage.json
 
 # 保留示例和 README
 !data/README.md
+
+# 备份文件
+*.bak.*
+
+# 旧版本文件
+assets/js/main.js
+assets/css/main.css
