@@ -549,9 +549,13 @@ body.light .nav { background: rgba(240,240,245,0.92); }
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-bottom: 1px solid var(--border);
 }
 @media (max-width: 600px) { .arsenal-section { padding: 40px 20px 48px; } }
-@media (pointer: coarse) { .arsenal-section { padding: 40px 20px 48px; } }
+@media (pointer: coarse) {
+  .arsenal-section { padding: 40px 20px 48px; }
+  .arsenal-section .hero-bottom { grid-template-columns: 1fr !important; max-width: 100%; }
+}
 
 .explore-grid {
   display: flex;
@@ -777,13 +781,33 @@ body.light .nav { background: rgba(240,240,245,0.92); }
 /* ── Footer ──────────────────────────────────────────────── */
 .footer {
   border-top: 1px solid var(--border);
-  padding: 28px 40px;
+  padding: 40px 40px 32px;
   text-align: center;
   font-size: 0.78rem;
   color: var(--muted);
-  line-height: 1.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
-.footer-slogan { color: var(--faint); font-size: 0.72rem; }
+.footer-top {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; color: var(--muted);
+}
+.footer-links {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;
+}
+.footer-links a, .footer-github a {
+  color: var(--muted); text-decoration: none; transition: color .15s;
+  font-size: 0.75rem;
+}
+.footer-links a:hover, .footer-github a:hover { color: var(--orange); }
+.footer-sep { color: var(--faint); }
+.footer-github {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.72rem;
+}
+.footer-slogan { color: var(--faint); font-size: 0.7rem; margin-top: 4px; }
 
 /* ── Toast ───────────────────────────────────────────────── */
 .toast {
@@ -993,6 +1017,7 @@ body.light .nav { background: rgba(240,240,245,0.92); }
 
 .diary-page-header {
   padding: 48px 40px 32px;
+  text-align: center;
 }
 @media (max-width:600px) { .diary-page-header { padding: 36px 20px 24px; } }
 .diary-page-header .section-tag { margin-bottom: 10px; display: inline-block; }

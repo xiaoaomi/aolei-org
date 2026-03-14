@@ -130,15 +130,16 @@
   }
 
   function init() {
-    const btnDark  = document.getElementById('theme-btn-dark');
-    const btnLight = document.getElementById('theme-btn-light');
+    const themeBtn = document.getElementById('theme-toggle-btn');
     function applyTheme(mode) {
       document.body.classList.toggle('light', mode === 'light');
+      if (themeBtn) themeBtn.textContent = mode === 'light' ? '🌙' : '☀️';
       localStorage.setItem('aolei_theme', mode);
     }
     applyTheme(localStorage.getItem('aolei_theme') || 'dark');
-    if (btnDark)  btnDark.addEventListener('click',  () => applyTheme('dark'));
-    if (btnLight) btnLight.addEventListener('click', () => applyTheme('light'));
+    if (themeBtn) themeBtn.addEventListener('click', () => {
+      applyTheme(document.body.classList.contains('light') ? 'dark' : 'light');
+    });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);

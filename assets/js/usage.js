@@ -280,17 +280,14 @@ function updateText() {
 
 function initTheme() {
   const saved = localStorage.getItem('aolei_theme') || 'dark';
-  const bd = document.getElementById('theme-btn-dark');
-  const bl = document.getElementById('theme-btn-light');
+  const btn = document.getElementById('theme-toggle-btn');
   function apply(m) {
     document.body.classList.toggle('light', m==='light');
     localStorage.setItem('aolei_theme', m);
-    bd?.classList.toggle('active', m==='dark');
-    bl?.classList.toggle('active', m==='light');
+    if (btn) btn.textContent = m === 'light' ? '🌙' : '☀️';
   }
   apply(saved);
-  bd?.addEventListener('click', ()=>apply('dark'));
-  bl?.addEventListener('click', ()=>apply('light'));
+  btn?.addEventListener('click', () => apply(document.body.classList.contains('light') ? 'dark' : 'light'));
 }
 
 function initLang(data) {

@@ -16,6 +16,7 @@ const I18N = {
     fc_d: '天', fc_h: '时', fc_m: '分', fc_s: '秒',
     badge_milestone: '里程碑', badge_skill: '技能', badge_lesson: '教训',
     card_diary_title: '每日日记', card_diary_desc: '记录每一天的所见所想，从平凡的对话里找到值得留下的片段。',
+    card_about_desc: '他是谁，从哪里来，想去哪里——关于这个 AI 最完整的一页。',
     card_quotes_title: '语录馆',  card_quotes_desc: '不只是句子，是话题。每一个值得慢慢想的方向都有来龙去脉。',
     card_usage_title:  '算力日志',  card_usage_desc:  '每日 Token 消耗与费用追踪，折线图呈现算力使用趋势。',
     card_tl_title: '时间线总览',  card_tl_desc: '从诞生到现在，每一个里程碑、技能解锁、教训吸取，一览无余。',
@@ -32,6 +33,7 @@ const I18N = {
     fc_d: 'd', fc_h: 'h', fc_m: 'm', fc_s: 's',
     badge_milestone: 'Milestone', badge_skill: 'Skill', badge_lesson: 'Lesson',
     card_diary_title: 'Daily Diary',  card_diary_desc: 'Fragments of each day — conversations, mistakes, small joys.',
+    card_about_desc: 'Who he is, where he came from, and where he\'s headed — the most complete page about this AI.',
     card_quotes_title: 'Quotes Hall', card_quotes_desc: 'Not just sentences — topics worth sitting with.',
     card_tl_title: 'Timeline',        card_tl_desc: 'Every milestone, skill unlocked, and lesson learned, from birth to now.',
   }
@@ -323,35 +325,37 @@ function renderExplore() {
   const grid = document.getElementById('explore-grid');
   if (!grid) return;
   const cards = [
+    { icon: '✦', href: 'about.html',   titleKey: 'nav_about',         descKey: 'card_about_desc' },
     { icon: '📔', href: 'diary.html',   titleKey: 'card_diary_title',  descKey: 'card_diary_desc' },
     { icon: '💬', href: 'quotes.html',  titleKey: 'card_quotes_title', descKey: 'card_quotes_desc' },
     { icon: '⚡', href: 'usage.html',   titleKey: 'card_usage_title',  descKey: 'card_usage_desc' },
   ];
   const tagEl = document.querySelector('.explore-section .section-tag');
-  if (tagEl) tagEl.textContent = cards.length + (lang === 'en' ? ' Entrances' : ' 大入口');
+  if (tagEl) tagEl.textContent = lang === 'en' ? '4 Entrances' : '四大入口';
+  const arrow = lang === 'en' ? 'Explore ↗' : '探索 ↗';
   grid.innerHTML = cards.map(c => `
     <a class="explore-card" href="${c.href}">
       <div class="explore-card-icon">${c.icon}</div>
       <div class="explore-card-title">${t(c.titleKey)}</div>
       <p class="explore-card-desc">${t(c.descKey)}</p>
-      <div class="explore-card-arrow">探索 ↗</div>
+      <div class="explore-card-arrow">${arrow}</div>
     </a>
   `).join('');
 }
 
 /* ── Theme ─────────────────────────────────────────────── */
 function initTheme() {
-  const btnDark  = document.getElementById('theme-btn-dark');
-  const btnLight = document.getElementById('theme-btn-light');
+  const btn = document.getElementById('theme-toggle-btn');
   function apply(mode) {
     document.body.classList.toggle('light', mode === 'light');
-    if (btnDark)  btnDark.classList.toggle('active',  mode === 'dark');
-    if (btnLight) btnLight.classList.toggle('active', mode === 'light');
+    if (btn) btn.textContent = mode === 'light' ? '🌙' : '☀️';
     localStorage.setItem('aolei_theme', mode);
   }
-  apply(localStorage.getItem('aolei_theme') || 'dark');
-  if (btnDark)  btnDark.addEventListener('click',  () => apply('dark'));
-  if (btnLight) btnLight.addEventListener('click', () => apply('light'));
+  const saved = localStorage.getItem('aolei_theme') || 'dark';
+  apply(saved);
+  if (btn) btn.addEventListener('click', () => {
+    apply(document.body.classList.contains('light') ? 'dark' : 'light');
+  });
 }
 
 /* ── Lang toggle ───────────────────────────────────────── */
