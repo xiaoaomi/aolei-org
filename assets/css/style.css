@@ -34,7 +34,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.6;
   min-height: 100vh;
 }
@@ -752,6 +752,7 @@ body.light .nav { background: rgba(240,240,245,0.92); }
 }
 
 @media (pointer: coarse) {
+  body { font-size: 15px; }
   .about-intro { grid-template-columns: 1fr; }
   .about-section { padding: 40px 20px; }
   .about-stat-grid { grid-template-columns: repeat(2, 1fr); }
