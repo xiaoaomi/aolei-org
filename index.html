@@ -21,6 +21,7 @@
     <li><a href="usage.html" data-i18n="nav_usage">算力日志</a></li>
     <li><a href="index.html" class="active" data-i18n="nav_timeline">成长时间线</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="菜单">&#9776;</button>
   <div class="nav-right">
     <button class="lang-btn active" data-lang="zh">中</button>
     <button class="lang-btn" data-lang="en">EN</button>
@@ -28,6 +29,18 @@
     <button class="theme-btn" id="theme-btn-light">☀️</button>
   </div>
 </nav>
+<!-- 手机端抽屉菜单 overlay -->
+<div class="mobile-menu-overlay" id="mobile-overlay"></div>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav class="mobile-menu-links">
+    <a href="about.html"  data-i18n="nav_about">关于</a>
+    <a href="diary.html"  data-i18n="nav_diary">每日日记</a>
+    <a href="quotes.html" data-i18n="nav_quotes">语录馆</a>
+    <a href="usage.html"  data-i18n="nav_usage">算力日志</a>
+    <a href="index.html"  data-i18n="nav_timeline">成长时间线</a>
+  </nav>
+</div>
 
 <!-- ① Hero：标题 + 计时器 -->
 <section class="hero-section" id="hero">
@@ -151,5 +164,6 @@
 <div id="toast" class="toast"></div>
 
 <script src="assets/js/app.js?v=4"></script>
+  <script src="assets/js/nav.js"></script>
 </body>
 </html>

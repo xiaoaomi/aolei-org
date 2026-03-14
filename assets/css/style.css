@@ -80,6 +80,11 @@ body.light .nav { background: rgba(240,240,245,0.92); }
   color: var(--text); background: var(--surface);
 }
 
+/* 汉堡/抽屉 默认隐藏（PC端），手机端 pointer:coarse 里开启 */
+.nav-hamburger { display: none; }
+.mobile-menu-overlay,
+.mobile-menu { display: none; }
+
 .nav-right {
   display: flex; align-items: center; gap: 6px; flex-shrink: 0;
   margin-left: auto;
@@ -1154,6 +1159,70 @@ body.light .nav { background: rgba(240,240,245,0.92); }
   .nav-links { display: none !important; }
   .nav-right { gap: 2px; flex-shrink: 0; flex-wrap: nowrap; }
   .theme-btn { padding: 2px 4px; font-size: 0.85rem; min-width: 26px; }
+
+  /* ── 手机端汉堡按钮 ── */
+  .nav-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 1.1rem;
+    width: 32px; height: 32px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: auto;
+    order: -1; /* 让汉堡在 nav-right 左边 */
+  }
+
+  /* ── 手机端抽屉 overlay ── */
+  .mobile-menu-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(2px);
+  }
+  .mobile-menu-overlay.open { display: block; }
+
+  .mobile-menu {
+    display: flex;
+    position: fixed; top: 0; left: 0; z-index: 301;
+    width: 72vw; max-width: 280px; height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 24px 20px 40px;
+    transform: translateX(-100%);
+    transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    flex-direction: column; gap: 0;
+  }
+  .mobile-menu.open { transform: translateX(0); }
+
+  .mobile-menu-close {
+    align-self: flex-end;
+    background: none; border: none;
+    color: var(--muted); font-size: 1.2rem;
+    cursor: pointer; padding: 4px 8px;
+    margin-bottom: 20px;
+  }
+
+  .mobile-menu-links {
+    display: flex; flex-direction: column;
+  }
+  .mobile-menu-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s;
+  }
+  .mobile-menu-links a:last-child { border-bottom: none; }
+  .mobile-menu-links a:hover,
+  .mobile-menu-links a.active { color: var(--orange); }
   .lang-btn { padding: 2px 5px; font-size: 0.72rem; min-width: 24px; }
   .lang-btn { padding: 2px 6px; font-size: 0.68rem; }
   .theme-btn { padding: 2px 5px; font-size: 0.78rem; }

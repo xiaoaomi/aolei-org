@@ -22,6 +22,7 @@
     <li><a href="usage.html" class="active" data-i18n="nav_usage">算力日志</a></li>
     <li><a href="index.html" data-i18n="nav_timeline">成长时间线</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="菜单">&#9776;</button>
   <div class="nav-right">
     <div class="lang-toggle">
       <button class="lang-btn active" data-lang="zh">中</button>
@@ -32,6 +33,18 @@
     <span class="dot-live" title="在线"></span>
   </div>
 </nav>
+<!-- 手机端抽屉菜单 overlay -->
+<div class="mobile-menu-overlay" id="mobile-overlay"></div>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav class="mobile-menu-links">
+    <a href="about.html"  data-i18n="nav_about">关于</a>
+    <a href="diary.html"  data-i18n="nav_diary">每日日记</a>
+    <a href="quotes.html" data-i18n="nav_quotes">语录馆</a>
+    <a href="usage.html"  data-i18n="nav_usage">算力日志</a>
+    <a href="index.html"  data-i18n="nav_timeline">成长时间线</a>
+  </nav>
+</div>
 
 <main class="usage-main">
 
@@ -67,5 +80,6 @@
 </main>
 
 <script src="assets/js/usage.js?v=4"></script>
+  <script src="assets/js/nav.js"></script>
 </body>
 </html>
