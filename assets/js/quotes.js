@@ -130,17 +130,6 @@
   }
 
   function init() {
-    const themeBtn = document.getElementById('theme-toggle-btn');
-    function applyTheme(mode) {
-      document.body.classList.toggle('light', mode === 'light');
-      if (themeBtn) themeBtn.textContent = mode === 'light' ? '🌙' : '☀️';
-      localStorage.setItem('aolei_theme', mode);
-    }
-    applyTheme(localStorage.getItem('aolei_theme') || 'dark');
-    if (themeBtn) themeBtn.addEventListener('click', () => {
-      applyTheme(document.body.classList.contains('light') ? 'dark' : 'light');
-    });
-
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
       btn.addEventListener('click', () => setLang(btn.dataset.lang));

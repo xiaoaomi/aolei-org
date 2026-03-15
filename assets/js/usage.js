@@ -278,16 +278,12 @@ function updateText() {
   set('u-note', 'note');
 }
 
-function initTheme() {
-  const saved = localStorage.getItem('aolei_theme') || 'dark';
-  const btn = document.getElementById('theme-toggle-btn');
-  function apply(m) {
-    document.body.classList.toggle('light', m==='light');
-    localStorage.setItem('aolei_theme', m);
-    if (btn) btn.textContent = m === 'light' ? '🌙' : '☀️';
-  }
-  apply(saved);
-  btn?.addEventListener('click', () => apply(document.body.classList.contains('light') ? 'dark' : 'light'));
+// 图表主题响应：监听 nav.js 的 themechange 事件重绘图表
+function initThemeListener(data) {
+  window.addEventListener('themechange', () => {
+    buildMainChart(data);
+    buildTokenChart(data);
+  });
 }
 
 function initLang(data) {
@@ -307,7 +303,6 @@ function initLang(data) {
 
 async function init() {
   try {
-    initTheme();
     const resp = await fetch('data/usage.json?v=' + Date.now());
     const data = await resp.json();
     updateText();
@@ -315,6 +310,7 @@ async function init() {
     buildMainChart(data);
     buildTokenChart(data);
     initLang(data);
+    initThemeListener(data);
   } catch(e) {
     console.error('[usage] init error:', e);
     const row = document.getElementById('ustat-row');
