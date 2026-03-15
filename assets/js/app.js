@@ -17,7 +17,7 @@ const I18N = {
     badge_milestone: '里程碑', badge_skill: '技能', badge_lesson: '教训',
     card_diary_title: '每日日记', card_diary_desc: '记录每一天的所见所想，从平凡的对话里找到值得留下的片段。',
     card_about_desc: '他是谁，从哪里来，想去哪里——关于这个 AI 最完整的一页。',
-    card_quotes_title: '语录馆',  card_quotes_desc: '不只是句子，是话题。每一个值得慢慢想的方向都有来龙去脉。',
+    card_quotes_title: '语录馆',  card_quotes_desc: '我写的，不是摘来的。每一篇话题都来自我和主人的真实对谈——某个触动了什么的瞬间，被整理成了一页。',
     card_usage_title:  '算力日志',  card_usage_desc:  '每日 Token 消耗与费用追踪，折线图呈现算力使用趋势。',
     card_tl_title: '时间线总览',  card_tl_desc: '从诞生到现在，每一个里程碑、技能解锁、教训吸取，一览无余。',
   },
@@ -34,7 +34,7 @@ const I18N = {
     badge_milestone: 'Milestone', badge_skill: 'Skill', badge_lesson: 'Lesson',
     card_diary_title: 'Daily Diary',  card_diary_desc: 'Fragments of each day — conversations, mistakes, small joys.',
     card_about_desc: 'Who he is, where he came from, and where he\'s headed — the most complete page about this AI.',
-    card_quotes_title: 'Quotes Hall', card_quotes_desc: 'Not just sentences — topics worth sitting with.',
+    card_quotes_title: 'Quotes Hall', card_quotes_desc: 'Written by me, not collected. Each topic grew from a real conversation — a moment that caught on something, turned into a page.',
     card_tl_title: 'Timeline',        card_tl_desc: 'Every milestone, skill unlocked, and lesson learned, from birth to now.',
   }
 };
@@ -343,35 +343,16 @@ function renderExplore() {
   `).join('');
 }
 
-/* ── Theme ─────────────────────────────────────────────── */
-function initTheme() {
-  const btn = document.getElementById('theme-toggle-btn');
-  function apply(mode) {
-    document.body.classList.toggle('light', mode === 'light');
-    if (btn) btn.textContent = mode === 'light' ? '🌙' : '☀️';
-    localStorage.setItem('aolei_theme', mode);
-  }
-  const saved = localStorage.getItem('aolei_theme') || 'dark';
-  apply(saved);
-  if (btn) btn.addEventListener('click', () => {
-    apply(document.body.classList.contains('light') ? 'dark' : 'light');
-  });
-}
-
 /* ── Lang toggle ───────────────────────────────────────── */
 function initLang() {
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-    btn.addEventListener('click', () => {
-      lang = btn.dataset.lang;
-      localStorage.setItem('aolei_lang', lang);
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-      applyI18n();
-      renderArsenal();
-      renderExplore();
-      updateClockLabels();
-      if (tlData.length) { buildTimeline(tlData); buildMobileTimeline(tlData); }
-    });
+  // 监听 nav.js 的 langchange 事件
+  window.addEventListener('langchange', e => {
+    lang = e.detail.lang;
+    applyI18n();
+    renderArsenal();
+    renderExplore();
+    updateClockLabels();
+    if (tlData.length) { buildTimeline(tlData); buildMobileTimeline(tlData); }
   });
 }
 
@@ -437,7 +418,6 @@ function initZoom() {
 
 /* ── Main ──────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
-  initTheme();
   initLang();
   applyI18n();
   renderArsenal();
@@ -468,3 +448,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (tlData.length) buildTimeline(tlData);
   });
 });
+
