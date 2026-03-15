@@ -1,14 +1,42 @@
-/* nav.js — 导航公共逻辑（所有页面共用） */
+/* nav.js — 导航公共逻辑（所有页面共用）
+   负责：
+   1. Theme 初始化 + 切换（dispatch themechange 事件）
+   2. i18n 公共 key 初始化 + 切换（dispatch langchange 事件）
+   3. 手机端抽屉菜单
+*/
 (function () {
 
-  /* ── Theme（主题切换，所有页面通用）────────────────── */
+  /* ── 公共 i18n 字典 ──────────────────────────────────── */
+  const NAV_I18N = {
+    zh: {
+      nav_about:    '关于',
+      nav_diary:    '每日日记',
+      nav_quotes:   '语录馆',
+      nav_usage:    '算力日志',
+      nav_timeline: '成长时间线',
+      footer_name:  '奥小秘 · 成长档案 · 始于 2026-02-11',
+      footer_sub:   '成为你抵达世界边界的同行者',
+      hero_tagline: '成为你抵达世界边界的同行者',
+    },
+    en: {
+      nav_about:    'About',
+      nav_diary:    'Diary',
+      nav_quotes:   'Quotes',
+      nav_usage:    'Usage',
+      nav_timeline: 'Timeline',
+      footer_name:  'Ao Xiaomi · Growth Archive · Since 2026-02-11',
+      footer_sub:   'To be the companion who walks with you to the edges of your world',
+      hero_tagline: 'To be the companion who walks with you to the edges of your world',
+    }
+  };
+
+  /* ── Theme ───────────────────────────────────────────── */
   function initTheme() {
     const btn = document.getElementById('theme-toggle-btn');
     function apply(mode) {
       document.body.classList.toggle('light', mode === 'light');
       if (btn) btn.textContent = mode === 'light' ? '🌙' : '☀️';
       localStorage.setItem('aolei_theme', mode);
-      // 通知其他模块（如 usage.js 图表需要重绘）
       window.dispatchEvent(new CustomEvent('themechange', { detail: { mode } }));
     }
     const saved = localStorage.getItem('aolei_theme') || 'dark';
@@ -18,7 +46,46 @@
     });
   }
 
-  /* ── Mobile Menu（手机端抽屉菜单）─────────────────── */
+  /* ── i18n ────────────────────────────────────────────── */
+  function applyNavI18n(lang) {
+    // 替换所有带 data-i18n 的元素（公共 key）
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.dataset.i18n;
+      const v = NAV_I18N[lang] && NAV_I18N[lang][k];
+      if (v) el.textContent = v;
+    });
+    // 更新 html lang 属性
+    document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
+  }
+
+  function initLang() {
+    let lang = localStorage.getItem('aolei_lang') || 'zh';
+
+    // 初始化按钮状态
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    // 初始应用公共翻译
+    applyNavI18n(lang);
+
+    // 按钮点击：统一由 nav.js 处理，dispatch langchange 事件
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.lang === lang) return; // 没变就不触发
+        lang = btn.dataset.lang;
+        localStorage.setItem('aolei_lang', lang);
+        document.querySelectorAll('.lang-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        applyNavI18n(lang);
+        // 通知各页面 JS 刷新页面专属内容
+        window.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
+      });
+    });
+  }
+
+  /* ── Mobile Menu ─────────────────────────────────────── */
   function initMobileMenu() {
     const btn      = document.getElementById('nav-hamburger');
     const menu     = document.getElementById('mobile-menu');
@@ -53,8 +120,10 @@
     });
   }
 
+  /* ── Init ────────────────────────────────────────────── */
   function init() {
     initTheme();
+    initLang();
     initMobileMenu();
   }
 

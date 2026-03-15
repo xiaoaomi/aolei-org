@@ -121,20 +121,14 @@
     });
   }
 
-  function setLang(l) {
-    lang = l;
-    localStorage.setItem('aolei_lang', l);
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+  // 监听 nav.js 的 langchange 事件
+  window.addEventListener('langchange', e => {
+    lang = e.detail.lang;
     applyI18n();
     if (window._quotesData) renderQuotes(window._quotesData);
-  }
+  });
 
   function init() {
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
-      btn.addEventListener('click', () => setLang(btn.dataset.lang));
-    });
-
     applyI18n();
 
     const container = document.getElementById('quotes-container');
@@ -157,3 +151,4 @@
     init();
   }
 })();
+

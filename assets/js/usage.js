@@ -286,18 +286,14 @@ function initThemeListener(data) {
   });
 }
 
-function initLang(data) {
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-    btn.addEventListener('click', () => {
-      lang = btn.dataset.lang;
-      localStorage.setItem('aolei_lang', lang);
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang===lang));
-      updateText();
-      buildStats(data);
-      buildMainChart(data);
-      buildTokenChart(data);
-    });
+// 语言切换：监听 nav.js 的 langchange 事件
+function initLangListener(data) {
+  window.addEventListener('langchange', e => {
+    lang = e.detail.lang;
+    updateText();
+    buildStats(data);
+    buildMainChart(data);
+    buildTokenChart(data);
   });
 }
 
@@ -309,8 +305,8 @@ async function init() {
     buildStats(data);
     buildMainChart(data);
     buildTokenChart(data);
-    initLang(data);
     initThemeListener(data);
+    initLangListener(data);
   } catch(e) {
     console.error('[usage] init error:', e);
     const row = document.getElementById('ustat-row');
@@ -319,3 +315,4 @@ async function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+

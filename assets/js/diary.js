@@ -78,16 +78,6 @@
 
   let loadedEntries = {};
 
-  function setLang(lang) {
-    currentLang = lang;
-    localStorage.setItem('aolei_lang', lang);
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
-    updateAllText();
-    rerenderAll();
-  }
-
   function updateAllText() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       el.textContent = t(el.dataset.i18n);
@@ -254,9 +244,11 @@
   }
 
   function init() {
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === currentLang);
-      btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    // 监听 nav.js 的 langchange 事件
+    window.addEventListener('langchange', e => {
+      currentLang = e.detail.lang;
+      updateAllText();
+      rerenderAll();
     });
     updateAllText();
     buildList();
