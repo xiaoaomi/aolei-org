@@ -233,7 +233,22 @@
     }, 300);
   }
 
+  function initTheme() {
+    const btn = document.getElementById('theme-toggle-btn');
+    function apply(mode) {
+      document.body.classList.toggle('light', mode === 'light');
+      if (btn) btn.textContent = mode === 'light' ? '🌙' : '☀️';
+      localStorage.setItem('aolei_theme', mode);
+    }
+    const saved = localStorage.getItem('aolei_theme') || 'dark';
+    apply(saved);
+    if (btn) btn.addEventListener('click', () => {
+      apply(document.body.classList.contains('light') ? 'dark' : 'light');
+    });
+  }
+
   function init() {
+    initTheme();
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === currentLang);
       btn.addEventListener('click', () => setLang(btn.dataset.lang));
