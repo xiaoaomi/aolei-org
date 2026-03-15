@@ -55,6 +55,7 @@
 
   // Diary entries index — all known dates
   const diaryDates = [
+    '2026-03-15',
     '2026-03-14',
     '2026-03-13',
     '2026-03-12',
@@ -97,31 +98,48 @@
     return moodEmoji[mood] || '📖';
   }
 
+  function buildDateMeta(entry) {
+    // 构建列表项头部的日期+星期+天气行
+    const weekdayKey = currentLang === 'en' ? 'weekday_en' : 'weekday_zh';
+    const weatherKey = currentLang === 'en' ? 'weather_en' : 'weather_zh';
+    const parts = [entry.date];
+    if (entry[weekdayKey]) parts.push(entry[weekdayKey]);
+    if (entry[weatherKey]) parts.push(entry[weatherKey]);
+    return parts.join(' · ');
+  }
+
   function renderEntry(entry, item) {
     const content = item.querySelector('.diary-content');
 
     const titleKey = currentLang === 'en' ? 'title_en' : 'title_zh';
     const contentKey = currentLang === 'en' ? 'content_en' : 'content_zh';
     const reflectionKey = currentLang === 'en' ? 'reflection_en' : 'reflection_zh';
+    const highlightsKey = currentLang === 'en' ? 'highlights_en' : 'highlights';
+    const learnedKey = currentLang === 'en' ? 'learned_en' : 'learned';
+    const mistakesKey = currentLang === 'en' ? 'mistakes_en' : 'mistakes';
 
     const title = entry[titleKey] || entry.title_zh;
     const contentText = entry[contentKey] || entry.content_zh;
     const reflection = entry[reflectionKey] || entry.reflection_zh;
 
-    // Update header title
+    // Update header title + date meta
     const titleEl = item.querySelector('.diary-title');
     if (titleEl) titleEl.textContent = title;
 
-    const highlights = (entry.highlights || []).map(h =>
+    const dateEl = item.querySelector('.diary-date');
+    if (dateEl) dateEl.textContent = buildDateMeta(entry);
+
+    const highlights = (entry[highlightsKey] || entry.highlights || []).map(h =>
       `<span class="diary-chip highlight">${h}</span>`
     ).join('');
 
-    const learned = (entry.learned || []).map(l =>
+    const learned = (entry[learnedKey] || entry.learned || []).map(l =>
       `<span class="diary-chip learned">${l}</span>`
     ).join('');
 
-    const mistakes = entry.mistakes && entry.mistakes.length > 0
-      ? entry.mistakes.map(m => `<span class="diary-chip mistake">${m}</span>`).join('')
+    const mistakeList = entry[mistakesKey] || entry.mistakes || [];
+    const mistakes = mistakeList.length > 0
+      ? mistakeList.map(m => `<span class="diary-chip mistake">${m}</span>`).join('')
       : `<span class="diary-chip" style="color:var(--text-faint)">${t('no_mistakes')}</span>`;
 
     content.innerHTML = `
@@ -212,7 +230,7 @@
         }
       });
 
-      // Auto-load title only (preload metadata)
+      // Auto-load title + meta (preload)
       fetch(`data/diary/${date}.json`)
         .then(r => r.json())
         .then(entry => {
@@ -220,8 +238,10 @@
           const titleKey = currentLang === 'en' ? 'title_en' : 'title_zh';
           const titleEl = item.querySelector('.diary-title');
           const moodEl = item.querySelector('.diary-mood');
+          const dateEl = item.querySelector('.diary-date');
           if (titleEl) titleEl.textContent = entry[titleKey] || entry.title_zh;
           if (moodEl) moodEl.textContent = moodToEmoji(entry.mood);
+          if (dateEl) dateEl.textContent = buildDateMeta(entry);
         })
         .catch(() => {});
     });
