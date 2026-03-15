@@ -174,29 +174,16 @@ function showToast(msg) {
 }
 
 function init() {
-  // Theme
-  const btnDark  = document.getElementById('theme-btn-dark');
-  const btnLight = document.getElementById('theme-btn-light');
-  const applyTheme = m => { document.body.classList.toggle('light', m === 'light'); localStorage.setItem('aolei_theme', m); };
-  applyTheme(localStorage.getItem('aolei_theme') || 'dark');
-  if (btnDark)  btnDark.addEventListener('click',  () => applyTheme('dark'));
-  if (btnLight) btnLight.addEventListener('click', () => applyTheme('light'));
-
-  // Lang
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-    btn.addEventListener('click', () => {
-      lang = btn.dataset.lang;
-      localStorage.setItem('aolei_lang', lang);
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-      applyI18n();
-      if (window._qpData) {
-        const { data, idx } = window._qpData;
-        document.getElementById('qp-main').innerHTML = renderQuote(data[idx], idx);
-        renderNav(data, idx);
-        bindShare();
-      }
-    });
+  // 监听 nav.js 的 langchange 事件
+  window.addEventListener('langchange', e => {
+    lang = e.detail.lang;
+    applyI18n();
+    if (window._qpData) {
+      const { data, idx } = window._qpData;
+      document.getElementById('qp-main').innerHTML = renderQuote(data[idx], idx);
+      renderNav(data, idx);
+      bindShare();
+    }
   });
 
   applyI18n();

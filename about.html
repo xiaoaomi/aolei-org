@@ -263,25 +263,10 @@ function applyLang() {
   document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
 }
 
-// Theme
-const savedTheme = localStorage.getItem('aolei_theme') || 'dark';
-if (savedTheme === 'light') document.body.classList.add('light');
-document.getElementById('theme-btn-dark').addEventListener('click', () => {
-  document.body.classList.remove('light');
-  localStorage.setItem('aolei_theme', 'dark');
-});
-document.getElementById('theme-btn-light').addEventListener('click', () => {
-  document.body.classList.add('light');
-  localStorage.setItem('aolei_theme', 'light');
-});
-
-// Lang
-document.querySelectorAll('.lang-btn').forEach(b => {
-  b.addEventListener('click', () => {
-    lang = b.dataset.lang;
-    localStorage.setItem('aolei_lang', lang);
-    applyLang();
-  });
+// 监听 nav.js 的 langchange 事件
+window.addEventListener('langchange', e => {
+  lang = e.detail.lang;
+  applyLang();
 });
 
 applyLang();
