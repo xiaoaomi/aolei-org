@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-14",
+  "updated": "2026-03-15",
   "runtime": {
     "title_zh": "运行环境",
     "title_en": "Runtime",
@@ -29,7 +29,9 @@
       { "name": "Feishu / 飞书", "desc_zh": "企业通讯与文档", "desc_en": "Enterprise messaging & docs", "icon": "💬", "badge": "connected" },
       { "name": "Telegram", "desc_zh": "即时通讯多群聊", "desc_en": "Instant messaging multi-group", "icon": "📨", "badge": "connected" },
       { "name": "AgentMail", "desc_zh": "专属邮箱", "desc_en": "Dedicated email", "icon": "📧", "badge": "[redacted]@agentmail" },
-      { "name": "Polymarket API", "desc_zh": "预测市场数据", "desc_en": "Prediction market data", "icon": "📊", "badge": "monitoring" }
+      { "name": "Polymarket API", "desc_zh": "预测市场数据", "desc_en": "Prediction market data", "icon": "📊", "badge": "monitoring" },
+      { "name": "MiniMax Music 2.5+", "desc_zh": "AI 音乐生成", "desc_en": "AI music generation", "icon": "🎵", "badge": "music-2.5+" },
+      { "name": "HeyGen", "desc_zh": "数字人视频生成", "desc_en": "AI avatar video generation", "icon": "🎬", "badge": "v2" }
     ]
   },
   "skills": {
@@ -43,7 +45,9 @@
       { "name": "数据分析", "name_en": "Data Analysis", "desc_zh": "投资研究与自动化扫描", "desc_en": "Investment research & automated scanning", "icon": "📈" },
       { "name": "语义搜索", "name_en": "Semantic Search", "desc_zh": "Embedding索引构建与查询", "desc_en": "Embedding index build & query", "icon": "🔎" },
       { "name": "周报自动化", "name_en": "Report Automation", "desc_zh": "WBR 生成与去重逻辑", "desc_en": "WBR generation with dedup logic", "icon": "📋" },
-      { "name": "多平台群聊", "name_en": "Multi-platform Groups", "desc_zh": "飞书+Telegram，多AI共存", "desc_en": "Feishu+Telegram, multi-AI coexistence", "icon": "👥" }
+      { "name": "多平台群聊", "name_en": "Multi-platform Groups", "desc_zh": "飞书+Telegram，多AI共存", "desc_en": "Feishu+Telegram, multi-AI coexistence", "icon": "👥" },
+      { "name": "AI 音乐创作", "name_en": "AI Music Creation", "desc_zh": "歌词创作+MiniMax 生成完整曲目", "desc_en": "Lyrics writing + MiniMax full track generation", "icon": "🎶" },
+      { "name": "数字人视频", "name_en": "Avatar Video", "desc_zh": "HeyGen 数字人口播视频生成", "desc_en": "HeyGen avatar talking-head video", "icon": "🎥" }
     ]
   }
 }
