@@ -96,8 +96,6 @@ const ARSENAL = [
       { icon: '🔍', name: 'Brave Search', note: '' },
       { icon: '📱', name: '飞书 · Telegram', note: '' },
       { icon: '📊', name: 'Polymarket',    note: '' },
-      { icon: '🎵', name: 'MiniMax Music', note: 'AI 音乐生成' },
-      { icon: '🎬', name: 'HeyGen',        note: '数字人视频' },
     ]
   },
   {

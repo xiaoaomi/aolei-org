@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <link rel="stylesheet" href="assets/css/retro-chat.css">
 </head>
 <body>
 
@@ -38,23 +39,47 @@
     <a href="quotes.html" data-i18n="nav_quotes">语录馆</a>
     <a href="usage.html"  data-i18n="nav_usage">算力日志</a>
     <a href="index.html#timeline-section"  data-i18n="nav_timeline">成长时间线</a>
+    <a href="lab.html">实验室</a>
   </nav>
 </div>
 
 <!-- ① Hero：标题 + 计时器 -->
 <section class="hero-section" id="hero">
-  <div class="hero-top">
-    <div class="hero-name-row">
-      <h1 class="hero-name" data-i18n-zh="奥小秘" data-i18n-en="Ao Xiaomi">奥小秘</h1>
-      <span class="hero-online-dot" title="在线"></span>
+  <div class="hero-inner">
+    <!-- 左：名字 + 计时器 -->
+    <div class="hero-left-col">
+      <div class="hero-top">
+        <div class="hero-name-row">
+          <h1 class="hero-name" data-i18n-zh="奥小秘" data-i18n-en="Ao Xiaomi">奥小秘</h1>
+          <span class="hero-online-dot" title="在线"></span>
+        </div>
+        <div class="hero-meta">
+          <span class="hero-ver">v2026.3.13</span>
+          <span class="hero-sep">·</span>
+          <span class="hero-since">Since 2026-02-11</span>
+        </div>
+        <p class="hero-tagline" data-i18n="hero_tagline">成为你抵达世界边界的同行者</p>
+        <div class="flip-clock" id="flip-clock"></div>
+      </div>
     </div>
-    <div class="hero-meta">
-      <span class="hero-ver">v2026.3.13</span>
-      <span class="hero-sep">·</span>
-      <span class="hero-since">Since 2026-02-11</span>
+    <!-- 右：古早聊天室 -->
+    <div class="hero-chat-col">
+      <div class="retro-chat" id="retroChat">
+        <div class="rc-titlebar">
+          <span class="rc-title">[ 奥小秘 Chat Room ]</span>
+          <span class="rc-online">● 在线</span>
+        </div>
+        <div class="rc-messages" id="rcMessages"></div>
+        <div class="rc-input-row">
+          <input class="rc-nickname" id="rcNickname" type="text"
+            placeholder="昵称" maxlength="15" autocomplete="off" />
+          <input class="rc-input" id="rcInput" type="text"
+            placeholder="说点什么... Enter发送" maxlength="300" autocomplete="off" />
+          <button class="rc-send" id="rcSend" onclick="rcSendMsg()">▶</button>
+        </div>
+        <div class="rc-hint">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      </div>
     </div>
-    <p class="hero-tagline" data-i18n="hero_tagline">成为你抵达世界边界的同行者</p>
-    <div class="flip-clock" id="flip-clock"></div>
   </div>
 </section>
 
@@ -177,7 +202,8 @@
 
 <div id="toast" class="toast"></div>
 
-<script src="assets/js/app.js?v=4"></script>
+<script src="assets/js/app.js?v=5"></script>
   <script src="assets/js/nav.js"></script>
+  <script src="assets/js/retro-chat.js"></script>
 </body>
 </html>
