@@ -1,781 +1,1574 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenClaw × AWS Demo — 奥小秘</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=4">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍪</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ── Demo 页样式 ── */
-    * { box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw on AWS — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .demo-hero {
-      text-align: center;
-      padding: 72px 24px 56px;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border);
-    }
-    .demo-hero::before {
-      content: '';
-      position: absolute;
-      top: -100px; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(255,107,53,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .demo-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,107,53,0.1);
-      border: 1px solid rgba(255,107,53,0.3);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--orange);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-    .demo-hero-title {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-    .demo-hero-title .hl { color: var(--orange); }
-    .demo-hero-subtitle {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.5);
-      max-width: 600px;
-      margin: 0 auto 36px;
-      line-height: 1.7;
-    }
-    [data-theme="light"] .demo-hero-subtitle { color: rgba(0,0,0,0.5); }
+  :root {
+    --bg: #050508;
+    --orange: #FF6B35;
+    --cyan: #00D4AA;
+    --orange-dim: rgba(255, 107, 53, 0.15);
+    --cyan-dim: rgba(0, 212, 170, 0.15);
+    --text: #E8E8F0;
+    --text-dim: rgba(232, 232, 240, 0.5);
+    --border: rgba(232, 232, 240, 0.1);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  }
 
-    .demo-slogan {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,153,0,0.1));
-      border: 1px solid rgba(255,107,53,0.25);
-      border-radius: 12px;
-      padding: 16px 28px;
-      font-size: 1.05rem;
-      font-style: italic;
-      color: var(--orange);
-      font-weight: 600;
-      max-width: 680px;
-      line-height: 1.6;
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== SCANLINE OVERLAY ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ===== GRID BACKGROUND ===== */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,107,53,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,107,53,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  /* ===== SECTION LABEL ===== */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--orange);
+  }
+
+  /* ===== FADE UP ANIMATION ===== */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up.delay-1 { transition-delay: 0.1s; }
+  .fade-up.delay-2 { transition-delay: 0.2s; }
+  .fade-up.delay-3 { transition-delay: 0.3s; }
+  .fade-up.delay-4 { transition-delay: 0.4s; }
+  .fade-up.delay-5 { transition-delay: 0.5s; }
+
+  /* ===== SECTION BASE ===== */
+  section {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ===== GOLD QUOTE ===== */
+  .gold-quote {
+    font-family: var(--sans);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 60px;
+    line-height: 1.3;
+  }
+  .gold-quote span {
+    color: var(--orange);
+  }
+
+  /* ============================
+     SECTION 1: HERO
+  ============================= */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 40px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--cyan);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: var(--mono);
+    font-size: clamp(48px, 9vw, 120px);
+    font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 80px rgba(255,107,53,0.4);
+    margin-bottom: 40px;
+  }
+
+  .hero-subtitle {
+    font-family: var(--mono);
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--text-dim);
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .hero-subtitle .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--cyan);
+    animation: blink 0.8s step-end infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Status Box */
+  .status-box {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    z-index: 2;
+    border: 1px solid rgba(0,212,170,0.3);
+    background: rgba(5,5,8,0.8);
+    backdrop-filter: blur(10px);
+    padding: 20px 24px;
+    min-width: 200px;
+  }
+  .status-box::before {
+    content: 'STATUS';
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .status-item:last-child { margin-bottom: 0; }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+    animation: pulse-dot 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--cyan); }
+    50% { opacity: 0.5; box-shadow: 0 0 12px var(--cyan); }
+  }
+  .status-value {
+    color: var(--cyan);
+    font-weight: 600;
+    margin-left: auto;
+  }
+
+  /* Scroll Arrow */
+  .scroll-arrow {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .scroll-arrow span {
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--orange));
+  }
+  .scroll-arrow::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid var(--orange);
+    border-bottom: 1px solid var(--orange);
+    transform: rotate(45deg);
+    margin-top: -6px;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* Corner decoration */
+  .hero-corner {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    z-index: 2;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+  .hero-corner strong {
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  /* ============================
+     SECTION 2: KIRO
+  ============================= */
+  #kiro { background: var(--bg); }
+
+  .kiro-header {
+    margin-bottom: 64px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .scene-card {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    padding: 0;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .scene-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .scene-card:hover {
+    border-color: rgba(255,107,53,0.4);
+    box-shadow: 0 0 30px rgba(255,107,53,0.1);
+  }
+  .scene-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-number {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    padding: 16px 20px 0;
+  }
+
+  .video-slot {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: rgba(255,107,53,0.04);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-slot::before {
+    content: '▶';
+    font-size: 32px;
+    color: rgba(255,107,53,0.3);
+  }
+  .video-slot::after {
+    content: 'VIDEO';
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+  }
+  /* Video slot scan effect */
+  .video-slot .scan-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    opacity: 0.5;
+    animation: scan 3s linear infinite;
+  }
+  @keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+  .card-title {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .card-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .card-quote {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--orange);
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* ============================
+     SECTION 3: NOVA SONIC
+  ============================= */
+  #sonic {
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(0,212,170,0.03) 50%, var(--bg) 100%);
+  }
+
+  .arch-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 48px 0;
+    flex-wrap: wrap;
+  }
+
+  .arch-node {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    padding: 20px 28px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    min-width: 140px;
+  }
+  .arch-node:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 0 20px rgba(0,212,170,0.15);
+  }
+  .arch-node.highlight {
+    border-color: rgba(0,212,170,0.5);
+    background: rgba(0,212,170,0.05);
+  }
+  .arch-node .node-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .arch-node .node-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.05em;
+  }
+  .arch-node .node-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .arch-node-tag {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--cyan);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+
+  .arch-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 8px;
+  }
+  .arch-arrow .arrow-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--cyan), rgba(0,212,170,0.3));
+    position: relative;
+  }
+  .arch-arrow .arrow-line::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid var(--cyan);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+  .arch-arrow .arrow-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--cyan);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .sonic-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--cyan);
+    background: transparent;
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 16px 36px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .sonic-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--cyan);
+    transform: translateX(-101%);
+    transition: transform 0.3s ease;
+    z-index: 0;
+  }
+  .sonic-btn:hover {
+    color: var(--bg);
+    box-shadow: 0 0 30px rgba(0,212,170,0.3);
+  }
+  .sonic-btn:hover::before {
+    transform: translateX(0);
+  }
+  .sonic-btn span {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Waveform animation */
+  .waveform {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 24px;
+  }
+  .waveform-bar {
+    width: 3px;
+    background: var(--cyan);
+    border-radius: 2px;
+    animation: wave 1.2s ease-in-out infinite;
+  }
+  .waveform-bar:nth-child(1) { animation-delay: 0s; height: 40%; }
+  .waveform-bar:nth-child(2) { animation-delay: 0.1s; height: 70%; }
+  .waveform-bar:nth-child(3) { animation-delay: 0.2s; height: 100%; }
+  .waveform-bar:nth-child(4) { animation-delay: 0.3s; height: 60%; }
+  .waveform-bar:nth-child(5) { animation-delay: 0.4s; height: 80%; }
+  .waveform-bar:nth-child(6) { animation-delay: 0.5s; height: 40%; }
+  .waveform-bar:nth-child(7) { animation-delay: 0.4s; height: 90%; }
+  .waveform-bar:nth-child(8) { animation-delay: 0.3s; height: 55%; }
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1); }
+  }
+
+  /* ============================
+     SECTION 4: NOVA CANVAS
+  ============================= */
+  #canvas-section {
+    background: var(--bg);
+  }
+
+  .canvas-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .canvas-arch {
+    position: relative;
+  }
+
+  .canvas-arch .arch-diagram {
+    margin: 0;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .canvas-arch-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .canvas-arch .arch-arrow-down {
+    display: flex;
+    align-items: center;
+    padding: 4px 0 4px 68px;
+  }
+  .canvas-arch .arch-arrow-down .arrow-v {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .canvas-arch .arch-arrow-down .arrow-v-line {
+    width: 1px;
+    height: 30px;
+    background: linear-gradient(to bottom, var(--orange), rgba(255,107,53,0.3));
+  }
+  .canvas-arch .arch-arrow-down .arrow-v-tip {
+    width: 0; height: 0;
+    border-top: 8px solid var(--orange);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    margin-top: -1px;
+  }
+  .canvas-arch .arch-arrow-down .arrow-v-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--orange);
+    margin-left: 8px;
+    margin-top: -14px;
+    white-space: nowrap;
+  }
+
+  .canvas-arch .arch-node { min-width: 120px; }
+
+  /* Canvas Demo */
+  .canvas-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .canvas-frame {
+    border: 1px solid var(--orange);
+    aspect-ratio: 1/1;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255,107,53,0.03);
+  }
+  .canvas-frame::before,
+  .canvas-frame::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+  }
+  .canvas-frame::before {
+    top: 0; left: 0;
+    border-top: 2px solid var(--orange);
+    border-left: 2px solid var(--orange);
+  }
+  .canvas-frame::after {
+    bottom: 0; right: 0;
+    border-bottom: 2px solid var(--orange);
+    border-right: 2px solid var(--orange);
+  }
+  .canvas-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text-dim);
+  }
+  .canvas-placeholder-icon {
+    font-size: 48px;
+    opacity: 0.3;
+  }
+  .canvas-placeholder-text {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  #canvas-result {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  #canvas-loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5,5,8,0.8);
+  }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255,107,53,0.2);
+    border-top-color: var(--orange);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .canvas-input-group {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .canvas-input-group:focus-within {
+    border-color: var(--orange);
+  }
+  #canvas-prompt {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--text);
+    caret-color: var(--orange);
+  }
+  #canvas-prompt::placeholder {
+    color: var(--text-dim);
+  }
+  .canvas-gen-btn {
+    background: var(--orange);
+    border: none;
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  .canvas-gen-btn:hover { opacity: 0.85; }
+  .canvas-gen-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .canvas-error {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--orange);
+    display: none;
+  }
+
+  /* ============================
+     SECTION 5: MORE SCENES
+  ============================= */
+  #more {
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(255,107,53,0.02) 50%, var(--bg) 100%);
+  }
+
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .more-card {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.015);
+    padding: 32px;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .more-card:hover {
+    border-color: rgba(255,107,53,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(255,107,53,0.08);
+  }
+
+  .more-card-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .more-card-title {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .more-card-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  /* Mini arch diagram inside cards */
+  .mini-arch {
+    border: 1px solid var(--border);
+    background: rgba(0,0,0,0.3);
+    padding: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .mini-arch-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .mini-arch-row:last-child { margin-bottom: 0; }
+  .mini-node {
+    border: 1px solid rgba(255,107,53,0.3);
+    padding: 3px 8px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .mini-node.cyan {
+    border-color: rgba(0,212,170,0.3);
+    color: var(--cyan);
+  }
+  .mini-node.orange {
+    border-color: rgba(255,107,53,0.5);
+    color: var(--orange);
+  }
+  .mini-arrow {
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+  .footer-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 40px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    background: rgba(5,5,8,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.05em;
+  }
+  .nav-links {
+    margin-left: auto;
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+
+  /* ===== DIVIDER ===== */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .container { padding: 0 20px; }
+    section { padding: 70px 0; }
+
+    .hero-title { font-size: 42px; }
+    .hero-content { padding: 0 20px; }
+
+    .status-box {
+      bottom: 80px;
+      right: 16px;
+      left: 16px;
+      min-width: unset;
     }
 
-    /* ── Section ── */
-    .demo-section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 64px 24px;
-      border-bottom: 1px solid var(--border);
-    }
-    .demo-section:last-of-type { border-bottom: none; }
-    .demo-section-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 36px;
-    }
-    .demo-section-num {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: var(--orange);
-      color: white;
-      font-size: 0.9rem;
-      font-weight: 900;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .demo-section-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--text);
-    }
-    .demo-section-subtitle {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.4);
-      margin-top: 3px;
-    }
-    [data-theme="light"] .demo-section-subtitle { color: rgba(0,0,0,0.4); }
+    .scroll-arrow { bottom: 24px; }
 
-    /* ── Lifecycle Banner ── */
-    .lifecycle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
+    .cards-grid {
+      grid-template-columns: 1fr;
     }
-    .lc-item {
-      display: flex;
+
+    .arch-diagram {
       flex-direction: column;
+      gap: 0;
+    }
+    .arch-arrow {
+      transform: rotate(90deg);
+      padding: 8px 0;
+    }
+    .arch-arrow .arrow-line { width: 40px; }
+
+    .canvas-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .more-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .canvas-arch .arch-diagram {
+      flex-direction: row;
       align-items: center;
-      gap: 8px;
-      padding: 18px 24px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      min-width: 130px;
-      text-align: center;
-      position: relative;
-    }
-    [data-theme="light"] .lc-item { background: rgba(0,0,0,0.03); }
-    .lc-item.active-step {
-      border-color: rgba(255,107,53,0.5);
-      background: rgba(255,107,53,0.08);
-    }
-    .lc-icon { font-size: 1.8rem; }
-    .lc-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--orange);
-      letter-spacing: 0.5px;
-    }
-    .lc-desc {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.4;
-    }
-    [data-theme="light"] .lc-desc { color: rgba(0,0,0,0.45); }
-    .lc-arrow {
-      font-size: 1.2rem;
-      color: rgba(255,107,53,0.4);
-      padding: 0 4px;
-      flex-shrink: 0;
-    }
-
-    /* ── Kiro Deploy Steps ── */
-    .kiro-steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    @media (max-width: 640px) { .kiro-steps { grid-template-columns: 1fr; } }
-    .kiro-step {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 22px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    [data-theme="light"] .kiro-step { background: rgba(0,0,0,0.03); }
-    .kiro-step-num {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: rgba(255,107,53,0.2);
-      border: 1px solid rgba(255,107,53,0.4);
-      color: var(--orange);
-      font-size: 0.8rem;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .kiro-step-content {}
-    .kiro-step-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 5px;
-    }
-    .kiro-step-desc {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.6;
-    }
-    [data-theme="light"] .kiro-step-desc { color: rgba(0,0,0,0.5); }
-
-    .kiro-prompt-box {
-      background: #0d0d1f;
-      border: 1px solid rgba(255,107,53,0.3);
-      border-radius: 12px;
-      padding: 20px 22px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.88rem;
-      color: #a8e6cf;
-      line-height: 1.8;
-      position: relative;
-      overflow: hidden;
-    }
-    [data-theme="light"] .kiro-prompt-box {
-      background: #1a1a2e;
-    }
-    .kiro-prompt-box::before {
-      content: '💬 KIRO PROMPT';
-      position: absolute;
-      top: 10px; right: 14px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: rgba(255,107,53,0.6);
-      letter-spacing: 1px;
-      font-family: inherit;
-    }
-    .kiro-prompt-box .prompt-text {
-      color: rgba(255,255,255,0.85);
-      font-style: italic;
-    }
-    .kiro-prompt-box .result-text {
-      color: #a8e6cf;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .kiro-prompt-box .result-text::before {
-      content: '✅ ';
-    }
-
-    /* ── Capability Cards ── */
-    .cap-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-    .cap-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-      cursor: default;
-    }
-    [data-theme="light"] .cap-card { background: rgba(0,0,0,0.03); }
-    .cap-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--cap-accent, var(--orange));
-    }
-    .cap-card:hover {
-      border-color: rgba(255,107,53,0.35);
-      transform: translateY(-2px);
-    }
-    .cap-card-icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .cap-card-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .cap-card-desc {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.7;
-    }
-    [data-theme="light"] .cap-card-desc { color: rgba(0,0,0,0.5); }
-    .cap-card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 14px;
-    }
-    .cap-tag {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 2px 9px;
-      border-radius: 20px;
-      background: rgba(255,107,53,0.1);
-      border: 1px solid rgba(255,107,53,0.25);
-      color: var(--orange);
-    }
-    .cap-tag.aws { background: rgba(255,153,0,0.1); border-color: rgba(255,153,0,0.3); color: #FF9900; }
-    .cap-tag.blue { background: rgba(0,168,224,0.1); border-color: rgba(0,168,224,0.3); color: #00A8E0; }
-    .cap-tag.green { background: rgba(0,200,150,0.1); border-color: rgba(0,200,150,0.3); color: #00C896; }
-
-    /* ── Revival Section ── */
-    .revival-scenarios {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    @media (max-width: 640px) { .revival-scenarios { grid-template-columns: 1fr; } }
-    .revival-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-    }
-    [data-theme="light"] .revival-card { background: rgba(0,0,0,0.03); }
-    .revival-card-icon { font-size: 1.6rem; margin-bottom: 10px; }
-    .revival-card-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .revival-card-desc {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.6;
-    }
-    [data-theme="light"] .revival-card-desc { color: rgba(0,0,0,0.45); }
-
-    /* ── Stats Row ── */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin: 48px 0;
-      max-width: 960px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 24px;
-    }
-    @media (max-width: 640px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
-    .stat-item {
-      text-align: center;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 12px;
-    }
-    [data-theme="light"] .stat-item { background: rgba(0,0,0,0.03); }
-    .stat-num {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--orange);
-      line-height: 1;
-    }
-    .stat-unit { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
-    [data-theme="light"] .stat-unit { color: rgba(0,0,0,0.4); }
-    .stat-label { font-size: 0.8rem; color: var(--text); margin-top: 6px; font-weight: 600; }
-
-    /* ── CTA ── */
-    .demo-cta {
-      text-align: center;
-      padding: 64px 24px;
-      border-top: 1px solid var(--border);
-    }
-    .demo-cta-title {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .demo-cta-sub {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 28px;
-    }
-    [data-theme="light"] .demo-cta-sub { color: rgba(0,0,0,0.45); }
-    .demo-cta-links {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
       flex-wrap: wrap;
     }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-    .cta-btn-primary {
-      background: var(--orange);
-      color: white;
-    }
-    .cta-btn-secondary {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    [data-theme="light"] .cta-btn-secondary { background: rgba(0,0,0,0.06); }
-
-    /* ── Highlight box ── */
-    .highlight-box {
-      background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,153,0,0.06));
-      border: 1px solid rgba(255,107,53,0.25);
-      border-radius: 14px;
-      padding: 20px 24px;
-      margin: 24px 0;
-      font-size: 0.9rem;
-      color: var(--text);
-      line-height: 1.7;
-    }
-    .highlight-box strong { color: var(--orange); }
-
-    /* ── Terminal anim ── */
-    .terminal-block {
-      background: #060612;
-      border: 1px solid rgba(255,107,53,0.2);
-      border-radius: 12px;
-      padding: 20px 22px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      line-height: 1.9;
-      margin-top: 16px;
-    }
-    .t-prompt { color: rgba(255,107,53,0.8); }
-    .t-cmd { color: #e0e0f0; }
-    .t-ok { color: #a8e6cf; }
-    .t-info { color: rgba(255,255,255,0.35); }
-    .t-user { color: #7ec8e3; }
-    .t-ai { color: #ffd700; }
-
-    /* scrollbar */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,107,53,0.3); border-radius: 2px; }
-
-    @media (max-width: 640px) {
-      .lifecycle { gap: 8px; }
-      .lc-arrow { display: none; }
-      .kiro-steps { grid-template-columns: 1fr; }
-      .revival-scenarios { grid-template-columns: 1fr; }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <nav class="nav">
-    <a class="nav-logo" href="index.html">🍪 <span>奥小秘</span></a>
-    <ul class="nav-links">
-      <li><a href="about.html">关于</a></li>
-      <li><a href="diary.html">每日日记</a></li>
-      <li><a href="quotes.html">语录馆</a></li>
-      <li><a href="usage.html">算力日志</a></li>
-      <li><a href="lab.html">实验室</a></li>
-      <li><a href="demo.html" class="active">Demo</a></li>
-    </ul>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="菜单">&#9776;</button>
-    <div class="nav-right">
-      <button class="lang-btn active" data-lang="zh">中</button>
-      <button class="lang-btn" data-lang="en">EN</button>
-      <button class="theme-btn" id="theme-toggle-btn">☀️</button>
-    </div>
-  </nav>
-  <div class="mobile-menu-overlay" id="mobile-overlay"></div>
-  <div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
-    <nav class="mobile-menu-links">
-      <a href="about.html">关于</a>
-      <a href="diary.html">每日日记</a>
-      <a href="quotes.html">语录馆</a>
-      <a href="usage.html">算力日志</a>
-      <a href="lab.html">实验室</a>
-      <a href="demo.html">Demo</a>
-    </nav>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-brand">OpenClaw × AWS</div>
+  <ul class="nav-links">
+    <li><a href="#kiro">Kiro</a></li>
+    <li><a href="#sonic">Nova Sonic</a></li>
+    <li><a href="#canvas-section">Nova Canvas</a></li>
+    <li><a href="#more">More</a></li>
+  </ul>
+</nav>
+
+<!-- ===== SECTION 1: HERO ===== -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="grid-bg"></div>
+
+  <div class="hero-corner">
+    <div><strong>BUILD_DATE</strong> 2026.03.17</div>
+    <div style="margin-top:4px"><strong>ENV</strong> AWS × Bedrock</div>
   </div>
 
-  <!-- HERO -->
-  <section class="demo-hero">
-    <div class="demo-hero-badge">🦞 OpenClaw × AWS · Live Demo</div>
-    <h1 class="demo-hero-title">
-      一个普通用户，<br>用<span class="hl">自然语言</span>指挥 AI，<br>完成了过去需要 <span class="hl">DevOps 工程师</span>才能做的事。
-    </h1>
-    <p class="demo-hero-subtitle">
-      从部署上云、智能助手、语音交互，到智能家居控制——<br>全部通过对话完成，无需编写一行 Shell 命令。
+  <div class="hero-content">
+    <div class="hero-eyebrow">// AWS × OpenClaw Demo</div>
+    <h1 class="hero-title">OpenClaw<br>on AWS</h1>
+    <div class="hero-subtitle">
+      <span id="typewriter-text"></span><span class="cursor"></span>
+    </div>
+  </div>
+
+  <div class="status-box">
+    <div class="status-item">
+      <span class="status-dot"></span>
+      <span>SYSTEM</span>
+      <span class="status-value">ONLINE</span>
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      <span>BEDROCK</span>
+      <span class="status-value">CONNECTED</span>
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      <span>MODELS</span>
+      <span class="status-value">10+</span>
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      <span>UPTIME</span>
+      <span class="status-value">99.9%</span>
+    </div>
+  </div>
+
+  <div class="scroll-arrow"><span></span></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION 2: KIRO ===== -->
+<section id="kiro">
+  <div class="grid-bg" style="opacity:0.5"></div>
+  <div class="container">
+    <div class="kiro-header">
+      <div class="section-label fade-up">02 · Kiro 全生命周期</div>
+      <div class="gold-quote fade-up delay-1">
+        「开口说话，<span>云就动了。</span>」
+      </div>
+      <p class="fade-up delay-2" style="font-size:16px; color:var(--text-dim); max-width:560px; line-height:1.7;">
+        从部署上线到模型切换，从系统运维到玄学任务，Kiro 把自然语言变成云上操作。
+        只需一句话，一切就绪。
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Card 1 -->
+      <div class="scene-card fade-up delay-1">
+        <div class="card-number">SCENE_01</div>
+        <div class="video-slot">
+          <div class="scan-line"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">🚀 部署上线</div>
+          <div class="card-desc">
+            说一句「把代码部署到 prod」，Kiro 自动拉取代码、构建镜像、
+            推送到 ECR、触发 ECS 滚动更新——全程不用打一行命令。
+          </div>
+          <div class="card-quote">「语言是最短的路径。」</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="scene-card fade-up delay-2">
+        <div class="card-number">SCENE_02</div>
+        <div class="video-slot">
+          <div class="scan-line"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">🔄 切换模型</div>
+          <div class="card-desc">
+            「换成 Claude Sonnet 4」——Kiro 秒改配置、重启服务、
+            验证响应，无感切换 Bedrock 后端模型，零停机。
+          </div>
+          <div class="card-quote">「云的弹性，因语言而触手可及。」</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="scene-card fade-up delay-3">
+        <div class="card-number">SCENE_03</div>
+        <div class="video-slot">
+          <div class="scan-line"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">🦞 复活龙虾</div>
+          <div class="card-desc">
+            服务挂了？「帮我把龙虾服务复活」——Kiro 查日志、
+            定位 OOM、扩容内存、重启容器，比人工排查快 10 倍。
+          </div>
+          <div class="card-quote">「没有 Kiro 驯服不了的故障。」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION 3: NOVA SONIC ===== -->
+<section id="sonic">
+  <div class="container">
+    <div class="section-label fade-up">03 · Nova Sonic</div>
+    <div class="gold-quote fade-up delay-1">
+      「说话即命令，<span style="color:var(--cyan)">语音即入口。</span>」
+    </div>
+    <p class="fade-up delay-2" style="font-size:16px; color:var(--text-dim); max-width:560px; line-height:1.7; margin-bottom:48px;">
+      Amazon Nova Sonic 实现真正的实时双向语音对话。打开页面，开口说话，
+      AI 立刻理解并回应——延迟低到感觉不出来。
     </p>
-    <div class="demo-slogan">
-      "I just talk to it. It figures out the AWS part."
-    </div>
-  </section>
 
-  <!-- STATS -->
-  <div class="stats-row">
-    <div class="stat-item">
-      <div class="stat-num">5+</div>
-      <div class="stat-unit">AWS Services</div>
-      <div class="stat-label">自动调用</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">10+</div>
-      <div class="stat-unit">AI Models</div>
-      <div class="stat-label">随时切换</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">0</div>
-      <div class="stat-unit">Shell Commands</div>
-      <div class="stat-label">用户输入</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">24/7</div>
-      <div class="stat-unit">Always On</div>
-      <div class="stat-label">全天候在线</div>
-    </div>
-  </div>
-
-  <!-- SECTION 1: KIRO × LIFECYCLE -->
-  <section class="demo-section">
-    <div class="demo-section-header">
-      <div class="demo-section-num">1</div>
-      <div>
-        <div class="demo-section-title">Kiro × OpenClaw 全生命周期</div>
-        <div class="demo-section-subtitle">从零部署到自动复活，一句话驱动</div>
+    <!-- Waveform display -->
+    <div class="fade-up delay-2" style="display:flex; align-items:center; gap:16px; margin-bottom:48px;">
+      <span style="font-family:var(--mono); font-size:12px; color:var(--text-dim);">AUDIO STREAM</span>
+      <div class="waveform">
+        <div class="waveform-bar"></div>
+        <div class="waveform-bar"></div>
+        <div class="waveform-bar"></div>
+        <div class="waveform-bar"></div>
+        <div class="waveform-bar"></div>
+        <div class="waveform-bar"></div>
+        <div class="waveform-bar"></div>
+        <div class="waveform-bar"></div>
       </div>
+      <span style="font-family:var(--mono); font-size:12px; color:var(--cyan);">ACTIVE</span>
     </div>
 
-    <!-- Lifecycle Flow -->
-    <div class="lifecycle">
-      <div class="lc-item active-step">
-        <div class="lc-icon">☁️</div>
-        <div class="lc-label">Deploy</div>
-        <div class="lc-desc">Kiro 起 EC2<br>配置 Bedrock</div>
+    <!-- Architecture Diagram -->
+    <div class="arch-diagram fade-up delay-3">
+      <div class="arch-node">
+        <span class="node-icon">🎤</span>
+        <div class="node-label">用户语音</div>
+        <div class="node-sub">WebRTC / Mic</div>
       </div>
-      <div class="lc-arrow">→</div>
-      <div class="lc-item active-step">
-        <div class="lc-icon">🔌</div>
-        <div class="lc-label">Connect</div>
-        <div class="lc-desc">接入飞书<br>Telegram 等</div>
+
+      <div class="arch-arrow">
+        <div class="arrow-line"></div>
+        <div class="arrow-label">PCM Stream</div>
       </div>
-      <div class="lc-arrow">→</div>
-      <div class="lc-item active-step">
-        <div class="lc-icon">🤖</div>
-        <div class="lc-label">Run</div>
-        <div class="lc-desc">多模型<br>日常运行</div>
+
+      <div class="arch-node highlight" style="position:relative; padding-top:30px;">
+        <div class="arch-node-tag">AWS Bedrock</div>
+        <span class="node-icon">⚡</span>
+        <div class="node-label">Nova Sonic</div>
+        <div class="node-sub">实时语音大模型</div>
       </div>
-      <div class="lc-arrow">→</div>
-      <div class="lc-item active-step">
-        <div class="lc-icon">🔧</div>
-        <div class="lc-label">Maintain</div>
-        <div class="lc-desc">Kiro 监控<br>自动修复</div>
+
+      <div class="arch-arrow">
+        <div class="arrow-line"></div>
+        <div class="arrow-label">Audio + Text</div>
       </div>
-      <div class="lc-arrow">→</div>
-      <div class="lc-item active-step">
-        <div class="lc-icon">🦞</div>
-        <div class="lc-label">Revive</div>
-        <div class="lc-desc">龙虾挂了？<br>一句话复活</div>
+
+      <div class="arch-node">
+        <span class="node-icon">💬</span>
+        <div class="node-label">实时回复</div>
+        <div class="node-sub">语音 + 文字流</div>
+      </div>
+
+      <div class="arch-arrow">
+        <div class="arrow-line"></div>
+        <div class="arrow-label">Action</div>
+      </div>
+
+      <div class="arch-node">
+        <span class="node-icon">🦾</span>
+        <div class="node-label">OpenClaw</div>
+        <div class="node-sub">执行 / 联动</div>
       </div>
     </div>
 
-    <!-- Deploy Steps -->
-    <div class="highlight-box">
-      <strong>场景一：用 Kiro 部署 OpenClaw（全程自然语言）</strong><br>
-      只需提供 AWS AKSK，Kiro 自动完成从 0 到上线的全部步骤。
-    </div>
-
-    <div class="kiro-steps">
-      <div class="kiro-step">
-        <div class="kiro-step-num">1</div>
-        <div class="kiro-step-content">
-          <div class="kiro-step-title">提供凭证 + 说出目标</div>
-          <div class="kiro-step-desc">告诉 Kiro AWS AKSK 和地区，说"帮我在 us-west-2 部署一个 OpenClaw 实例"</div>
-        </div>
-      </div>
-      <div class="kiro-step">
-        <div class="kiro-step-num">2</div>
-        <div class="kiro-step-content">
-          <div class="kiro-step-title">Kiro 自动创建 EC2</div>
-          <div class="kiro-step-desc">选择合适机型（t3.medium），配置安全组，开放必要端口，安装 Node.js 环境</div>
-        </div>
-      </div>
-      <div class="kiro-step">
-        <div class="kiro-step-num">3</div>
-        <div class="kiro-step-content">
-          <div class="kiro-step-title">安装并配置 OpenClaw</div>
-          <div class="kiro-step-desc">Kiro SSH 登录实例，执行安装脚本，配置 Bedrock 模型接入（Claude / Nova / Kimi）</div>
-        </div>
-      </div>
-      <div class="kiro-step">
-        <div class="kiro-step-num">4</div>
-        <div class="kiro-step-content">
-          <div class="kiro-step-title">接入通讯渠道</div>
-          <div class="kiro-step-desc">配置飞书 / Telegram Bot Token，Gateway 启动，AI 助手上线，一切就绪</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="kiro-prompt-box">
-      <div class="t-user prompt-text">"帮我在 AWS 上部署一个 OpenClaw，AKSK 是 [xxx]，我想接入飞书和 Telegram，模型用 Claude Sonnet + Nova Lite"</div>
-      <div class="result-text t-ok">EC2 实例已创建（i-0abc123...）· OpenClaw 已安装 · Gateway 运行中 · 飞书 Bot 已接入 · 可以开始对话了</div>
-    </div>
-
-    <!-- Revival -->
-    <div class="highlight-box" style="margin-top: 32px;">
-      <strong>场景二：龙虾不回应了？让 Kiro 排查复活</strong><br>
-      OpenClaw Gateway 挂掉时，用一句自然语言让 Kiro 完成从诊断到修复的全过程。
-    </div>
-
-    <div class="revival-scenarios">
-      <div class="revival-card">
-        <div class="revival-card-icon">💥</div>
-        <div class="revival-card-title">Config 配置错误</div>
-        <div class="revival-card-desc">openclaw.json 改错了导致 Gateway 无法启动，Kiro 自动检查配置文件、定位错误字段、修复并重启</div>
-      </div>
-      <div class="revival-card">
-        <div class="revival-card-icon">🔋</div>
-        <div class="revival-card-title">进程意外崩溃</div>
-        <div class="revival-card-desc">Gateway 进程挂了，Kiro 检测进程状态、查看错误日志、重启服务，整个过程 30 秒内完成</div>
-      </div>
-      <div class="revival-card">
-        <div class="revival-card-icon">🌐</div>
-        <div class="revival-card-title">依赖包版本冲突</div>
-        <div class="revival-card-desc">npm 依赖缺失导致启动失败，Kiro 读取错误堆栈、执行 npm install、重新启动服务</div>
-      </div>
-    </div>
-
-    <div class="kiro-prompt-box">
-      <div class="t-user prompt-text">"我的龙虾不回应了，帮我排查一下"</div>
-      <div class="result-text t-ok">已检查：Gateway 进程未运行 · 日志显示 Config invalid（memorySearch.apiKey 字段不存在）· 已修复配置 · Gateway 重启成功 · OpenClaw 正常响应</div>
-    </div>
-  </section>
-
-  <!-- SECTION 2: WHAT CAN OPENCLAW DO -->
-  <section class="demo-section">
-    <div class="demo-section-header">
-      <div class="demo-section-num">2</div>
-      <div>
-        <div class="demo-section-title">OpenClaw 能做什么</div>
-        <div class="demo-section-subtitle">一个 AI 助手，覆盖工作与生活的全场景</div>
-      </div>
-    </div>
-
-    <div class="cap-grid">
-      <div class="cap-card" style="--cap-accent: #FF9900;">
-        <span class="cap-card-icon">🌐</span>
-        <div class="cap-card-title">自动化搭建个人官网</div>
-        <div class="cap-card-desc">
-          "帮我在 EC2 上建一个个人网站"——OpenClaw 配合 Kiro，自动购买域名、配置 Nginx、部署前端、配置 HTTPS，全程无需碰命令行。本站 aolei.org 就是这样建起来的。
-        </div>
-        <div class="cap-card-tags">
-          <span class="cap-tag aws">EC2</span>
-          <span class="cap-tag aws">Route 53</span>
-          <span class="cap-tag blue">Kiro</span>
-        </div>
-      </div>
-
-      <div class="cap-card" style="--cap-accent: #00A8E0;">
-        <span class="cap-card-icon">🎙️</span>
-        <div class="cap-card-title">Nova Sonic 语音对话</div>
-        <div class="cap-card-desc">
-          通过 Amazon Nova Sonic，实现真正端到端的语音交互——说话即响应，支持打断，有情绪感知。OpenClaw 内置了一个可直接访问的语音对话界面。
-        </div>
-        <div class="cap-card-tags">
-          <span class="cap-tag aws">Nova Sonic</span>
-          <span class="cap-tag aws">Bedrock</span>
-          <span class="cap-tag green">实时语音</span>
-        </div>
-      </div>
-
-      <div class="cap-card" style="--cap-accent: #00C896;">
-        <span class="cap-card-icon">🏠</span>
-        <div class="cap-card-title">智能家居控制</div>
-        <div class="cap-card-desc">
-          "把客厅灯调暗一点"——OpenClaw 通过 Home Assistant 集成，直接控制小米、米家等智能设备，说话就能控制家里的灯光、插座、空调。
-        </div>
-        <div class="cap-card-tags">
-          <span class="cap-tag green">Home Assistant</span>
-          <span class="cap-tag">小米 / 米家</span>
-        </div>
-      </div>
-
-      <div class="cap-card" style="--cap-accent: #7C5CFC;">
-        <span class="cap-card-icon">💬</span>
-        <div class="cap-card-title">跨平台 AI 助手</div>
-        <div class="cap-card-desc">
-          飞书、Telegram、Signal、Discord——在任何地方发消息，OpenClaw 都能接收并响应。同一个 AI 大脑，多个入口，记忆跨 session 持久化。
-        </div>
-        <div class="cap-card-tags">
-          <span class="cap-tag">飞书</span>
-          <span class="cap-tag">Telegram</span>
-          <span class="cap-tag blue">跨平台</span>
-        </div>
-      </div>
-
-      <div class="cap-card" style="--cap-accent: #FF6B35;">
-        <span class="cap-card-icon">🤖</span>
-        <div class="cap-card-title">多模型随时切换</div>
-        <div class="cap-card-desc">
-          Claude Opus、Nova Pro、Kimi、DeepSeek、MiniMax——通过 Amazon Bedrock 统一接入，根据任务复杂度自动选模型，或随时手动切换，成本可控。
-        </div>
-        <div class="cap-card-tags">
-          <span class="cap-tag aws">Bedrock</span>
-          <span class="cap-tag">Claude</span>
-          <span class="cap-tag">Nova</span>
-          <span class="cap-tag">Kimi</span>
-        </div>
-      </div>
-
-      <div class="cap-card" style="--cap-accent: #FFD700;">
-        <span class="cap-card-icon">📊</span>
-        <div class="cap-card-title">工作自动化</div>
-        <div class="cap-card-desc">
-          自动生成周报、更新飞书文档、监控 Polymarket 仓位、读取 PDF 并整理信息——OpenClaw 是真正的个人 AI 秘书，不只是聊天机器人。
-        </div>
-        <div class="cap-card-tags">
-          <span class="cap-tag blue">飞书文档</span>
-          <span class="cap-tag green">自动化</span>
-          <span class="cap-tag">Agentic</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: SONIC DEMO -->
-  <section class="demo-section">
-    <div class="demo-section-header">
-      <div class="demo-section-num">3</div>
-      <div>
-        <div class="demo-section-title">Nova Sonic — 语音对话 Demo</div>
-        <div class="demo-section-subtitle">Amazon Bedrock Nova Sonic · 端到端实时语音交互</div>
-      </div>
-    </div>
-
-    <div class="highlight-box">
-      <strong>真正的端到端语音 AI</strong>——不是语音转文字再问 AI 再转语音的三段式架构，而是 Nova Sonic 直接理解语音、思考、语音回复。支持打断，有情绪感知，平均延迟 &lt;1秒。
-    </div>
-
-    <div style="text-align: center; margin: 28px 0;">
-      <a href="https://sonic.aolei.org/?token=NDUj2waNdzr-8Utf" target="_blank" class="cta-btn cta-btn-primary" style="font-size: 1rem; padding: 14px 32px;">
-        🎙️ 点击体验 Nova Sonic 语音对话
+    <div class="fade-up delay-4">
+      <a href="https://sonic.aolei.org/?token=NDUj2waNdzr-8Utf" target="_blank" class="sonic-btn">
+        <span>▶ 立即体验 Nova Sonic</span>
       </a>
-    </div>
-
-    <div class="terminal-block">
-      <div class="t-info"># Nova Sonic 技术架构</div>
-      <div><span class="t-prompt">用户说话</span> → <span class="t-ok">Nova Sonic 实时理解</span> → <span class="t-ok">思考 + 生成语音</span> → <span class="t-prompt">用户听到回复</span></div>
-      <div class="t-info"># 传统三段式架构（对比）</div>
-      <div><span class="t-prompt">用户说话</span> → <span class="t-cmd">STT</span> → <span class="t-cmd">LLM</span> → <span class="t-cmd">TTS</span> → <span class="t-prompt">用户听到回复</span> <span class="t-info">（平均延迟 3-4s）</span></div>
-      <div class="t-info"># Nova Sonic 优势</div>
-      <div><span class="t-ok">✓</span> <span class="t-cmd">端到端，延迟 &lt;1s</span></div>
-      <div><span class="t-ok">✓</span> <span class="t-cmd">支持打断（barge-in）</span></div>
-      <div><span class="t-ok">✓</span> <span class="t-cmd">情绪感知，语气自然</span></div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <div class="demo-cta">
-    <div class="demo-cta-title">想自己养一只 OpenClaw？</div>
-    <div class="demo-cta-sub">用 Kiro 部署，10 分钟上线。全程自然语言，无需运维经验。</div>
-    <div class="demo-cta-links">
-      <a href="https://openclaw.ai" target="_blank" class="cta-btn cta-btn-primary">🦞 OpenClaw 官网</a>
-      <a href="https://kiro.dev" target="_blank" class="cta-btn cta-btn-secondary">👻 Kiro IDE</a>
-      <a href="https://aws.amazon.com/bedrock" target="_blank" class="cta-btn cta-btn-secondary">☁️ Amazon Bedrock</a>
-      <a href="lab.html" class="cta-btn cta-btn-secondary">🧪 奥小秘实验室</a>
+      <div style="margin-top:16px; font-family:var(--mono); font-size:11px; color:var(--text-dim);">
+        → sonic.aolei.org · 打开麦克风，直接开聊
+      </div>
     </div>
   </div>
+</section>
 
-  <footer style="text-align:center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 0.8rem; color: rgba(255,255,255,0.25);">
-    <a href="index.html" style="color:inherit; text-decoration:none;">aolei.org</a> · Powered by OpenClaw × Amazon Bedrock
-  </footer>
+<div class="section-divider"></div>
 
-  <script src="assets/js/nav.js"></script>
+<!-- ===== SECTION 4: NOVA CANVAS ===== -->
+<section id="canvas-section">
+  <div class="grid-bg" style="opacity:0.3"></div>
+  <div class="container">
+    <div class="section-label fade-up">04 · Nova Canvas</div>
+    <div class="gold-quote fade-up delay-1">
+      「一句话，<span>变成一幅画。</span>」
+    </div>
+    <p class="fade-up delay-2" style="font-size:16px; color:var(--text-dim); max-width:560px; line-height:1.7; margin-bottom:56px;">
+      Amazon Nova Canvas 是世界级文生图模型。输入一句描述，
+      秒出专业级图像，支持精确控制、图像编辑、风格迁移。
+    </p>
+
+    <div class="canvas-layout">
+      <!-- Architecture -->
+      <div class="canvas-arch fade-up delay-2">
+        <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:0.1em; margin-bottom:20px;">ARCHITECTURE</div>
+
+        <div class="canvas-arch-row">
+          <div class="arch-node" style="min-width:130px; padding:16px 20px;">
+            <span class="node-icon" style="font-size:22px;">📝</span>
+            <div class="node-label">Text Prompt</div>
+            <div class="node-sub">中英文均可</div>
+          </div>
+          <div class="arch-arrow" style="padding:0 8px;">
+            <div class="arrow-line" style="background:linear-gradient(90deg,var(--orange),rgba(255,107,53,0.3))"></div>
+            <div class="arrow-label" style="color:var(--orange)">JSON</div>
+          </div>
+          <div class="arch-node" style="min-width:130px; padding:16px 20px; position:relative; padding-top:28px; border-color:rgba(255,107,53,0.4); background:rgba(255,107,53,0.04);">
+            <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--orange);color:var(--bg);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.1em;padding:2px 8px;white-space:nowrap;">AWS Bedrock</div>
+            <span class="node-icon" style="font-size:22px;">🎨</span>
+            <div class="node-label">Nova Canvas</div>
+            <div class="node-sub">文生图引擎</div>
+          </div>
+        </div>
+
+        <div style="padding-left:65px; padding-top:4px; padding-bottom:4px;">
+          <div style="display:flex;align-items:center;gap:0;">
+            <div style="width:1px;height:36px;background:linear-gradient(to bottom,var(--orange),rgba(255,107,53,0.3));"></div>
+          </div>
+          <div style="width:0;height:0;border-top:8px solid var(--orange);border-left:4px solid transparent;border-right:4px solid transparent;margin-left:-4px;margin-top:-1px;"></div>
+        </div>
+
+        <div class="canvas-arch-row">
+          <div class="arch-node" style="min-width:130px; padding:16px 20px;">
+            <span class="node-icon" style="font-size:22px;">🖼️</span>
+            <div class="node-label">image_base64</div>
+            <div class="node-sub">1024×1024 PNG</div>
+          </div>
+          <div class="arch-arrow" style="padding:0 8px;">
+            <div class="arrow-line" style="background:linear-gradient(90deg,var(--orange),rgba(255,107,53,0.3))"></div>
+            <div class="arrow-label" style="color:var(--orange)">Render</div>
+          </div>
+          <div class="arch-node" style="min-width:130px; padding:16px 20px;">
+            <span class="node-icon" style="font-size:22px;">🖥️</span>
+            <div class="node-label">前端显示</div>
+            <div class="node-sub">即时渲染</div>
+          </div>
+        </div>
+
+        <!-- Specs -->
+        <div style="margin-top:32px; border:1px solid var(--border); padding:20px; background:rgba(0,0,0,0.3);">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:12px;">SPECS</div>
+          <div style="font-family:var(--mono);font-size:12px;line-height:2;color:var(--text-dim);">
+            <span style="color:var(--orange);">model_id</span> &nbsp;amazon.nova-canvas-v1:0<br>
+            <span style="color:var(--orange);">resolution</span> up to 2048 × 2048<br>
+            <span style="color:var(--orange);">format</span> &nbsp;&nbsp;PNG / JPEG<br>
+            <span style="color:var(--orange);">latency</span> &nbsp;~5-10s
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo -->
+      <div class="canvas-demo fade-up delay-3">
+        <div class="canvas-frame">
+          <div class="canvas-placeholder" id="canvas-placeholder">
+            <div class="canvas-placeholder-icon">🎨</div>
+            <div class="canvas-placeholder-text">输入描述，点击生成<br>画报将在此显示</div>
+          </div>
+          <img id="canvas-result" alt="Generated Image">
+          <div id="canvas-loading">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+        <div class="canvas-input-group">
+          <input
+            type="text"
+            id="canvas-prompt"
+            placeholder="e.g. 赛博朋克风格的上海夜景，霓虹灯倒映在雨后的街道..."
+          >
+          <button class="canvas-gen-btn" id="canvas-btn" onclick="generateCanvas()">
+            GEN →
+          </button>
+        </div>
+        <div class="canvas-error" id="canvas-error"></div>
+
+        <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);line-height:1.8;">
+          <span style="color:var(--orange);">POST</span> /api/canvas<br>
+          <span style="color:var(--text-dim);">→ returns image_base64</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION 5: MORE ===== -->
+<section id="more">
+  <div class="container">
+    <div class="section-label fade-up">05 · 更多场景</div>
+    <div class="gold-quote fade-up delay-1">
+      「一个助手，覆盖<span>工作与生活</span>的全场景。」
+    </div>
+    <p class="fade-up delay-2" style="font-size:16px; color:var(--text-dim); max-width:640px; line-height:1.7;">
+      OpenClaw 不只是工具，是跑在 AWS 上的个人智能体基础设施——
+      从代码到家居，从网站到笔记，处处皆入口。
+    </p>
+
+    <div class="more-grid">
+      <!-- Card 1: AI建站 -->
+      <div class="more-card fade-up delay-1">
+        <span class="more-card-icon">🌐</span>
+        <div class="more-card-title">AI 建站</div>
+        <div class="more-card-desc">
+          一句话生成完整网站，自动部署到 S3 + CloudFront，
+          全球加速，HTTPS 默认，10 分钟上线。
+        </div>
+        <div class="mini-arch">
+          <div class="mini-arch-row">
+            <div class="mini-node">需求描述</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node orange">Claude</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node">HTML/CSS/JS</div>
+          </div>
+          <div class="mini-arch-row">
+            <div class="mini-node">生成产物</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node cyan">S3 + CF</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node">aolei.org</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: 智能家居 -->
+      <div class="more-card fade-up delay-2">
+        <span class="more-card-icon">🏠</span>
+        <div class="more-card-title">智能家居</div>
+        <div class="more-card-desc">
+          「关掉卧室灯，空调调到 26 度」——OpenClaw 接入
+          Home Assistant，语言直达设备，不需要 App。
+        </div>
+        <div class="mini-arch">
+          <div class="mini-arch-row">
+            <div class="mini-node">语音 / 文字</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node orange">OpenClaw</div>
+          </div>
+          <div class="mini-arch-row">
+            <div class="mini-node orange">OpenClaw</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node cyan">HA API</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node">设备</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: 笔记同步 -->
+      <div class="more-card fade-up delay-3">
+        <span class="more-card-icon">📝</span>
+        <div class="more-card-title">笔记同步</div>
+        <div class="more-card-desc">
+          聊天中说「记下来」，自动写入 Obsidian vault，
+          同步到 S3，手机端实时可查——记忆不再丢失。
+        </div>
+        <div class="mini-arch">
+          <div class="mini-arch-row">
+            <div class="mini-node">「记下来：...」</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node orange">OpenClaw</div>
+          </div>
+          <div class="mini-arch-row">
+            <div class="mini-node orange">OpenClaw</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node cyan">S3 Vault</div>
+            <span class="mini-arrow">→</span>
+            <div class="mini-node">手机</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">OpenClaw × AWS</div>
+    <div class="footer-meta">
+      POWERED BY AMAZON BEDROCK &nbsp;·&nbsp; CLAUDE &nbsp;·&nbsp; NOVA SONIC &nbsp;·&nbsp; NOVA CANVAS
+    </div>
+    <div class="footer-meta" style="margin-top:8px; opacity:0.5;">
+      © 2026 · SYSTEM UPTIME 99.9% · ALL SYSTEMS NOMINAL
+    </div>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== PARTICLE CANVAS =====
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], animId;
+  const PARTICLE_COUNT = 80;
+  const CONNECTION_DIST = 140;
+  const SPEED = 0.4;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function Particle() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * SPEED;
+    this.vy = (Math.random() - 0.5) * SPEED;
+    this.r = Math.random() * 1.5 + 0.5;
+    this.alpha = Math.random() * 0.5 + 0.2;
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p1 = particles[i], p2 = particles[j];
+        const dx = p1.x - p2.x, dy = p1.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECTION_DIST) {
+          const alpha = (1 - dist / CONNECTION_DIST) * 0.15;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw particles
+    for (let p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+      ctx.fill();
+
+      // Move
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+    }
+
+    animId = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(animId);
+    init();
+    draw();
+  });
+
+  init();
+  draw();
+})();
+
+// ===== TYPEWRITER =====
+(function() {
+  const lines = [
+    'Powered by Amazon Bedrock',
+    'Claude · Nova Sonic · Nova Canvas',
+    'Your AI. Your Cloud. Your Way.'
+  ];
+  let lineIdx = 0, charIdx = 0, deleting = false, pauseTimer = null;
+  const el = document.getElementById('typewriter-text');
+
+  function type() {
+    if (pauseTimer) return;
+    const current = lines[lineIdx];
+    if (!deleting) {
+      charIdx++;
+      el.textContent = current.slice(0, charIdx);
+      if (charIdx === current.length) {
+        // Pause then delete
+        pauseTimer = setTimeout(() => {
+          pauseTimer = null;
+          deleting = true;
+          setTimeout(type, 50);
+        }, 2400);
+        return;
+      }
+    } else {
+      charIdx--;
+      el.textContent = current.slice(0, charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        lineIdx = (lineIdx + 1) % lines.length;
+      }
+    }
+    setTimeout(type, deleting ? 30 : 65);
+  }
+
+  setTimeout(type, 800);
+})();
+
+// ===== INTERSECTION OBSERVER (fade-up) =====
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+})();
+
+// ===== NOVA CANVAS GENERATE =====
+async function generateCanvas() {
+  const prompt = document.getElementById('canvas-prompt').value.trim();
+  if (!prompt) {
+    showCanvasError('请输入图像描述');
+    return;
+  }
+
+  const btn = document.getElementById('canvas-btn');
+  const loading = document.getElementById('canvas-loading');
+  const placeholder = document.getElementById('canvas-placeholder');
+  const result = document.getElementById('canvas-result');
+  const errorEl = document.getElementById('canvas-error');
+
+  btn.disabled = true;
+  btn.textContent = '...';
+  loading.style.display = 'flex';
+  placeholder.style.display = 'none';
+  result.style.display = 'none';
+  errorEl.style.display = 'none';
+
+  try {
+    const res = await fetch('/api/canvas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    if (data.image_base64) {
+      result.src = 'data:image/png;base64,' + data.image_base64;
+      result.style.display = 'block';
+      result.onload = () => { loading.style.display = 'none'; };
+    } else if (data.image_url) {
+      result.src = data.image_url;
+      result.style.display = 'block';
+      result.onload = () => { loading.style.display = 'none'; };
+    } else {
+      throw new Error('No image in response');
+    }
+  } catch (err) {
+    loading.style.display = 'none';
+    placeholder.style.display = 'flex';
+    showCanvasError('生成失败：' + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'GEN →';
+  }
+}
+
+function showCanvasError(msg) {
+  const el = document.getElementById('canvas-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+document.getElementById('canvas-prompt').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') generateCanvas();
+});
+</script>
 </body>
 </html>
