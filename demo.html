@@ -1530,7 +1530,7 @@ async function generateCanvas() {
   errorEl.style.display = 'none';
 
   try {
-    const res = await fetch('/api/canvas', {
+    const res = await fetch('https://sonic.aolei.org/api/canvas', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
