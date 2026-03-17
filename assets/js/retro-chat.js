@@ -5,6 +5,7 @@
   let initialized = false;
   let guestRounds = 0;       // 匿名轮次计数
   let nickRequired = false;  // 是否已触发昵称拦截
+  let chatHistory = [];      // 多轮对话历史（最多保留 20 条）
 
   function pad2(n) { return String(n).padStart(2,'0'); }
   function nowTime() {
@@ -159,15 +160,23 @@
     isLoading = true;
     if (sendBtn) sendBtn.disabled = true;
 
+    // 加入用户消息到历史
+    chatHistory.push({ role: 'user', content: msg });
+    if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+
     try {
       const resp = await fetch(API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nickname: nick, message: msg })
+        body: JSON.stringify({ nickname: nick, message: msg, history: chatHistory.slice(0, -1) })
       });
       const data = await resp.json();
       removeTyping();
-      addLine('bot', '', data.answer || '...');
+      const answer = data.answer || '...';
+      addLine('bot', '', answer);
+      // 加入助手回复到历史
+      chatHistory.push({ role: 'assistant', content: answer });
+      if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
     } catch(e) {
       removeTyping();
       addLine('sys', '', '网络异常，请稍后再试');
