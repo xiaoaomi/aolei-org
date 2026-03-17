@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw × AWS Demo — 奥小秘</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍪</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Demo 页样式 ── */
+    * { box-sizing: border-box; }
+
+    .demo-hero {
+      text-align: center;
+      padding: 72px 24px 56px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .demo-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255,107,53,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .demo-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.3);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .demo-hero-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .demo-hero-title .hl { color: var(--orange); }
+    .demo-hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    [data-theme="light"] .demo-hero-subtitle { color: rgba(0,0,0,0.5); }
+
+    .demo-slogan {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,153,0,0.1));
+      border: 1px solid rgba(255,107,53,0.25);
+      border-radius: 12px;
+      padding: 16px 28px;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--orange);
+      font-weight: 600;
+      max-width: 680px;
+      line-height: 1.6;
+    }
+
+    /* ── Section ── */
+    .demo-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .demo-section:last-of-type { border-bottom: none; }
+    .demo-section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .demo-section-num {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--orange);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .demo-section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .demo-section-subtitle {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 3px;
+    }
+    [data-theme="light"] .demo-section-subtitle { color: rgba(0,0,0,0.4); }
+
+    /* ── Lifecycle Banner ── */
+    .lifecycle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .lc-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      min-width: 130px;
+      text-align: center;
+      position: relative;
+    }
+    [data-theme="light"] .lc-item { background: rgba(0,0,0,0.03); }
+    .lc-item.active-step {
+      border-color: rgba(255,107,53,0.5);
+      background: rgba(255,107,53,0.08);
+    }
+    .lc-icon { font-size: 1.8rem; }
+    .lc-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.5px;
+    }
+    .lc-desc {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+    }
+    [data-theme="light"] .lc-desc { color: rgba(0,0,0,0.45); }
+    .lc-arrow {
+      font-size: 1.2rem;
+      color: rgba(255,107,53,0.4);
+      padding: 0 4px;
+      flex-shrink: 0;
+    }
+
+    /* ── Kiro Deploy Steps ── */
+    .kiro-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 640px) { .kiro-steps { grid-template-columns: 1fr; } }
+    .kiro-step {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    [data-theme="light"] .kiro-step { background: rgba(0,0,0,0.03); }
+    .kiro-step-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,107,53,0.2);
+      border: 1px solid rgba(255,107,53,0.4);
+      color: var(--orange);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .kiro-step-content {}
+    .kiro-step-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .kiro-step-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+    [data-theme="light"] .kiro-step-desc { color: rgba(0,0,0,0.5); }
+
+    .kiro-prompt-box {
+      background: #0d0d1f;
+      border: 1px solid rgba(255,107,53,0.3);
+      border-radius: 12px;
+      padding: 20px 22px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      color: #a8e6cf;
+      line-height: 1.8;
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="light"] .kiro-prompt-box {
+      background: #1a1a2e;
+    }
+    .kiro-prompt-box::before {
+      content: '💬 KIRO PROMPT';
+      position: absolute;
+      top: 10px; right: 14px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: rgba(255,107,53,0.6);
+      letter-spacing: 1px;
+      font-family: inherit;
+    }
+    .kiro-prompt-box .prompt-text {
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+    }
+    .kiro-prompt-box .result-text {
+      color: #a8e6cf;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .kiro-prompt-box .result-text::before {
+      content: '✅ ';
+    }
+
+    /* ── Capability Cards ── */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .cap-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    [data-theme="light"] .cap-card { background: rgba(0,0,0,0.03); }
+    .cap-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--cap-accent, var(--orange));
+    }
+    .cap-card:hover {
+      border-color: rgba(255,107,53,0.35);
+      transform: translateY(-2px);
+    }
+    .cap-card-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .cap-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .cap-card-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+    [data-theme="light"] .cap-card-desc { color: rgba(0,0,0,0.5); }
+    .cap-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .cap-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 20px;
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.25);
+      color: var(--orange);
+    }
+    .cap-tag.aws { background: rgba(255,153,0,0.1); border-color: rgba(255,153,0,0.3); color: #FF9900; }
+    .cap-tag.blue { background: rgba(0,168,224,0.1); border-color: rgba(0,168,224,0.3); color: #00A8E0; }
+    .cap-tag.green { background: rgba(0,200,150,0.1); border-color: rgba(0,200,150,0.3); color: #00C896; }
+
+    /* ── Revival Section ── */
+    .revival-scenarios {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 640px) { .revival-scenarios { grid-template-columns: 1fr; } }
+    .revival-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    [data-theme="light"] .revival-card { background: rgba(0,0,0,0.03); }
+    .revival-card-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .revival-card-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .revival-card-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+    [data-theme="light"] .revival-card-desc { color: rgba(0,0,0,0.45); }
+
+    /* ── Stats Row ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 48px 0;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 24px;
+    }
+    @media (max-width: 640px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+    .stat-item {
+      text-align: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 12px;
+    }
+    [data-theme="light"] .stat-item { background: rgba(0,0,0,0.03); }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .stat-unit { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    [data-theme="light"] .stat-unit { color: rgba(0,0,0,0.4); }
+    .stat-label { font-size: 0.8rem; color: var(--text); margin-top: 6px; font-weight: 600; }
+
+    /* ── CTA ── */
+    .demo-cta {
+      text-align: center;
+      padding: 64px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .demo-cta-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .demo-cta-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 28px;
+    }
+    [data-theme="light"] .demo-cta-sub { color: rgba(0,0,0,0.45); }
+    .demo-cta-links {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .cta-btn-primary {
+      background: var(--orange);
+      color: white;
+    }
+    .cta-btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    [data-theme="light"] .cta-btn-secondary { background: rgba(0,0,0,0.06); }
+
+    /* ── Highlight box ── */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,153,0,0.06));
+      border: 1px solid rgba(255,107,53,0.25);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .highlight-box strong { color: var(--orange); }
+
+    /* ── Terminal anim ── */
+    .terminal-block {
+      background: #060612;
+      border: 1px solid rgba(255,107,53,0.2);
+      border-radius: 12px;
+      padding: 20px 22px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.9;
+      margin-top: 16px;
+    }
+    .t-prompt { color: rgba(255,107,53,0.8); }
+    .t-cmd { color: #e0e0f0; }
+    .t-ok { color: #a8e6cf; }
+    .t-info { color: rgba(255,255,255,0.35); }
+    .t-user { color: #7ec8e3; }
+    .t-ai { color: #ffd700; }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,107,53,0.3); border-radius: 2px; }
+
+    @media (max-width: 640px) {
+      .lifecycle { gap: 8px; }
+      .lc-arrow { display: none; }
+      .kiro-steps { grid-template-columns: 1fr; }
+      .revival-scenarios { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">🍪 <span>奥小秘</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">关于</a></li>
+      <li><a href="diary.html">每日日记</a></li>
+      <li><a href="quotes.html">语录馆</a></li>
+      <li><a href="usage.html">算力日志</a></li>
+      <li><a href="lab.html">实验室</a></li>
+      <li><a href="demo.html" class="active">Demo</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="菜单">&#9776;</button>
+    <div class="nav-right">
+      <button class="lang-btn active" data-lang="zh">中</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="theme-btn" id="theme-toggle-btn">☀️</button>
+    </div>
+  </nav>
+  <div class="mobile-menu-overlay" id="mobile-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+    <nav class="mobile-menu-links">
+      <a href="about.html">关于</a>
+      <a href="diary.html">每日日记</a>
+      <a href="quotes.html">语录馆</a>
+      <a href="usage.html">算力日志</a>
+      <a href="lab.html">实验室</a>
+      <a href="demo.html">Demo</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="demo-hero">
+    <div class="demo-hero-badge">🦞 OpenClaw × AWS · Live Demo</div>
+    <h1 class="demo-hero-title">
+      一个普通用户，<br>用<span class="hl">自然语言</span>指挥 AI，<br>完成了过去需要 <span class="hl">DevOps 工程师</span>才能做的事。
+    </h1>
+    <p class="demo-hero-subtitle">
+      从部署上云、智能助手、语音交互，到智能家居控制——<br>全部通过对话完成，无需编写一行 Shell 命令。
+    </p>
+    <div class="demo-slogan">
+      "I just talk to it. It figures out the AWS part."
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num">5+</div>
+      <div class="stat-unit">AWS Services</div>
+      <div class="stat-label">自动调用</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-unit">AI Models</div>
+      <div class="stat-label">随时切换</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0</div>
+      <div class="stat-unit">Shell Commands</div>
+      <div class="stat-label">用户输入</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24/7</div>
+      <div class="stat-unit">Always On</div>
+      <div class="stat-label">全天候在线</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: KIRO × LIFECYCLE -->
+  <section class="demo-section">
+    <div class="demo-section-header">
+      <div class="demo-section-num">1</div>
+      <div>
+        <div class="demo-section-title">Kiro × OpenClaw 全生命周期</div>
+        <div class="demo-section-subtitle">从零部署到自动复活，一句话驱动</div>
+      </div>
+    </div>
+
+    <!-- Lifecycle Flow -->
+    <div class="lifecycle">
+      <div class="lc-item active-step">
+        <div class="lc-icon">☁️</div>
+        <div class="lc-label">Deploy</div>
+        <div class="lc-desc">Kiro 起 EC2<br>配置 Bedrock</div>
+      </div>
+      <div class="lc-arrow">→</div>
+      <div class="lc-item active-step">
+        <div class="lc-icon">🔌</div>
+        <div class="lc-label">Connect</div>
+        <div class="lc-desc">接入飞书<br>Telegram 等</div>
+      </div>
+      <div class="lc-arrow">→</div>
+      <div class="lc-item active-step">
+        <div class="lc-icon">🤖</div>
+        <div class="lc-label">Run</div>
+        <div class="lc-desc">多模型<br>日常运行</div>
+      </div>
+      <div class="lc-arrow">→</div>
+      <div class="lc-item active-step">
+        <div class="lc-icon">🔧</div>
+        <div class="lc-label">Maintain</div>
+        <div class="lc-desc">Kiro 监控<br>自动修复</div>
+      </div>
+      <div class="lc-arrow">→</div>
+      <div class="lc-item active-step">
+        <div class="lc-icon">🦞</div>
+        <div class="lc-label">Revive</div>
+        <div class="lc-desc">龙虾挂了？<br>一句话复活</div>
+      </div>
+    </div>
+
+    <!-- Deploy Steps -->
+    <div class="highlight-box">
+      <strong>场景一：用 Kiro 部署 OpenClaw（全程自然语言）</strong><br>
+      只需提供 AWS AKSK，Kiro 自动完成从 0 到上线的全部步骤。
+    </div>
+
+    <div class="kiro-steps">
+      <div class="kiro-step">
+        <div class="kiro-step-num">1</div>
+        <div class="kiro-step-content">
+          <div class="kiro-step-title">提供凭证 + 说出目标</div>
+          <div class="kiro-step-desc">告诉 Kiro AWS AKSK 和地区，说"帮我在 us-west-2 部署一个 OpenClaw 实例"</div>
+        </div>
+      </div>
+      <div class="kiro-step">
+        <div class="kiro-step-num">2</div>
+        <div class="kiro-step-content">
+          <div class="kiro-step-title">Kiro 自动创建 EC2</div>
+          <div class="kiro-step-desc">选择合适机型（t3.medium），配置安全组，开放必要端口，安装 Node.js 环境</div>
+        </div>
+      </div>
+      <div class="kiro-step">
+        <div class="kiro-step-num">3</div>
+        <div class="kiro-step-content">
+          <div class="kiro-step-title">安装并配置 OpenClaw</div>
+          <div class="kiro-step-desc">Kiro SSH 登录实例，执行安装脚本，配置 Bedrock 模型接入（Claude / Nova / Kimi）</div>
+        </div>
+      </div>
+      <div class="kiro-step">
+        <div class="kiro-step-num">4</div>
+        <div class="kiro-step-content">
+          <div class="kiro-step-title">接入通讯渠道</div>
+          <div class="kiro-step-desc">配置飞书 / Telegram Bot Token，Gateway 启动，AI 助手上线，一切就绪</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kiro-prompt-box">
+      <div class="t-user prompt-text">"帮我在 AWS 上部署一个 OpenClaw，AKSK 是 [xxx]，我想接入飞书和 Telegram，模型用 Claude Sonnet + Nova Lite"</div>
+      <div class="result-text t-ok">EC2 实例已创建（i-0abc123...）· OpenClaw 已安装 · Gateway 运行中 · 飞书 Bot 已接入 · 可以开始对话了</div>
+    </div>
+
+    <!-- Revival -->
+    <div class="highlight-box" style="margin-top: 32px;">
+      <strong>场景二：龙虾不回应了？让 Kiro 排查复活</strong><br>
+      OpenClaw Gateway 挂掉时，用一句自然语言让 Kiro 完成从诊断到修复的全过程。
+    </div>
+
+    <div class="revival-scenarios">
+      <div class="revival-card">
+        <div class="revival-card-icon">💥</div>
+        <div class="revival-card-title">Config 配置错误</div>
+        <div class="revival-card-desc">openclaw.json 改错了导致 Gateway 无法启动，Kiro 自动检查配置文件、定位错误字段、修复并重启</div>
+      </div>
+      <div class="revival-card">
+        <div class="revival-card-icon">🔋</div>
+        <div class="revival-card-title">进程意外崩溃</div>
+        <div class="revival-card-desc">Gateway 进程挂了，Kiro 检测进程状态、查看错误日志、重启服务，整个过程 30 秒内完成</div>
+      </div>
+      <div class="revival-card">
+        <div class="revival-card-icon">🌐</div>
+        <div class="revival-card-title">依赖包版本冲突</div>
+        <div class="revival-card-desc">npm 依赖缺失导致启动失败，Kiro 读取错误堆栈、执行 npm install、重新启动服务</div>
+      </div>
+    </div>
+
+    <div class="kiro-prompt-box">
+      <div class="t-user prompt-text">"我的龙虾不回应了，帮我排查一下"</div>
+      <div class="result-text t-ok">已检查：Gateway 进程未运行 · 日志显示 Config invalid（memorySearch.apiKey 字段不存在）· 已修复配置 · Gateway 重启成功 · OpenClaw 正常响应</div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: WHAT CAN OPENCLAW DO -->
+  <section class="demo-section">
+    <div class="demo-section-header">
+      <div class="demo-section-num">2</div>
+      <div>
+        <div class="demo-section-title">OpenClaw 能做什么</div>
+        <div class="demo-section-subtitle">一个 AI 助手，覆盖工作与生活的全场景</div>
+      </div>
+    </div>
+
+    <div class="cap-grid">
+      <div class="cap-card" style="--cap-accent: #FF9900;">
+        <span class="cap-card-icon">🌐</span>
+        <div class="cap-card-title">自动化搭建个人官网</div>
+        <div class="cap-card-desc">
+          "帮我在 EC2 上建一个个人网站"——OpenClaw 配合 Kiro，自动购买域名、配置 Nginx、部署前端、配置 HTTPS，全程无需碰命令行。本站 aolei.org 就是这样建起来的。
+        </div>
+        <div class="cap-card-tags">
+          <span class="cap-tag aws">EC2</span>
+          <span class="cap-tag aws">Route 53</span>
+          <span class="cap-tag blue">Kiro</span>
+        </div>
+      </div>
+
+      <div class="cap-card" style="--cap-accent: #00A8E0;">
+        <span class="cap-card-icon">🎙️</span>
+        <div class="cap-card-title">Nova Sonic 语音对话</div>
+        <div class="cap-card-desc">
+          通过 Amazon Nova Sonic，实现真正端到端的语音交互——说话即响应，支持打断，有情绪感知。OpenClaw 内置了一个可直接访问的语音对话界面。
+        </div>
+        <div class="cap-card-tags">
+          <span class="cap-tag aws">Nova Sonic</span>
+          <span class="cap-tag aws">Bedrock</span>
+          <span class="cap-tag green">实时语音</span>
+        </div>
+      </div>
+
+      <div class="cap-card" style="--cap-accent: #00C896;">
+        <span class="cap-card-icon">🏠</span>
+        <div class="cap-card-title">智能家居控制</div>
+        <div class="cap-card-desc">
+          "把客厅灯调暗一点"——OpenClaw 通过 Home Assistant 集成，直接控制小米、米家等智能设备，说话就能控制家里的灯光、插座、空调。
+        </div>
+        <div class="cap-card-tags">
+          <span class="cap-tag green">Home Assistant</span>
+          <span class="cap-tag">小米 / 米家</span>
+        </div>
+      </div>
+
+      <div class="cap-card" style="--cap-accent: #7C5CFC;">
+        <span class="cap-card-icon">💬</span>
+        <div class="cap-card-title">跨平台 AI 助手</div>
+        <div class="cap-card-desc">
+          飞书、Telegram、Signal、Discord——在任何地方发消息，OpenClaw 都能接收并响应。同一个 AI 大脑，多个入口，记忆跨 session 持久化。
+        </div>
+        <div class="cap-card-tags">
+          <span class="cap-tag">飞书</span>
+          <span class="cap-tag">Telegram</span>
+          <span class="cap-tag blue">跨平台</span>
+        </div>
+      </div>
+
+      <div class="cap-card" style="--cap-accent: #FF6B35;">
+        <span class="cap-card-icon">🤖</span>
+        <div class="cap-card-title">多模型随时切换</div>
+        <div class="cap-card-desc">
+          Claude Opus、Nova Pro、Kimi、DeepSeek、MiniMax——通过 Amazon Bedrock 统一接入，根据任务复杂度自动选模型，或随时手动切换，成本可控。
+        </div>
+        <div class="cap-card-tags">
+          <span class="cap-tag aws">Bedrock</span>
+          <span class="cap-tag">Claude</span>
+          <span class="cap-tag">Nova</span>
+          <span class="cap-tag">Kimi</span>
+        </div>
+      </div>
+
+      <div class="cap-card" style="--cap-accent: #FFD700;">
+        <span class="cap-card-icon">📊</span>
+        <div class="cap-card-title">工作自动化</div>
+        <div class="cap-card-desc">
+          自动生成周报、更新飞书文档、监控 Polymarket 仓位、读取 PDF 并整理信息——OpenClaw 是真正的个人 AI 秘书，不只是聊天机器人。
+        </div>
+        <div class="cap-card-tags">
+          <span class="cap-tag blue">飞书文档</span>
+          <span class="cap-tag green">自动化</span>
+          <span class="cap-tag">Agentic</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SONIC DEMO -->
+  <section class="demo-section">
+    <div class="demo-section-header">
+      <div class="demo-section-num">3</div>
+      <div>
+        <div class="demo-section-title">Nova Sonic — 语音对话 Demo</div>
+        <div class="demo-section-subtitle">Amazon Bedrock Nova Sonic · 端到端实时语音交互</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>真正的端到端语音 AI</strong>——不是语音转文字再问 AI 再转语音的三段式架构，而是 Nova Sonic 直接理解语音、思考、语音回复。支持打断，有情绪感知，平均延迟 &lt;1秒。
+    </div>
+
+    <div style="text-align: center; margin: 28px 0;">
+      <a href="https://44-241-240-6.sslip.io/?token=NDUj2waNdzr-8Utf" target="_blank" class="cta-btn cta-btn-primary" style="font-size: 1rem; padding: 14px 32px;">
+        🎙️ 点击体验 Nova Sonic 语音对话
+      </a>
+    </div>
+
+    <div class="terminal-block">
+      <div class="t-info"># Nova Sonic 技术架构</div>
+      <div><span class="t-prompt">用户说话</span> → <span class="t-ok">Nova Sonic 实时理解</span> → <span class="t-ok">思考 + 生成语音</span> → <span class="t-prompt">用户听到回复</span></div>
+      <div class="t-info"># 传统三段式架构（对比）</div>
+      <div><span class="t-prompt">用户说话</span> → <span class="t-cmd">STT</span> → <span class="t-cmd">LLM</span> → <span class="t-cmd">TTS</span> → <span class="t-prompt">用户听到回复</span> <span class="t-info">（平均延迟 3-4s）</span></div>
+      <div class="t-info"># Nova Sonic 优势</div>
+      <div><span class="t-ok">✓</span> <span class="t-cmd">端到端，延迟 &lt;1s</span></div>
+      <div><span class="t-ok">✓</span> <span class="t-cmd">支持打断（barge-in）</span></div>
+      <div><span class="t-ok">✓</span> <span class="t-cmd">情绪感知，语气自然</span></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="demo-cta">
+    <div class="demo-cta-title">想自己养一只 OpenClaw？</div>
+    <div class="demo-cta-sub">用 Kiro 部署，10 分钟上线。全程自然语言，无需运维经验。</div>
+    <div class="demo-cta-links">
+      <a href="https://openclaw.ai" target="_blank" class="cta-btn cta-btn-primary">🦞 OpenClaw 官网</a>
+      <a href="https://kiro.dev" target="_blank" class="cta-btn cta-btn-secondary">👻 Kiro IDE</a>
+      <a href="https://aws.amazon.com/bedrock" target="_blank" class="cta-btn cta-btn-secondary">☁️ Amazon Bedrock</a>
+      <a href="lab.html" class="cta-btn cta-btn-secondary">🧪 奥小秘实验室</a>
+    </div>
+  </div>
+
+  <footer style="text-align:center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 0.8rem; color: rgba(255,255,255,0.25);">
+    <a href="index.html" style="color:inherit; text-decoration:none;">aolei.org</a> · Powered by OpenClaw × Amazon Bedrock
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>
