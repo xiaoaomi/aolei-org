@@ -1088,20 +1088,48 @@
       AI 立刻理解并回应——延迟低到感觉不出来。
     </p>
 
-    <!-- Waveform display -->
-    <div class="fade-up delay-2" style="display:flex; align-items:center; gap:16px; margin-bottom:48px;">
-      <span style="font-family:var(--mono); font-size:12px; color:var(--text-dim);">AUDIO STREAM</span>
-      <div class="waveform">
-        <div class="waveform-bar"></div>
-        <div class="waveform-bar"></div>
-        <div class="waveform-bar"></div>
-        <div class="waveform-bar"></div>
-        <div class="waveform-bar"></div>
-        <div class="waveform-bar"></div>
-        <div class="waveform-bar"></div>
-        <div class="waveform-bar"></div>
+    <!-- AI Avatar + 拟人化语音交互可视化 -->
+    <div class="fade-up delay-2" style="display:flex;align-items:center;gap:48px;margin-bottom:48px;flex-wrap:wrap;">
+      <!-- 用户侧 -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <div style="width:64px;height:64px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(255,255,255,0.05);">🧑‍💼</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.1em;">USER</div>
+        <div style="display:flex;gap:3px;align-items:center;height:18px;">
+          <div class="waveform-bar" style="width:3px;background:rgba(255,255,255,0.3);"></div>
+          <div class="waveform-bar" style="width:3px;background:rgba(255,255,255,0.3);"></div>
+          <div class="waveform-bar" style="width:3px;background:rgba(255,255,255,0.3);"></div>
+          <div class="waveform-bar" style="width:3px;background:rgba(255,255,255,0.3);"></div>
+          <div class="waveform-bar" style="width:3px;background:rgba(255,255,255,0.3);"></div>
+        </div>
       </div>
-      <span style="font-family:var(--mono); font-size:12px; color:var(--cyan);">ACTIVE</span>
+      <!-- 双向箭头 -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(0,212,170,0.6);">PCM ──────▶</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,107,53,0.6);">◀────── Audio+Text</div>
+      </div>
+      <!-- AI 头像 -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <!-- 发光圆形头像 -->
+        <div style="position:relative;width:80px;height:80px;">
+          <!-- 外环光晕 -->
+          <div style="position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(255,107,53,0.2);animation:pulse-ring 2s ease-in-out infinite;"></div>
+          <div style="position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(255,107,53,0.1);animation:pulse-ring 2s ease-in-out infinite 0.5s;"></div>
+          <!-- 主圆 -->
+          <div style="width:80px;height:80px;border-radius:50%;border:2px solid rgba(255,107,53,0.7);background:radial-gradient(circle at 35% 35%, rgba(255,107,53,0.25), rgba(5,5,8,0.9));display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 0 20px rgba(255,107,53,0.3);">🦞</div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,107,53,0.8);letter-spacing:0.15em;">NOVA SONIC</div>
+        <!-- 说话时的波形 -->
+        <div style="display:flex;gap:3px;align-items:center;height:18px;">
+          <div class="waveform-bar" style="width:3px;background:var(--orange);"></div>
+          <div class="waveform-bar" style="width:3px;background:var(--orange);"></div>
+          <div class="waveform-bar" style="width:3px;background:var(--orange);"></div>
+          <div class="waveform-bar" style="width:3px;background:var(--orange);"></div>
+          <div class="waveform-bar" style="width:3px;background:var(--orange);"></div>
+          <div class="waveform-bar" style="width:3px;background:var(--orange);"></div>
+          <div class="waveform-bar" style="width:3px;background:var(--orange);"></div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(0,212,170,0.7);letter-spacing:0.1em;">● LISTENING</div>
+      </div>
     </div>
 
     <!-- Architecture Diagram -->
@@ -1235,8 +1263,18 @@
       <!-- Demo -->
       <div class="canvas-demo fade-up delay-3">
         <div class="canvas-frame">
-          <div class="canvas-placeholder" id="canvas-placeholder" style="padding:0;overflow:hidden;">
-            <img src="/assets/lobster_space.png" id="canvas-preload" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" alt="Nova Canvas Demo">
+          <div class="canvas-placeholder" id="canvas-placeholder">
+            <!-- 四角设计感角标 -->
+            <div style="position:absolute;top:16px;left:16px;width:24px;height:24px;border-top:2px solid rgba(255,107,53,0.6);border-left:2px solid rgba(255,107,53,0.6);"></div>
+            <div style="position:absolute;top:16px;right:16px;width:24px;height:24px;border-top:2px solid rgba(255,107,53,0.6);border-right:2px solid rgba(255,107,53,0.6);"></div>
+            <div style="position:absolute;bottom:16px;left:16px;width:24px;height:24px;border-bottom:2px solid rgba(255,107,53,0.6);border-left:2px solid rgba(255,107,53,0.6);"></div>
+            <div style="position:absolute;bottom:16px;right:16px;width:24px;height:24px;border-bottom:2px solid rgba(255,107,53,0.6);border-right:2px solid rgba(255,107,53,0.6);"></div>
+            <!-- 中央占位 -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+              <div style="width:48px;height:48px;border:1px solid rgba(255,107,53,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;">🎨</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,107,53,0.5);letter-spacing:0.2em;">CANVAS READY</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.1em;">输入描述 → 生成画报</div>
+            </div>
           </div>
           <img id="canvas-result" alt="Generated Image">
           <div id="canvas-loading">
