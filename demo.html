@@ -949,6 +949,72 @@
       flex-wrap: wrap;
     }
   }
+
+  /* ===== VIDEO LIGHTBOX ===== */
+  .video-slot {
+    cursor: pointer;
+    position: relative;
+  }
+  .video-slot::after {
+    content: '▶';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    border-radius: 4px;
+  }
+  .video-slot:hover::after {
+    opacity: 1;
+  }
+  #video-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+  #video-lightbox.active {
+    display: flex;
+  }
+  #video-lightbox video {
+    max-width: 90vw;
+    max-height: 80vh;
+    border: 1px solid rgba(255,107,53,0.4);
+    border-radius: 4px;
+    box-shadow: 0 0 40px rgba(255,107,53,0.2);
+  }
+  #video-lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 28px;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  #video-lightbox-close:hover {
+    color: var(--orange);
+  }
+  #video-lightbox-hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+  }
+
 </style>
 </head>
 <body>
@@ -1608,6 +1674,45 @@ function showCanvasError(msg) {
 
 document.getElementById('canvas-prompt').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') generateCanvas();
+});
+</script>
+
+<!-- ===== VIDEO LIGHTBOX ===== -->
+<div id="video-lightbox" onclick="closeLightbox(event)">
+  <div id="video-lightbox-close" onclick="closeLightbox()">✕</div>
+  <video id="lightbox-video" controls playsinline>
+    <source id="lightbox-source" src="" type="video/mp4">
+  </video>
+  <div id="video-lightbox-hint">点击画面外或按 ESC 关闭</div>
+</div>
+
+<script>
+function openLightbox(src) {
+  const lb = document.getElementById('video-lightbox');
+  const vid = document.getElementById('lightbox-video');
+  const src_el = document.getElementById('lightbox-source');
+  src_el.src = src;
+  vid.load();
+  vid.play();
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e && e.target === document.getElementById('lightbox-video')) return;
+  const lb = document.getElementById('video-lightbox');
+  const vid = document.getElementById('lightbox-video');
+  vid.pause();
+  lb.classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
+// 给所有 video-slot 里的 video 绑定点击
+document.querySelectorAll('.video-slot video').forEach(v => {
+  v.parentElement.addEventListener('click', () => {
+    openLightbox(v.querySelector('source').src);
+  });
 });
 </script>
 </body>
