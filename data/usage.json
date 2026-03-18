@@ -1,0 +1,970 @@
+[
+  {
+    "date": "2026-02-11",
+    "cost": 45.2657,
+    "cost_breakdown": {
+      "cache_write": 25.9514,
+      "cache_read": 10.8555,
+      "output": 2.7283,
+      "input": 5.7305
+    },
+    "tokens": {
+      "cache_write": 4152229,
+      "cache_read": 21711020,
+      "output": 108549,
+      "input": 1092215
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 3039
+      },
+      "opus": {
+        "cache_write": 4152229,
+        "cache_read": 21711020,
+        "output": 105510
+      }
+    }
+  },
+  {
+    "date": "2026-02-12",
+    "cost": 32.3388,
+    "cost_breakdown": {
+      "cache_write": 15.7068,
+      "cache_read": 9.0466,
+      "output": 6.4194,
+      "input": 1.166
+    },
+    "tokens": {
+      "cache_write": 2513095,
+      "cache_read": 18093127,
+      "output": 255879,
+      "input": 220282
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 2513095,
+        "cache_read": 18093127,
+        "output": 255879
+      }
+    }
+  },
+  {
+    "date": "2026-02-13",
+    "cost": 159.7523,
+    "cost_breakdown": {
+      "cache_write": 58.2864,
+      "cache_read": 93.4219,
+      "output": 8.0041,
+      "input": 0.0399
+    },
+    "tokens": {
+      "cache_write": 9325819,
+      "cache_read": 186843864,
+      "output": 320157,
+      "input": 7952
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 9325819,
+        "cache_read": 186843864,
+        "output": 320157
+      }
+    }
+  },
+  {
+    "date": "2026-02-14",
+    "cost": 61.9922,
+    "cost_breakdown": {
+      "cache_write": 26.8898,
+      "cache_read": 27.8029,
+      "output": 7.2898,
+      "input": 0.0098
+    },
+    "tokens": {
+      "cache_write": 4302363,
+      "cache_read": 55605774,
+      "output": 291592,
+      "input": 1952
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 4302363,
+        "cache_read": 55605774,
+        "output": 291592
+      }
+    }
+  },
+  {
+    "date": "2026-02-15",
+    "cost": 2.4828,
+    "cost_breakdown": {
+      "cache_write": 1.9639,
+      "cache_read": 0.3836,
+      "output": 0.1351,
+      "input": 0.0002
+    },
+    "tokens": {
+      "cache_write": 314229,
+      "cache_read": 767216,
+      "output": 5402,
+      "input": 35
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 314229,
+        "cache_read": 767216,
+        "output": 5402
+      }
+    }
+  },
+  {
+    "date": "2026-02-16",
+    "cost": 16.9008,
+    "cost_breakdown": {
+      "cache_write": 10.1986,
+      "cache_read": 4.6007,
+      "output": 2.1005,
+      "input": 0.001
+    },
+    "tokens": {
+      "cache_write": 1631771,
+      "cache_read": 9201365,
+      "output": 84020,
+      "input": 209
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 1631771,
+        "cache_read": 9201365,
+        "output": 84020
+      }
+    }
+  },
+  {
+    "date": "2026-02-17",
+    "cost": 26.8627,
+    "cost_breakdown": {
+      "cache_write": 14.8822,
+      "cache_read": 10.1136,
+      "output": 1.8646,
+      "input": 0.0023
+    },
+    "tokens": {
+      "cache_write": 2381151,
+      "cache_read": 20227206,
+      "output": 74583,
+      "input": 463
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 2381151,
+        "cache_read": 20227206,
+        "output": 74583
+      }
+    }
+  },
+  {
+    "date": "2026-02-18",
+    "cost": 50.5655,
+    "cost_breakdown": {
+      "cache_write": 36.1553,
+      "cache_read": 10.361,
+      "output": 4.0421,
+      "input": 0.0072
+    },
+    "tokens": {
+      "cache_write": 5863644,
+      "cache_read": 20792197,
+      "output": 162279,
+      "input": 1451
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 197010,
+        "cache_read": 175481,
+        "output": 1491
+      },
+      "opus": {
+        "cache_write": 5666634,
+        "cache_read": 20616716,
+        "output": 160788
+      }
+    }
+  },
+  {
+    "date": "2026-02-19",
+    "cost": 4.618,
+    "cost_breakdown": {
+      "cache_write": 3.8772,
+      "cache_read": 0.4853,
+      "output": 0.2551,
+      "input": 0.0004
+    },
+    "tokens": {
+      "cache_write": 1033920,
+      "cache_read": 1617681,
+      "output": 17004,
+      "input": 135
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 1033920,
+        "cache_read": 1617681,
+        "output": 17004
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-02-20",
+    "cost": 43.6639,
+    "cost_breakdown": {
+      "cache_write": 26.4752,
+      "cache_read": 10.2608,
+      "output": 6.9242,
+      "input": 0.0038
+    },
+    "tokens": {
+      "cache_write": 6747762,
+      "cache_read": 30942627,
+      "output": 397533,
+      "input": 1169
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 6279332,
+        "cache_read": 26052767,
+        "output": 301410
+      },
+      "opus": {
+        "cache_write": 468430,
+        "cache_read": 4889860,
+        "output": 96123
+      }
+    }
+  },
+  {
+    "date": "2026-02-21",
+    "cost": 108.8969,
+    "cost_breakdown": {
+      "cache_write": 55.3712,
+      "cache_read": 37.5367,
+      "output": 15.9765,
+      "input": 0.0124
+    },
+    "tokens": {
+      "cache_write": 11450913,
+      "cache_read": 109725537,
+      "output": 833473,
+      "input": 3681
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 6478790,
+        "cache_read": 86630289,
+        "output": 486036
+      },
+      "opus": {
+        "cache_write": 4972123,
+        "cache_read": 23095248,
+        "output": 347438
+      }
+    }
+  },
+  {
+    "date": "2026-02-22",
+    "cost": 45.6605,
+    "cost_breakdown": {
+      "cache_write": 26.3673,
+      "cache_read": 10.5501,
+      "output": 8.7396,
+      "input": 0.0035
+    },
+    "tokens": {
+      "cache_write": 5765455,
+      "cache_read": 27251442,
+      "output": 467962,
+      "input": 983
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 3866734,
+        "cache_read": 15378101,
+        "output": 295943
+      },
+      "opus": {
+        "cache_write": 1898721,
+        "cache_read": 11873341,
+        "output": 172020
+      }
+    }
+  },
+  {
+    "date": "2026-02-23",
+    "cost": 36.491,
+    "cost_breakdown": {
+      "cache_write": 21.5896,
+      "cache_read": 11.2019,
+      "output": 3.686,
+      "input": 0.0135
+    },
+    "tokens": {
+      "cache_write": 4492125,
+      "cache_read": 32077779,
+      "output": 213507,
+      "input": 4162
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 2594474,
+        "cache_read": 24184866,
+        "output": 165163
+      },
+      "opus": {
+        "cache_write": 1897650,
+        "cache_read": 7892913,
+        "output": 48344
+      }
+    }
+  },
+  {
+    "date": "2026-02-24",
+    "cost": 79.09,
+    "cost_breakdown": {
+      "cache_write": 59.1761,
+      "cache_read": 14.915,
+      "output": 4.9705,
+      "input": 0.0283
+    },
+    "tokens": {
+      "cache_write": 15780298,
+      "cache_read": 49716733,
+      "output": 331257,
+      "input": 8825
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 15780298,
+        "cache_read": 49716733,
+        "output": 331123
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 134
+      }
+    }
+  },
+  {
+    "date": "2026-02-25",
+    "cost": 90.1159,
+    "cost_breakdown": {
+      "cache_write": 54.3485,
+      "cache_read": 26.3516,
+      "output": 9.386,
+      "input": 0.0298
+    },
+    "tokens": {
+      "cache_write": 14492932,
+      "cache_read": 87838547,
+      "output": 625736,
+      "input": 9945
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 14492932,
+        "cache_read": 87838547,
+        "output": 625736
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-02-26",
+    "cost": 56.1946,
+    "cost_breakdown": {
+      "cache_write": 31.8217,
+      "cache_read": 18.433,
+      "output": 5.9311,
+      "input": 0.0088
+    },
+    "tokens": {
+      "cache_write": 8485783,
+      "cache_read": 61443228,
+      "output": 395405,
+      "input": 2943
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 8485783,
+        "cache_read": 61443228,
+        "output": 395405
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-02-27",
+    "cost": 30.6722,
+    "cost_breakdown": {
+      "cache_write": 19.2506,
+      "cache_read": 8.8239,
+      "output": 2.5936,
+      "input": 0.0041
+    },
+    "tokens": {
+      "cache_write": 5133489,
+      "cache_read": 29413009,
+      "output": 172910,
+      "input": 1367
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 5133489,
+        "cache_read": 29413009,
+        "output": 172910
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-02-28",
+    "cost": 31.5163,
+    "cost_breakdown": {
+      "cache_write": 17.6171,
+      "cache_read": 10.8061,
+      "output": 3.0897,
+      "input": 0.0033
+    },
+    "tokens": {
+      "cache_write": 4697901,
+      "cache_read": 36020400,
+      "output": 205982,
+      "input": 1092
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 4697901,
+        "cache_read": 36020400,
+        "output": 205982
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-01",
+    "cost": 24.3391,
+    "cost_breakdown": {
+      "cache_write": 9.8666,
+      "cache_read": 11.2016,
+      "output": 3.2645,
+      "input": 0.0063
+    },
+    "tokens": {
+      "cache_write": 2631105,
+      "cache_read": 37338516,
+      "output": 218022,
+      "input": 2014
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 2631105,
+        "cache_read": 37338516,
+        "output": 217504
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 51
+      }
+    }
+  },
+  {
+    "date": "2026-03-02",
+    "cost": 23.1462,
+    "cost_breakdown": {
+      "cache_write": 16.4643,
+      "cache_read": 5.4399,
+      "output": 1.2358,
+      "input": 0.0062
+    },
+    "tokens": {
+      "cache_write": 4390489,
+      "cache_read": 18132944,
+      "output": 82440,
+      "input": 1431
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 4390489,
+        "cache_read": 18132944,
+        "output": 82038
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 179
+      }
+    }
+  },
+  {
+    "date": "2026-03-03",
+    "cost": 62.9931,
+    "cost_breakdown": {
+      "cache_write": 41.5765,
+      "cache_read": 16.2205,
+      "output": 5.1869,
+      "input": 0.0093
+    },
+    "tokens": {
+      "cache_write": 11087059,
+      "cache_read": 54068314,
+      "output": 345931,
+      "input": 3196
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 11087059,
+        "cache_read": 54068314,
+        "output": 345778
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-04",
+    "cost": 61.2097,
+    "cost_breakdown": {
+      "cache_write": 35.6704,
+      "cache_read": 19.5771,
+      "output": 5.9565,
+      "input": 0.0057
+    },
+    "tokens": {
+      "cache_write": 9512099,
+      "cache_read": 65257063,
+      "output": 397260,
+      "input": 1999
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 9512099,
+        "cache_read": 65257063,
+        "output": 397083
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-05",
+    "cost": 94.4691,
+    "cost_breakdown": {
+      "cache_write": 70.0249,
+      "cache_read": 19.1729,
+      "output": 5.2613,
+      "input": 0.01
+    },
+    "tokens": {
+      "cache_write": 18673314,
+      "cache_read": 63909524,
+      "output": 350951,
+      "input": 3437
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 18673314,
+        "cache_read": 63909524,
+        "output": 350732
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-06",
+    "cost": 45.037,
+    "cost_breakdown": {
+      "cache_write": 26.5949,
+      "cache_read": 12.9468,
+      "output": 5.4924,
+      "input": 0.003
+    },
+    "tokens": {
+      "cache_write": 6891897,
+      "cache_read": 42073499,
+      "output": 361101,
+      "input": 1066
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 6591785,
+        "cache_read": 40449864,
+        "output": 353138
+      },
+      "opus": {
+        "cache_write": 300112,
+        "cache_read": 1623635,
+        "output": 7805
+      }
+    }
+  },
+  {
+    "date": "2026-03-07",
+    "cost": 81.5598,
+    "cost_breakdown": {
+      "cache_write": 61.4893,
+      "cache_read": 14.6756,
+      "output": 5.3872,
+      "input": 0.0076
+    },
+    "tokens": {
+      "cache_write": 16397143,
+      "cache_read": 48918717,
+      "output": 359269,
+      "input": 2633
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 16397143,
+        "cache_read": 48918717,
+        "output": 359139
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-08",
+    "cost": 64.2518,
+    "cost_breakdown": {
+      "cache_write": 38.0095,
+      "cache_read": 20.9211,
+      "output": 5.3122,
+      "input": 0.009
+    },
+    "tokens": {
+      "cache_write": 10135855,
+      "cache_read": 69736885,
+      "output": 354332,
+      "input": 3104
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 10135855,
+        "cache_read": 69736885,
+        "output": 354131
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-09",
+    "cost": 120.3826,
+    "cost_breakdown": {
+      "cache_write": 84.3205,
+      "cache_read": 28.5622,
+      "output": 7.493,
+      "input": 0.007
+    },
+    "tokens": {
+      "cache_write": 22485469,
+      "cache_read": 95207215,
+      "output": 499784,
+      "input": 2429
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 22485469,
+        "cache_read": 95207215,
+        "output": 499510
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-10",
+    "cost": 103.0411,
+    "cost_breakdown": {
+      "cache_write": 70.9706,
+      "cache_read": 27.8168,
+      "output": 4.2368,
+      "input": 0.0169
+    },
+    "tokens": {
+      "cache_write": 18925501,
+      "cache_read": 92722513,
+      "output": 281977,
+      "input": 4082
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 18925501,
+        "cache_read": 92722513,
+        "output": 281032
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 768
+      }
+    }
+  },
+  {
+    "date": "2026-03-11",
+    "cost": 94.6328,
+    "cost_breakdown": {
+      "cache_write": 63.0846,
+      "cache_read": 25.5389,
+      "output": 6.0037,
+      "input": 0.0055
+    },
+    "tokens": {
+      "cache_write": 16822573,
+      "cache_read": 85129563,
+      "output": 400452,
+      "input": 1940
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 16822573,
+        "cache_read": 85129563,
+        "output": 400231
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-12",
+    "cost": 70.2164,
+    "cost_breakdown": {
+      "cache_write": 51.0336,
+      "cache_read": 15.5282,
+      "output": 3.6506,
+      "input": 0.004
+    },
+    "tokens": {
+      "cache_write": 13608964,
+      "cache_read": 51760785,
+      "output": 243591,
+      "input": 1428
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 13608964,
+        "cache_read": 51760785,
+        "output": 243351
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-13",
+    "cost": 109.9008,
+    "cost_breakdown": {
+      "cache_write": 59.5658,
+      "cache_read": 41.3569,
+      "output": 8.9698,
+      "input": 0.0084
+    },
+    "tokens": {
+      "cache_write": 15884212,
+      "cache_read": 137856464,
+      "output": 598154,
+      "input": 2880
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 15884212,
+        "cache_read": 137856464,
+        "output": 597968
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-14",
+    "cost": 18.4786,
+    "cost_breakdown": {
+      "cache_write": 11.5155,
+      "cache_read": 4.5896,
+      "output": 2.3715,
+      "input": 0.002
+    },
+    "tokens": {
+      "cache_write": 3070804,
+      "cache_read": 15298544,
+      "output": 158101,
+      "input": 659
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 3070804,
+        "cache_read": 15298544,
+        "output": 158101
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-15",
+    "cost": 109.258,
+    "cost_breakdown": {
+      "cache_write": 56.0187,
+      "cache_read": 44.8305,
+      "output": 8.3941,
+      "input": 0.0148
+    },
+    "tokens": {
+      "cache_write": 18672886,
+      "cache_read": 149435001,
+      "output": 559605,
+      "input": 4928
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 18672886,
+        "cache_read": 149435001,
+        "output": 559605
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-16",
+    "cost": 49.8979,
+    "cost_breakdown": {
+      "cache_write": 29.5296,
+      "cache_read": 16.8294,
+      "output": 3.5285,
+      "input": 0.0105
+    },
+    "tokens": {
+      "cache_write": 9843195,
+      "cache_read": 56097989,
+      "output": 235231,
+      "input": 3492
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 9843195,
+        "cache_read": 56097989,
+        "output": 235231
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-17",
+    "cost": 48.45,
+    "note": "AWS Go-Global Conference 展台准备 + 《落雪》音乐生成 + demo.html v2 重构",
+    "cost_breakdown": {
+      "bedrock": 48.45,
+      "other": 0
+    },
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "by_model": []
+  }
+]
