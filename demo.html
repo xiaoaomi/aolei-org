@@ -1024,6 +1024,8 @@
   <div class="nav-brand">OpenClaw × AWS</div>
   <ul class="nav-links">
     <li><a href="#kiro">Kiro</a></li>
+    <li><a href="#install">安装指南</a></li>
+    <li><a href="#deploy-compare">部署方案</a></li>
     <li><a href="#sonic">Nova Sonic</a></li>
     <li><a href="#canvas-section">Nova Canvas</a></li>
     <li><a href="#more">More</a></li>
@@ -1138,6 +1140,369 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION: INSTALL GUIDE ===== -->
+<section id="install">
+  <div class="grid-bg" style="opacity:0.4"></div>
+  <div class="container">
+    <div class="section-label fade-up">02.5 · 用 Kiro 部署 OpenClaw</div>
+    <div class="gold-quote fade-up delay-1">
+      「把 GitHub 链接发给 Kiro，<span>让它读懂，然后开聊。</span>」
+    </div>
+    <p class="fade-up delay-2" style="font-size:16px; color:var(--text-dim); max-width:620px; line-height:1.7; margin-bottom:48px;">
+      不需要手打命令。把 OpenClaw 的 GitHub 链接扔给 Kiro，
+      让它先读懂项目背景，再用自然语言一路对话到上线——全程约 8 分钟。
+    </p>
+
+    <!-- 三步核心流程 -->
+    <div class="fade-up delay-2" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:48px;">
+
+      <!-- Step 1: 下载 Kiro -->
+      <div style="border:1px solid var(--border);background:rgba(255,255,255,0.018);padding:24px;position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--orange);opacity:0.7;"></div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;margin-bottom:14px;">① 先装 Kiro</div>
+        <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px;">下载 Kiro IDE</div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--text-dim);line-height:1.8;margin-bottom:16px;">
+          🍎 macOS — .dmg 安装包<br>
+          🪟 Windows — .exe 安装包<br>
+          🐧 Linux / macOS CLI：
+        </div>
+        <div style="background:rgba(0,0,0,0.5);border:1px solid rgba(255,107,53,0.2);border-left:3px solid var(--orange);padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--cyan);line-height:1.6;margin-bottom:14px;">
+          curl -fsSL https://cli.kiro.dev/install | bash
+        </div>
+        <div style="border:1px solid rgba(255,107,53,0.4);padding:8px 14px;display:flex;align-items:center;gap:8px;">
+          <span style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;color:var(--orange);">下载地址</span>
+          <span style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text);">kiro.dev/downloads</span>
+        </div>
+      </div>
+
+      <!-- Step 2: 给 Kiro 读 GitHub -->
+      <div style="border:1px solid rgba(0,212,170,0.3);background:rgba(0,212,170,0.04);padding:24px;position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--cyan);"></div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:var(--cyan);text-transform:uppercase;margin-bottom:14px;">② 丢 GitHub 给 Kiro</div>
+        <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px;">OpenClaw 项目地址</div>
+        <div style="background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.4);padding:14px 16px;font-family:var(--mono);font-size:14px;font-weight:800;color:var(--cyan);margin-bottom:14px;letter-spacing:0.01em;">
+          🐙 github.com/openclaw/openclaw
+        </div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);line-height:1.8;">
+          <span style="color:var(--cyan);">AI 引擎</span> Amazon Bedrock<br>
+          <span style="color:var(--cyan);">运行环境</span> Node ≥ 22 · EC2<br>
+          <span style="color:var(--cyan);">文档</span> docs.openclaw.ai
+        </div>
+      </div>
+
+      <!-- Step 3: 开聊 -->
+      <div style="border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.03);padding:24px;position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#4ADE80;"></div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:#4ADE80;text-transform:uppercase;margin-bottom:14px;">③ 开聊，告诉 Kiro 干什么</div>
+        <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:var(--text);margin-bottom:14px;">自然语言示例</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);padding:8px 12px;font-family:var(--mono);font-size:11px;color:var(--text);line-height:1.5;">
+            「请读取 github.com/openclaw/openclaw，了解项目后告诉我」
+          </div>
+          <div style="background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);padding:8px 12px;font-family:var(--mono);font-size:11px;color:var(--text);line-height:1.5;">
+            「帮我在新加坡 EC2 上部署，接 Telegram，模型用 Claude」
+          </div>
+          <div style="background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);padding:8px 12px;font-family:var(--mono);font-size:11px;color:var(--text);line-height:1.5;">
+            「把模型换成 DeepSeek R1」/ 「加一个飞书频道」
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 海报大图入口 -->
+    <div class="fade-up delay-3" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+      <div
+        onclick="openPosterLightbox('/assets/img/openclaw_kiro_quickstart.png')"
+        style="border:1px solid rgba(255,107,53,0.4);background:rgba(255,107,53,0.04);cursor:pointer;width:180px;height:112px;overflow:hidden;position:relative;flex-shrink:0;transition:border-color 0.2s,box-shadow 0.2s;"
+        onmouseover="this.style.borderColor='rgba(255,107,53,0.9)';this.style.boxShadow='0 0 24px rgba(255,107,53,0.25)'"
+        onmouseout="this.style.borderColor='rgba(255,107,53,0.4)';this.style.boxShadow='none'"
+      >
+        <img src="/assets/img/openclaw_kiro_quickstart.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+        <div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.9);letter-spacing:0.08em;">🔍 完整指南海报</div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;">拍照带走 · 完整版 Quick Start 海报</div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--text-dim);line-height:1.8;max-width:440px;">
+          包含 Kiro 下载方式、GitHub 地址、对话 Prompt 模版、对话示例、IAM 配置建议。<br>
+          点击缩略图查看完整大图。
+        </div>
+        <div style="margin-top:14px;display:flex;gap:20px;flex-wrap:wrap;">
+          <a href="https://kiro.dev/downloads/" target="_blank" style="font-family:var(--mono);font-size:11px;color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(255,107,53,0.3);">⬇ 下载 Kiro →</a>
+          <a href="https://github.com/openclaw/openclaw" target="_blank" style="font-family:var(--mono);font-size:11px;color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,212,170,0.3);">🐙 OpenClaw GitHub →</a>
+          <a href="https://docs.openclaw.ai" target="_blank" style="font-family:var(--mono);font-size:11px;color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,212,170,0.3);">📖 官方文档 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Poster Lightbox -->
+<div id="poster-lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:16px;" onclick="closePosterLightbox(event)">
+  <div id="poster-lightbox-close" style="position:absolute;top:24px;right:32px;font-size:28px;color:rgba(255,255,255,0.6);cursor:pointer;font-family:'JetBrains Mono',monospace;line-height:1;transition:color 0.2s;" onclick="closePosterLightbox()" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✕</div>
+  <img id="poster-lightbox-img" src="" alt="Quick Start Guide" style="max-width:90vw;max-height:88vh;object-fit:contain;border:1px solid rgba(255,107,53,0.3);box-shadow:0 0 40px rgba(255,107,53,0.15);">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;">点击画面外或按 ESC 关闭</div>
+</div>
+<script>
+function openPosterLightbox(src) {
+  const lb = document.getElementById('poster-lightbox');
+  document.getElementById('poster-lightbox-img').src = src;
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closePosterLightbox(e) {
+  if (e && e.target === document.getElementById('poster-lightbox-img')) return;
+  document.getElementById('poster-lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('poster-lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+});
+</script>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION: DEPLOY COMPARE ===== -->
+<section id="deploy-compare">
+  <div class="grid-bg" style="opacity:0.35"></div>
+  <div class="container">
+    <div class="section-label fade-up">03 · 云端部署方案对比</div>
+    <div class="gold-quote fade-up delay-1">
+      「<span>一个框架，三种姿势</span>——从个人到企业，按需选型。」
+    </div>
+    <p class="fade-up delay-2" style="font-size:16px; color:var(--text-dim); max-width:640px; line-height:1.7; margin-bottom:56px;">
+      OpenClaw 在 AWS 上有三种主流部署模式。相同的 AI 能力，不同的基础设施架构，
+      适合不同规模和安全要求的场景。
+    </p>
+
+    <!-- ── 三卡片并排 ── -->
+    <div class="fade-up delay-2" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;">
+
+      <!-- EC2 -->
+      <div style="border:1px solid rgba(255,107,53,0.4);background:rgba(255,107,53,0.04);padding:28px;position:relative;display:flex;flex-direction:column;gap:0;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);"></div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:12px;">方案 A · On EC2</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;">单机部署</div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:20px;">个人 / 小团队 · 最快上手</div>
+
+        <!-- 架构流 -->
+        <div style="background:rgba(0,0,0,0.4);padding:12px 14px;font-family:var(--mono);font-size:10px;color:var(--text-dim);line-height:2;margin-bottom:20px;border:1px solid rgba(255,107,53,0.15);">
+          📱 IM 平台<br>
+          <span style="color:rgba(255,107,53,0.4);">↓</span><br>
+          🖥️ <span style="color:var(--orange);">EC2 Gateway</span><br>
+          <span style="color:rgba(255,107,53,0.4);">↓</span><br>
+          ⚡ Amazon Bedrock
+        </div>
+
+        <!-- 指标 -->
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">上手时间</span>
+            <span style="color:var(--orange);font-weight:700;">~8 分钟</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">50人月费</span>
+            <span style="color:var(--orange);font-weight:700;">$2,000+</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">多租户隔离</span>
+            <span style="color:rgba(255,107,53,0.6);">❌ 无</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">支持频道</span>
+            <span style="color:var(--orange);font-weight:700;">20+</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">生产就绪</span>
+            <span style="color:#4ADE80;font-weight:700;">✅</span>
+          </div>
+        </div>
+
+        <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);line-height:1.7;flex:1;">
+          ✅ Kiro 全程引导，无需手打命令<br>
+          ✅ 架构最透明，便于调试<br>
+          ✅ 成本可预测<br>
+          ⚠️ 无用户级隔离<br>
+          ⚠️ 空闲持续计费
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,107,53,0.2);">
+          <a href="https://github.com/aws-samples/sample-OpenClaw-on-AWS-with-Bedrock" target="_blank" style="font-family:var(--mono);font-size:10px;color:var(--orange);text-decoration:none;letter-spacing:0.05em;">🐙 aws-samples/sample-OpenClaw-on-AWS-with-Bedrock →</a>
+        </div>
+      </div>
+
+      <!-- EKS -->
+      <div style="border:1px solid rgba(167,139,250,0.4);background:rgba(167,139,250,0.04);padding:28px;position:relative;display:flex;flex-direction:column;gap:0;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#A78BFA;"></div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:#A78BFA;text-transform:uppercase;margin-bottom:12px;">方案 B · On EKS</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;">Kubernetes</div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:20px;">中型团队 · 已有 k8s 基础设施</div>
+
+        <!-- 架构流 -->
+        <div style="background:rgba(0,0,0,0.4);padding:12px 14px;font-family:var(--mono);font-size:10px;color:var(--text-dim);line-height:2;margin-bottom:20px;border:1px solid rgba(167,139,250,0.15);">
+          📱 IM 平台<br>
+          <span style="color:rgba(167,139,250,0.4);">↓</span><br>
+          🔀 <span style="color:#A78BFA;">ALB / Ingress</span><br>
+          <span style="color:rgba(167,139,250,0.4);">↓</span><br>
+          📦 <span style="color:#A78BFA;">EKS Pod</span>（OpenClaw）<br>
+          <span style="color:rgba(167,139,250,0.4);">↓</span><br>
+          ⚡ Amazon Bedrock
+        </div>
+
+        <!-- 指标 -->
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">上手时间</span>
+            <span style="color:#A78BFA;font-weight:700;">~1 天</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">50人月费</span>
+            <span style="color:#A78BFA;font-weight:700;">$500+</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">多租户隔离</span>
+            <span style="color:#A78BFA;">⚠️ Pod 级</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">支持频道</span>
+            <span style="color:#A78BFA;font-weight:700;">20+</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">生产就绪</span>
+            <span style="color:#4ADE80;font-weight:700;">✅</span>
+          </div>
+        </div>
+
+        <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);line-height:1.7;flex:1;">
+          ✅ 与现有 CI/CD 无缝融合<br>
+          ✅ 滚动更新 / 自动回滚<br>
+          ✅ Prometheus + 标准监控生态<br>
+          ⚠️ EKS 控制平面 $72/月起<br>
+          ⚠️ 运维复杂度高
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(167,139,250,0.2);">
+          <a href="https://github.com/openclaw-rocks/k8s-operator" target="_blank" style="font-family:var(--mono);font-size:10px;color:#A78BFA;text-decoration:none;letter-spacing:0.05em;">🐙 openclaw-rocks/k8s-operator →</a>
+        </div>
+      </div>
+
+      <!-- AgentCore -->
+      <div style="border:1px solid rgba(0,212,170,0.4);background:rgba(0,212,170,0.04);padding:28px;position:relative;display:flex;flex-direction:column;gap:0;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--cyan);"></div>
+        <div style="position:absolute;top:14px;right:14px;background:rgba(0,212,170,0.15);border:1px solid rgba(0,212,170,0.4);padding:2px 8px;font-family:var(--mono);font-size:9px;color:var(--cyan);letter-spacing:0.1em;">EXPERIMENTAL</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:var(--cyan);text-transform:uppercase;margin-bottom:12px;">方案 C · On AgentCore</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;">多租户 Serverless</div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:20px;">企业级 · 50人以上 · 按用付费</div>
+
+        <!-- 架构流 -->
+        <div style="background:rgba(0,0,0,0.4);padding:12px 14px;font-family:var(--mono);font-size:10px;color:var(--text-dim);line-height:2;margin-bottom:20px;border:1px solid rgba(0,212,170,0.15);">
+          📱 IM 平台<br>
+          <span style="color:rgba(0,212,170,0.4);">↓</span><br>
+          🔀 <span style="color:var(--cyan);">API GW → Router λ</span><br>
+          <span style="color:rgba(0,212,170,0.4);">↓ 每用户独立</span><br>
+          🔒 <span style="color:var(--cyan);">AgentCore microVM</span><br>
+          <span style="color:rgba(0,212,170,0.4);">↓</span><br>
+          ⚡ Amazon Bedrock
+        </div>
+
+        <!-- 指标 -->
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">上手时间</span>
+            <span style="color:var(--cyan);font-weight:700;">~1-2 天</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">50人月费</span>
+            <span style="color:#4ADE80;font-weight:800;">$65–110 🎯</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">多租户隔离</span>
+            <span style="color:#4ADE80;font-weight:700;">✅ Firecracker</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">支持频道</span>
+            <span style="color:var(--cyan);font-weight:700;">Telegram + Slack</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:6px 10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);">
+            <span style="color:var(--text-dim);">生产就绪</span>
+            <span style="color:rgba(255,107,53,0.8);">⚠️ 实验性</span>
+          </div>
+        </div>
+
+        <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);line-height:1.7;flex:1;">
+          ✅ Firecracker 微虚机级用户隔离<br>
+          ✅ Serverless，闲置零费用<br>
+          ✅ IT 统一管理 Skill & Credential<br>
+          ✅ Bedrock Guardrails 内置安全<br>
+          ⚠️ 目前实验性，不推荐生产
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(0,212,170,0.2);">
+          <a href="https://github.com/aws-samples/sample-host-openclaw-on-amazon-bedrock-agentcore" target="_blank" style="font-family:var(--mono);font-size:10px;color:var(--cyan);text-decoration:none;letter-spacing:0.05em;">🐙 aws-samples/sample-host-openclaw-on-amazon-bedrock-agentcore →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 成本对比 highlight ── -->
+    <div class="fade-up delay-3" style="border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.04);padding:28px;margin-bottom:40px;">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.2em;color:#4ADE80;text-transform:uppercase;margin-bottom:16px;">💰 50 用户成本对比</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div style="text-align:center;padding:16px;border:1px solid var(--border);background:rgba(0,0,0,0.3);">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-bottom:8px;">ChatGPT Plus</div>
+          <div style="font-family:var(--mono);font-size:22px;font-weight:800;color:var(--text-dim);">$1,000</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:4px;">/月</div>
+        </div>
+        <div style="text-align:center;padding:16px;border:1px solid rgba(255,107,53,0.3);background:rgba(255,107,53,0.04);">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-bottom:8px;">50× EC2</div>
+          <div style="font-family:var(--mono);font-size:22px;font-weight:800;color:var(--orange);">$2,000+</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:4px;">/月</div>
+        </div>
+        <div style="text-align:center;padding:16px;border:1px solid rgba(167,139,250,0.3);background:rgba(167,139,250,0.04);">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-bottom:8px;">EKS 方案</div>
+          <div style="font-family:var(--mono);font-size:22px;font-weight:800;color:#A78BFA;">$500+</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:4px;">/月</div>
+        </div>
+        <div style="text-align:center;padding:16px;border:1px solid rgba(74,222,128,0.5);background:rgba(74,222,128,0.08);position:relative;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#4ADE80;color:#000;font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 10px;letter-spacing:0.1em;">BEST VALUE</div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-bottom:8px;">AgentCore</div>
+          <div style="font-family:var(--mono);font-size:22px;font-weight:800;color:#4ADE80;">$65–110</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:4px;">/月 · ~$1.5/人</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 决策树 ── -->
+    <div class="fade-up delay-4" style="border:1px solid var(--border);background:rgba(255,255,255,0.015);padding:28px;">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;margin-bottom:20px;">选型决策树</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;border:1px solid rgba(255,107,53,0.25);background:rgba(255,107,53,0.04);">
+          <span style="font-family:var(--mono);font-size:18px;">1️⃣</span>
+          <div>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--text-dim);">规模 &lt;5 人，快速验证？</span>
+            <span style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--orange);margin-left:16px;">→ On EC2，Kiro 8 分钟上线</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;border:1px solid rgba(167,139,250,0.25);background:rgba(167,139,250,0.04);">
+          <span style="font-family:var(--mono);font-size:18px;">2️⃣</span>
+          <div>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--text-dim);">已有 EKS 平台，需要统一管理？</span>
+            <span style="font-family:var(--mono);font-size:12px;font-weight:700;color:#A78BFA;margin-left:16px;">→ On EKS，接入 k8s operator</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;border:1px solid rgba(0,212,170,0.25);background:rgba(0,212,170,0.04);">
+          <span style="font-family:var(--mono);font-size:18px;">3️⃣</span>
+          <div>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--text-dim);">50 人以上，需要隔离 + 成本最优？</span>
+            <span style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--cyan);margin-left:16px;">→ On AgentCore（PoC 验证后推广）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 

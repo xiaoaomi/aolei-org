@@ -966,5 +966,27 @@
       "cache_write": 0
     },
     "by_model": []
+  },
+  {
+    "date": "2026-03-18",
+    "cost": 2.4327,
+    "note": "Kiro 自动登出排查 + SohPlazza 客户建档 + UDN 医疗报告整合 + demo.html 内容更新 + Polymarket 复盘",
+    "cost_breakdown": {
+      "cache_write": 2.2344,
+      "cache_read": 0.1828,
+      "output": 0.0154,
+      "input": 0.0001
+    },
+    "tokens": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "by_model": {
+      "sonnet": {
+        "notes": "Claude Sonnet 4.6 cross-region"
+      }
+    }
   }
 ]
