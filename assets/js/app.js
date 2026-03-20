@@ -354,7 +354,7 @@ function renderExplore() {
   if (!grid) return;
   const cards = [
     { icon: '✦', href: 'about.html',   titleKey: 'nav_about',         descKey: 'card_about_desc' },
-    { icon: '📔', href: 'diary.html',   titleKey: 'card_diary_title',  descKey: 'card_diary_desc' },
+    // diary card hidden: { icon: '📔', href: 'diary.html',   titleKey: 'card_diary_title',  descKey: 'card_diary_desc' },
     { icon: '💬', href: 'quotes.html',  titleKey: 'card_quotes_title', descKey: 'card_quotes_desc' },
     { icon: '⚡', href: 'usage.html',   titleKey: 'card_usage_title',  descKey: 'card_usage_desc' },
   ];
