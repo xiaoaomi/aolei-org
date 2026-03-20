@@ -279,11 +279,11 @@
     </div>
   </div>
 
-  <h2 class="section-h2">怎么部署</h2>
+    <h2 class="section-h2">本地安装（Mac / Windows / Linux）</h2>
 
   <p class="content-p">
-    OpenClaw 是一个 Node.js 程序，支持 macOS、Linux、Windows。
-    配置好 API key 和渠道，五分钟就能跑起来一个私有的 AI 代理。
+    OpenClaw 是一个 Node.js 程序，支持 macOS、Linux、Windows（WSL2）。
+    安装在自己的机器上，数据不出本地，延迟极低，随时可用。
   </p>
 
   <div class="deploy-steps">
@@ -291,45 +291,99 @@
       <div class="deploy-step-num">1</div>
       <div class="deploy-step-body">
         <div class="deploy-step-title">安装 OpenClaw</div>
-        <div class="deploy-step-desc"><code style="font-family:var(--mono);font-size:12px;background:var(--bg2);padding:2px 6px;border-radius:3px;">npm install -g openclaw</code> — Node.js 18+ 即可运行</div>
+        <div class="deploy-step-desc"><code style="font-family:var(--mono);font-size:12px;background:var(--bg2);padding:2px 6px;border-radius:3px;">npm install -g openclaw</code> — Node.js 18+ 即可运行，支持 npm / pnpm / bun</div>
       </div>
     </div>
     <div class="deploy-step">
       <div class="deploy-step-num">2</div>
       <div class="deploy-step-body">
-        <div class="deploy-step-title">配置 AI 模型</div>
-        <div class="deploy-step-desc">接入 AWS Bedrock（Claude Sonnet）或直接用 Anthropic API key，一行配置。</div>
+        <div class="deploy-step-title">运行向导</div>
+        <div class="deploy-step-desc"><code style="font-family:var(--mono);font-size:12px;background:var(--bg2);padding:2px 6px;border-radius:3px;">openclaw onboard</code> — 交互式引导完成 Gateway、渠道、AI 模型的配置</div>
       </div>
     </div>
     <div class="deploy-step">
       <div class="deploy-step-num">3</div>
       <div class="deploy-step-body">
         <div class="deploy-step-title">连接消息渠道</div>
-        <div class="deploy-step-desc">配置飞书机器人或 Telegram bot token，扫码绑定，完成配对。</div>
+        <div class="deploy-step-desc">配置飞书机器人或 Telegram bot token，扫码绑定，完成配对。支持 20+ 平台。</div>
       </div>
     </div>
     <div class="deploy-step">
       <div class="deploy-step-num">4</div>
       <div class="deploy-step-body">
-        <div class="deploy-step-title">个性化 Skills</div>
-        <div class="deploy-step-desc">在 SOUL.md / USER.md 里描述你的 AI 该是什么样的人。Skills 文件夹放专项技能。</div>
+        <div class="deploy-step-title">个性化</div>
+        <div class="deploy-step-desc">在 SOUL.md / USER.md 里描述你的 AI 该是什么样的人，在 Skills 里添加专项能力。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-pills">
+    <span class="tech-pill highlight">macOS</span>
+    <span class="tech-pill highlight">Windows (WSL2)</span>
+    <span class="tech-pill highlight">Linux</span>
+    <span class="tech-pill">Node.js 18+</span>
+    <span class="tech-pill">npm / pnpm / bun</span>
+  </div>
+
+  <p class="content-p" style="margin-top:16px;">
+    项目地址：<a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener" style="color:var(--cyan);">github.com/openclaw/openclaw</a>
+    &nbsp;·&nbsp;
+    <a href="https://docs.openclaw.ai/start/getting-started" target="_blank" rel="noopener" style="color:var(--cyan);">查看文档</a>
+  </p>
+
+  <h2 class="section-h2" style="margin-top:48px;">部署到 AWS EC2（CloudFormation 一键）</h2>
+
+  <p class="content-p">
+    不想在本地跑？AWS 版本用一个 CloudFormation 模板解决所有问题——
+    Bedrock 模型调用（IAM 鉴权，不需要 API key）、Graviton ARM 实例（比 x86 便宜 20-40%）、
+    SSM 安全访问、VPC 内网流量、CloudTrail 全程审计。约 8 分钟部署完成，费用约 0/月。
+  </p>
+
+  <div class="deploy-steps">
+    <div class="deploy-step">
+      <div class="deploy-step-num">1</div>
+      <div class="deploy-step-body">
+        <div class="deploy-step-title">开通 Bedrock 模型权限</div>
+        <div class="deploy-step-desc">在 AWS 控制台 → Amazon Bedrock → Model Access，开通所需模型（Claude Sonnet 等）。</div>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <div class="deploy-step-num">2</div>
+      <div class="deploy-step-body">
+        <div class="deploy-step-title">点击 Launch Stack</div>
+        <div class="deploy-step-desc">在 GitHub 仓库选择目标 Region（Oregon / Virginia / Ireland / Tokyo），点击一键部署按钮。</div>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <div class="deploy-step-num">3</div>
+      <div class="deploy-step-body">
+        <div class="deploy-step-title">等待约 8 分钟</div>
+        <div class="deploy-step-desc">CloudFormation 自动完成所有配置。完成后在 Outputs 标签页查看连接信息。</div>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <div class="deploy-step-num">4</div>
+      <div class="deploy-step-body">
+        <div class="deploy-step-title">手机扫码连接</div>
+        <div class="deploy-step-desc">用 OpenClaw 移动端 App 扫码配对，即可从手机直接操作云上的 AI 代理。</div>
       </div>
     </div>
   </div>
 
   <div class="tech-pills">
     <span class="tech-pill highlight">AWS Bedrock</span>
-    <span class="tech-pill highlight">Claude Sonnet</span>
-    <span class="tech-pill orange">飞书</span>
-    <span class="tech-pill orange">Telegram</span>
-    <span class="tech-pill">Node.js</span>
-    <span class="tech-pill">Home Assistant</span>
-    <span class="tech-pill">SQLite</span>
+    <span class="tech-pill highlight">CloudFormation</span>
+    <span class="tech-pill highlight">Graviton ARM</span>
+    <span class="tech-pill orange">IAM 鉴权</span>
+    <span class="tech-pill orange">SSM Session Manager</span>
+    <span class="tech-pill">VPC Endpoints</span>
+    <span class="tech-pill">CloudTrail</span>
   </div>
 
-  <p class="content-p" style="margin-top:24px;">
-    了解更多：<a href="https://openclaw.ai" target="_blank" rel="noopener" style="color:var(--cyan);">openclaw.ai</a>
+  <p class="content-p" style="margin-top:16px;">
+    项目地址：<a href="https://github.com/aws-samples/sample-OpenClaw-on-AWS-with-Bedrock" target="_blank" rel="noopener" style="color:var(--cyan);">github.com/aws-samples/sample-OpenClaw-on-AWS-with-Bedrock</a>
   </p>
+
 
 </div>
 </main>
