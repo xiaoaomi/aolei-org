@@ -997,5 +997,14 @@
       "bedrock": 45.8621,
       "other": 0
     }
+  },
+  {
+    "date": "2026-03-20",
+    "cost": 0.0,
+    "note": "GPU对比海报 + 谈判知识图谱 + Klook HR需求梳理 + 性格画像×3 + aolei.org网站更新 + Kiro企业治理海报（Cost Explorer延迟，待次日更新）",
+    "cost_breakdown": {
+      "bedrock": 0.0,
+      "other": 0
+    }
   }
 ]
