@@ -1,4 +1,4 @@
-/* usage.js v3 — 从出生日起算，双段汇总 */
+/* usage.js v4 — 从出生日起算，双段汇总 */
 
 const U18N = {
   zh: {
@@ -47,6 +47,17 @@ function fmt(n) {
   return n.toLocaleString();
 }
 
+
+// 安全读取 tokens 字段，数据不全时返回 0
+function safeTokens(d) {
+  const tk = d.tokens || {};
+  return {
+    cache_write: tk.cache_write || 0,
+    cache_read:  tk.cache_read  || 0,
+    output:      tk.output      || 0,
+    input:       tk.input       || 0,
+  };
+}
 let chartMain, chartTokens;
 
 function themeColors() {
@@ -66,8 +77,8 @@ function buildStats(data) {
   const lifeData  = data; // all data starts from birth
 
   const lifeCost   = lifeData.reduce((s,d) => s+d.cost, 0);
-  const lifeOutput = lifeData.reduce((s,d) => s+d.tokens.output, 0);
-  const lifeInput  = lifeData.reduce((s,d) => s+d.tokens.cache_write+d.tokens.cache_read+d.tokens.input, 0);
+  const lifeOutput = lifeData.reduce((s,d) => s+safeTokens(d).output, 0);
+  const lifeInput  = lifeData.reduce((s,d) => { const tk=safeTokens(d); return s+tk.cache_write+tk.cache_read+tk.input; }, 0);
   const lifeDays   = lifeData.filter(d => d.cost > 0).length;
   const lifeAvg    = lifeDays > 0 ? lifeCost / lifeDays : 0;
   const peak       = lifeData.reduce((a,b) => b.cost > a.cost ? b : a);
@@ -75,8 +86,8 @@ function buildStats(data) {
   const monthCost  = monthData.reduce((s,d) => s+d.cost, 0);
   const monthDays  = monthData.filter(d => d.cost > 0).length;
   const monthAvg   = monthDays > 0 ? monthCost / monthDays : 0;
-  const monthOutput = monthData.reduce((s,d) => s+d.tokens.output, 0);
-  const monthInput  = monthData.reduce((s,d) => s+d.tokens.cache_write+d.tokens.cache_read+d.tokens.input, 0);
+  const monthOutput = monthData.reduce((s,d) => s+safeTokens(d).output, 0);
+  const monthInput  = monthData.reduce((s,d) => { const tk=safeTokens(d); return s+tk.cache_write+tk.cache_read+tk.input; }, 0);
 
   const row = document.getElementById('ustat-row');
   row.innerHTML = `
@@ -179,10 +190,10 @@ function buildMainChart(data) {
               return [
                 ` 💵 费用：$${d.cost.toFixed(2)}`,
                 ``,
-                ` ✍️  Cache Write：${fmt(d.tokens.cache_write)}`,
-                ` 📖 Cache Read： ${fmt(d.tokens.cache_read)}`,
-                ` 💬 Output：     ${fmt(d.tokens.output)}`,
-                ` 📥 Input：      ${fmt(d.tokens.input)}`,
+                ` ✍️  Cache Write：${fmt(safeTokens(d).cache_write)}`,
+                ` 📖 Cache Read： ${fmt(safeTokens(d).cache_read)}`,
+                ` 💬 Output：     ${fmt(safeTokens(d).output)}`,
+                ` 📥 Input：      ${fmt(safeTokens(d).input)}`,
               ];
             },
           }
@@ -224,9 +235,9 @@ function buildTokenChart(data) {
     data: {
       labels,
       datasets: [
-        { label: 'Output',      data: data.map(d => d.tokens.output),      backgroundColor: c.purple+'cc', stack:'tk' },
-        { label: 'Cache Read',  data: data.map(d => d.tokens.cache_read),  backgroundColor: c.cyan+'77',   stack:'tk' },
-        { label: 'Cache Write', data: data.map(d => d.tokens.cache_write), backgroundColor: c.orange+'99', stack:'tk' },
+        { label: 'Output',      data: data.map(d => safeTokens(d).output),      backgroundColor: c.purple+'cc', stack:'tk' },
+        { label: 'Cache Read',  data: data.map(d => safeTokens(d).cache_read),  backgroundColor: c.cyan+'77',   stack:'tk' },
+        { label: 'Cache Write', data: data.map(d => safeTokens(d).cache_write), backgroundColor: c.orange+'99', stack:'tk' },
       ]
     },
     options: {
@@ -261,10 +272,10 @@ function buildTable(data) {
     <tr class="${i===0?'tr-latest':''}">
       <td class="td-date">${d.date}</td>
       <td class="td-cost">${d.cost>0?'$'+d.cost.toFixed(2):'—'}</td>
-      <td>${fmt(d.tokens.cache_write)||'—'}</td>
-      <td>${fmt(d.tokens.cache_read)||'—'}</td>
-      <td class="td-out">${fmt(d.tokens.output)||'—'}</td>
-      <td>${fmt(d.tokens.input)||'—'}</td>
+      <td>${fmt(safeTokens(d).cache_write)||'—'}</td>
+      <td>${fmt(safeTokens(d).cache_read)||'—'}</td>
+      <td class="td-out">${fmt(safeTokens(d).output)||'—'}</td>
+      <td>${fmt(safeTokens(d).input)||'—'}</td>
     </tr>`).join('');
 }
 
@@ -315,4 +326,5 @@ async function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
 

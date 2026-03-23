@@ -956,8 +956,10 @@
     "cost": 48.45,
     "note": "AWS Go-Global Conference 展台准备 + 《落雪》音乐生成 + demo.html v2 重构",
     "cost_breakdown": {
-      "bedrock": 48.45,
-      "other": 0
+      "cache_write": 48.45,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
     },
     "tokens": {
       "input": 0,
@@ -965,7 +967,18 @@
       "cache_read": 0,
       "cache_write": 0
     },
-    "by_model": []
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
   },
   {
     "date": "2026-03-18",
@@ -986,6 +999,11 @@
     "by_model": {
       "sonnet": {
         "notes": "Claude Sonnet 4.6 cross-region"
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
       }
     }
   },
@@ -994,8 +1012,28 @@
     "cost": 45.8621,
     "note": "客户档案维护 + DNS排查技术支持 + 医疗文档处理 + aolei.org访客记录分析 + AgentCore架构梳理",
     "cost_breakdown": {
-      "bedrock": 45.8621,
-      "other": 0
+      "cache_write": 45.8621,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
     }
   },
   {
@@ -1003,8 +1041,28 @@
     "cost": 77.8883,
     "note": "GPU对比海报 + 谈判知识图谱 + Klook HR需求梳理 + 性格画像×3 + aolei.org网站更新 + Kiro企业治理海报",
     "cost_breakdown": {
-      "bedrock": 77.8883,
-      "other": 0
+      "cache_write": 77.8883,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
     }
   },
   {
@@ -1012,8 +1070,57 @@
     "cost": 0.0,
     "note": "开题报告撰写迭代（V1→V4）+ AI身份危机事件观察（Cost Explorer延迟，待次日更新）",
     "cost_breakdown": {
-      "bedrock": 0.0,
-      "other": 0
+      "cache_write": 0.0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
     }
+  },
+  {
+    "date": "2026-03-22",
+    "cost": 0.0,
+    "cost_breakdown": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    },
+    "note": "Cost Explorer 延迟，待补充实际数据"
   }
 ]
