@@ -1151,5 +1151,34 @@
         "output": 0
       }
     }
+  },
+  {
+    "date": "2026-03-24",
+    "cost": 0.0,
+    "note": "PPT制作迭代（html-to-pptx技术路径确立）+ 聊天记录分析 + 多轮子任务协作（Cost Explorer延迟，待次日补充实际数据）",
+    "cost_breakdown": {
+      "cache_write": 0.0,
+      "cache_read": 0.0,
+      "output": 0.0,
+      "input": 0.0
+    },
+    "tokens": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
   }
 ]
