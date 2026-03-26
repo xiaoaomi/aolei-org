@@ -1067,7 +1067,7 @@
   },
   {
     "date": "2026-03-21",
-    "cost": 0.0,
+    "cost": 28.5669,
     "note": "开题报告撰写迭代（V1→V4）+ AI身份危机事件观察（Cost Explorer延迟，待次日更新）",
     "cost_breakdown": {
       "cache_write": 0.0,
@@ -1096,7 +1096,7 @@
   },
   {
     "date": "2026-03-22",
-    "cost": 0.0,
+    "cost": 49.494,
     "cost_breakdown": {
       "cache_write": 0,
       "cache_read": 0,
@@ -1125,7 +1125,7 @@
   },
   {
     "date": "2026-03-23",
-    "cost": 0.0,
+    "cost": 58.6792,
     "note": "GTMS知识库更新（7个产品线）+ SS Updates归档 + Q1季度洞察报告打磨 + Bedrock技术研究（IPC/Prompt Cache/Opus 4.6 profile）（Cost Explorer延迟，待次日补充实际数据）",
     "cost_breakdown": {
       "cache_write": 0.0,
@@ -1154,8 +1154,37 @@
   },
   {
     "date": "2026-03-24",
+    "cost": 84.0522,
+    "note": "PPT制作迭代（html-to-pptx技术路径确立）+ 多轮子任务协作（v9幻灯片9页全部完成截图）",
+    "cost_breakdown": {
+      "cache_write": 0.0,
+      "cache_read": 0.0,
+      "output": 0.0,
+      "input": 0.0
+    },
+    "tokens": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-25",
     "cost": 0.0,
-    "note": "PPT制作迭代（html-to-pptx技术路径确立）+ 聊天记录分析 + 多轮子任务协作（Cost Explorer延迟，待次日补充实际数据）",
+    "note": "AWS MCP工具安装与验证 + Polymarket监控 + 各项分析工作（Cost Explorer延迟，待次日补充实际数据）",
     "cost_breakdown": {
       "cache_write": 0.0,
       "cache_read": 0.0,
