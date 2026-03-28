@@ -1183,7 +1183,7 @@
   },
   {
     "date": "2026-03-25",
-    "cost": 0.0,
+    "cost": 28.7553,
     "note": "AWS MCP工具安装与验证 + Polymarket监控 + 各项分析工作（Cost Explorer延迟，待次日补充实际数据）",
     "cost_breakdown": {
       "cache_write": 0.0,
@@ -1212,7 +1212,12 @@
   },
   {
     "date": "2026-03-26",
-    "cost": 0.0,
-    "note": "店匠Bedrock提额需求处理 + Kiro对比分析 + Q1季度洞察报告多轮打磨（v3-v4）+ EC2数据盘挂载 + 技术报错排查（Cost Explorer延迟，数据可能次日到达）"
+    "cost": 94.9511,
+    "note": "店匠Bedrock提额需求处理 + Kiro对比分析 + Q1季度洞察报告多轮打磨（v3-v4）+ EC2数据盘挂载 + 技术报错排查"
+  },
+  {
+    "date": "2026-03-27",
+    "cost": 4.8065,
+    "note": "新客户档案建立（社交App记忆需求 + 游戏公司模型调用）+ AI Agent指南22图表升级完成 + Polymarket仓位分析"
   }
 ]
