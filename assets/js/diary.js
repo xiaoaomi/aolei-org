@@ -55,6 +55,7 @@
 
   // Diary entries index — all known dates
   const diaryDates = [
+    '2026-03-28',
     '2026-03-27',
     '2026-03-26',
     '2026-03-25',
