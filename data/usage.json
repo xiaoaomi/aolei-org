@@ -1222,12 +1222,17 @@
   },
   {
     "date": "2026-03-28",
-    "cost": 0.0,
+    "cost": 46.125,
     "note": "Q1 Insight Sharing 定稿交付 + AI Agent 完全指南图表归档（Cost Explorer 数据延迟，待次日更新）"
   },
   {
     "date": "2026-03-29",
     "cost": 0.0,
     "note": "AgentCore 架构纠错、AI 指南配图全面完成（self-improving skill 安装日）— Cost Explorer 数据延迟，待次日更新"
+  },
+  {
+    "date": "2026-03-30",
+    "cost": 0.0,
+    "note": "GTMS知识库全量更新、多模型横评整理、PDF文件定稿、QBR文档撰写 — Cost Explorer 数据延迟，实际费用待更新"
   }
 ]
