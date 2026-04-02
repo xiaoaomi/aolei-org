@@ -1232,12 +1232,17 @@
   },
   {
     "date": "2026-03-30",
-    "cost": 0.0,
+    "cost": 74.4597,
     "note": "GTMS知识库全量更新、多模型横评整理、PDF文件定稿、QBR文档撰写 — Cost Explorer 数据延迟，实际费用待更新"
   },
   {
     "date": "2026-03-31",
     "cost": 0.0,
     "note": "Sporty pitch海报6轮迭代、物流AI外呼可行性分析、Bedrock推理模型全景整理、客户技术档案更新 — Cost Explorer 延迟，实际费用待更新"
+  },
+  {
+    "date": "2026-04-01",
+    "cost": 0.0,
+    "note": "A股关税落地首日、货拉拉AI外呼三段式架构方案深度讨论、Claude API故障排查、Polymarket仓位结算 — Cost Explorer 延迟，实际费用待更新"
   }
 ]
