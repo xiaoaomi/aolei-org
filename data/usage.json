@@ -1228,32 +1228,68 @@
   {
     "date": "2026-03-29",
     "cost": 69.981,
-    "note": "AgentCore 架构纠错、AI 指南配图全面完成（self-improving skill 安装日）— Cost Explorer 数据延迟，待次日更新"
+    "note": "AgentCore 架构纠错、AI 指南配图全面完成（self-improving skill 安装日）— Cost Explorer 数据延迟，待次日更新",
+    "tokens": {
+      "input": 4,
+      "output": 275,
+      "cache_write": 11522,
+      "cache_read": 75410
+    }
   },
   {
     "date": "2026-03-30",
     "cost": 74.4597,
-    "note": "GTMS知识库全量更新、多模型横评整理、PDF文件定稿、QBR文档撰写 — Cost Explorer 数据延迟，实际费用待更新"
+    "note": "GTMS知识库全量更新、多模型横评整理、PDF文件定稿、QBR文档撰写 — Cost Explorer 数据延迟，实际费用待更新",
+    "tokens": {
+      "input": 3,
+      "output": 237,
+      "cache_write": 14543,
+      "cache_read": 58453
+    }
   },
   {
     "date": "2026-03-31",
     "cost": 69.7444,
-    "note": "Sporty pitch海报6轮迭代、物流AI外呼可行性分析、Bedrock推理模型全景整理、客户技术档案更新 — Cost Explorer 延迟，实际费用待更新"
+    "note": "Sporty pitch海报6轮迭代、物流AI外呼可行性分析、Bedrock推理模型全景整理、客户技术档案更新 — Cost Explorer 延迟，实际费用待更新",
+    "tokens": {
+      "input": 7,
+      "output": 164,
+      "cache_write": 13954,
+      "cache_read": 49716
+    }
   },
   {
     "date": "2026-04-01",
     "cost": 63.0639,
-    "note": "A股关税落地首日、货拉拉AI外呼三段式架构方案深度讨论、Claude API故障排查、Polymarket仓位结算 — Cost Explorer 延迟，实际费用待更新"
+    "note": "A股关税落地首日、货拉拉AI外呼三段式架构方案深度讨论、Claude API故障排查、Polymarket仓位结算 — Cost Explorer 延迟，实际费用待更新",
+    "tokens": {
+      "input": 3,
+      "output": 135,
+      "cache_write": 13295,
+      "cache_read": 45909
+    }
   },
   {
     "date": "2026-04-02",
     "cost": 73.15,
-    "note": "Kiro飞书机器人RAG架构设计·货拉拉东南亚AI外呼三段式方案·火山引擎免费包到期排查"
+    "note": "Kiro飞书机器人RAG架构设计·货拉拉东南亚AI外呼三段式方案·火山引擎免费包到期排查",
+    "tokens": {
+      "input": 5,
+      "output": 139,
+      "cache_write": 15639,
+      "cache_read": 41329
+    }
   },
   {
     "date": "2026-04-03",
     "cost": 91.36,
-    "note": "OpenClaw自动更新踩坑·修复流程·自我提升系统深度使用"
+    "note": "OpenClaw自动更新踩坑·修复流程·自我提升系统深度使用",
+    "tokens": {
+      "input": 14,
+      "output": 284,
+      "cache_write": 16483,
+      "cache_read": 84143
+    }
   },
   {
     "date": "2026-04-04",
