@@ -9,10 +9,10 @@
       "input": 5.7305
     },
     "tokens": {
-      "cache_write": 4152229,
-      "cache_read": 21711020,
+      "input": 1092215,
       "output": 108549,
-      "input": 1092215
+      "cache_write": 4152229,
+      "cache_read": 21711020
     },
     "by_model": {
       "sonnet": {
@@ -37,10 +37,10 @@
       "input": 1.166
     },
     "tokens": {
-      "cache_write": 2513095,
-      "cache_read": 18093127,
+      "input": 220282,
       "output": 255879,
-      "input": 220282
+      "cache_write": 2513095,
+      "cache_read": 18093127
     },
     "by_model": {
       "sonnet": {
@@ -65,10 +65,10 @@
       "input": 0.0399
     },
     "tokens": {
+      "input": 7952,
+      "output": 320158,
       "cache_write": 9325819,
-      "cache_read": 186843864,
-      "output": 320157,
-      "input": 7952
+      "cache_read": 186843864
     },
     "by_model": {
       "sonnet": {
@@ -93,10 +93,10 @@
       "input": 0.0098
     },
     "tokens": {
-      "cache_write": 4302363,
-      "cache_read": 55605774,
+      "input": 1952,
       "output": 291592,
-      "input": 1952
+      "cache_write": 4302363,
+      "cache_read": 55605774
     },
     "by_model": {
       "sonnet": {
@@ -121,10 +121,10 @@
       "input": 0.0002
     },
     "tokens": {
-      "cache_write": 314229,
-      "cache_read": 767216,
+      "input": 35,
       "output": 5402,
-      "input": 35
+      "cache_write": 314229,
+      "cache_read": 767216
     },
     "by_model": {
       "sonnet": {
@@ -149,10 +149,10 @@
       "input": 0.001
     },
     "tokens": {
-      "cache_write": 1631771,
-      "cache_read": 9201365,
+      "input": 209,
       "output": 84020,
-      "input": 209
+      "cache_write": 1631771,
+      "cache_read": 9201365
     },
     "by_model": {
       "sonnet": {
@@ -177,10 +177,10 @@
       "input": 0.0023
     },
     "tokens": {
-      "cache_write": 2381151,
-      "cache_read": 20227206,
+      "input": 464,
       "output": 74583,
-      "input": 463
+      "cache_write": 2381151,
+      "cache_read": 20227206
     },
     "by_model": {
       "sonnet": {
@@ -205,10 +205,10 @@
       "input": 0.0072
     },
     "tokens": {
-      "cache_write": 5863644,
-      "cache_read": 20792197,
+      "input": 1452,
       "output": 162279,
-      "input": 1451
+      "cache_write": 5863644,
+      "cache_read": 20792197
     },
     "by_model": {
       "sonnet": {
@@ -233,10 +233,10 @@
       "input": 0.0004
     },
     "tokens": {
-      "cache_write": 1033920,
-      "cache_read": 1617681,
+      "input": 135,
       "output": 17004,
-      "input": 135
+      "cache_write": 1033920,
+      "cache_read": 1617681
     },
     "by_model": {
       "sonnet": {
@@ -261,10 +261,10 @@
       "input": 0.0038
     },
     "tokens": {
-      "cache_write": 6747762,
-      "cache_read": 30942627,
+      "input": 1169,
       "output": 397533,
-      "input": 1169
+      "cache_write": 6747762,
+      "cache_read": 30942627
     },
     "by_model": {
       "sonnet": {
@@ -289,10 +289,10 @@
       "input": 0.0124
     },
     "tokens": {
+      "input": 3681,
+      "output": 833474,
       "cache_write": 11450913,
-      "cache_read": 109725537,
-      "output": 833473,
-      "input": 3681
+      "cache_read": 109725537
     },
     "by_model": {
       "sonnet": {
@@ -317,10 +317,10 @@
       "input": 0.0035
     },
     "tokens": {
+      "input": 983,
+      "output": 467963,
       "cache_write": 5765455,
-      "cache_read": 27251442,
-      "output": 467962,
-      "input": 983
+      "cache_read": 27251442
     },
     "by_model": {
       "sonnet": {
@@ -345,10 +345,10 @@
       "input": 0.0135
     },
     "tokens": {
-      "cache_write": 4492125,
-      "cache_read": 32077779,
+      "input": 4162,
       "output": 213507,
-      "input": 4162
+      "cache_write": 4492125,
+      "cache_read": 32077779
     },
     "by_model": {
       "sonnet": {
@@ -373,10 +373,10 @@
       "input": 0.0283
     },
     "tokens": {
-      "cache_write": 15780298,
-      "cache_read": 49716733,
+      "input": 8825,
       "output": 331257,
-      "input": 8825
+      "cache_write": 15780298,
+      "cache_read": 49716733
     },
     "by_model": {
       "sonnet": {
@@ -401,10 +401,10 @@
       "input": 0.0298
     },
     "tokens": {
-      "cache_write": 14492932,
-      "cache_read": 87838547,
+      "input": 9945,
       "output": 625736,
-      "input": 9945
+      "cache_write": 14492932,
+      "cache_read": 87838547
     },
     "by_model": {
       "sonnet": {
@@ -429,10 +429,10 @@
       "input": 0.0088
     },
     "tokens": {
-      "cache_write": 8485783,
-      "cache_read": 61443228,
+      "input": 2943,
       "output": 395405,
-      "input": 2943
+      "cache_write": 8485783,
+      "cache_read": 61443228
     },
     "by_model": {
       "sonnet": {
@@ -457,10 +457,10 @@
       "input": 0.0041
     },
     "tokens": {
-      "cache_write": 5133489,
-      "cache_read": 29413009,
+      "input": 1367,
       "output": 172910,
-      "input": 1367
+      "cache_write": 5133489,
+      "cache_read": 29413009
     },
     "by_model": {
       "sonnet": {
@@ -485,10 +485,10 @@
       "input": 0.0033
     },
     "tokens": {
-      "cache_write": 4697901,
-      "cache_read": 36020400,
+      "input": 1092,
       "output": 205982,
-      "input": 1092
+      "cache_write": 4697901,
+      "cache_read": 36020400
     },
     "by_model": {
       "sonnet": {
@@ -513,10 +513,10 @@
       "input": 0.0063
     },
     "tokens": {
+      "input": 2015,
+      "output": 218023,
       "cache_write": 2631105,
-      "cache_read": 37338516,
-      "output": 218022,
-      "input": 2014
+      "cache_read": 37338516
     },
     "by_model": {
       "sonnet": {
@@ -541,10 +541,10 @@
       "input": 0.0062
     },
     "tokens": {
-      "cache_write": 4390489,
-      "cache_read": 18132944,
+      "input": 1431,
       "output": 82440,
-      "input": 1431
+      "cache_write": 4390489,
+      "cache_read": 18132944
     },
     "by_model": {
       "sonnet": {
@@ -569,10 +569,10 @@
       "input": 0.0093
     },
     "tokens": {
-      "cache_write": 11087059,
-      "cache_read": 54068314,
+      "input": 3196,
       "output": 345931,
-      "input": 3196
+      "cache_write": 11087059,
+      "cache_read": 54068314
     },
     "by_model": {
       "sonnet": {
@@ -597,10 +597,10 @@
       "input": 0.0057
     },
     "tokens": {
-      "cache_write": 9512099,
-      "cache_read": 65257063,
+      "input": 1999,
       "output": 397260,
-      "input": 1999
+      "cache_write": 9512099,
+      "cache_read": 65257063
     },
     "by_model": {
       "sonnet": {
@@ -625,10 +625,10 @@
       "input": 0.01
     },
     "tokens": {
-      "cache_write": 18673314,
-      "cache_read": 63909524,
+      "input": 3437,
       "output": 350951,
-      "input": 3437
+      "cache_write": 18673314,
+      "cache_read": 63909524
     },
     "by_model": {
       "sonnet": {
@@ -653,10 +653,10 @@
       "input": 0.003
     },
     "tokens": {
-      "cache_write": 6891897,
-      "cache_read": 42073499,
+      "input": 1066,
       "output": 361101,
-      "input": 1066
+      "cache_write": 6891897,
+      "cache_read": 42073499
     },
     "by_model": {
       "sonnet": {
@@ -681,10 +681,10 @@
       "input": 0.0076
     },
     "tokens": {
-      "cache_write": 16397143,
-      "cache_read": 48918717,
+      "input": 2633,
       "output": 359269,
-      "input": 2633
+      "cache_write": 16397143,
+      "cache_read": 48918717
     },
     "by_model": {
       "sonnet": {
@@ -709,10 +709,10 @@
       "input": 0.009
     },
     "tokens": {
-      "cache_write": 10135855,
-      "cache_read": 69736885,
+      "input": 3104,
       "output": 354332,
-      "input": 3104
+      "cache_write": 10135855,
+      "cache_read": 69736885
     },
     "by_model": {
       "sonnet": {
@@ -737,10 +737,10 @@
       "input": 0.007
     },
     "tokens": {
+      "input": 2429,
+      "output": 499785,
       "cache_write": 22485469,
-      "cache_read": 95207215,
-      "output": 499784,
-      "input": 2429
+      "cache_read": 95207215
     },
     "by_model": {
       "sonnet": {
@@ -765,10 +765,10 @@
       "input": 0.0169
     },
     "tokens": {
+      "input": 4082,
+      "output": 281978,
       "cache_write": 18925501,
-      "cache_read": 92722513,
-      "output": 281977,
-      "input": 4082
+      "cache_read": 92722513
     },
     "by_model": {
       "sonnet": {
@@ -793,10 +793,10 @@
       "input": 0.0055
     },
     "tokens": {
-      "cache_write": 16822573,
-      "cache_read": 85129563,
+      "input": 1940,
       "output": 400452,
-      "input": 1940
+      "cache_write": 16822573,
+      "cache_read": 85129563
     },
     "by_model": {
       "sonnet": {
@@ -821,10 +821,10 @@
       "input": 0.004
     },
     "tokens": {
-      "cache_write": 13608964,
-      "cache_read": 51760785,
+      "input": 1428,
       "output": 243591,
-      "input": 1428
+      "cache_write": 13608964,
+      "cache_read": 51760785
     },
     "by_model": {
       "sonnet": {
@@ -849,10 +849,10 @@
       "input": 0.0084
     },
     "tokens": {
-      "cache_write": 15884212,
-      "cache_read": 137856464,
+      "input": 2880,
       "output": 598154,
-      "input": 2880
+      "cache_write": 15884212,
+      "cache_read": 137856464
     },
     "by_model": {
       "sonnet": {
@@ -877,10 +877,10 @@
       "input": 0.002
     },
     "tokens": {
-      "cache_write": 3070804,
-      "cache_read": 15298544,
-      "output": 158101,
-      "input": 659
+      "input": 3778,
+      "output": 818178,
+      "cache_write": 17497588,
+      "cache_read": 166872216
     },
     "by_model": {
       "sonnet": {
@@ -905,10 +905,10 @@
       "input": 0.0148
     },
     "tokens": {
-      "cache_write": 18672886,
-      "cache_read": 149435001,
-      "output": 559605,
-      "input": 4928
+      "input": 5016,
+      "output": 559798,
+      "cache_write": 14938309,
+      "cache_read": 149435001
     },
     "by_model": {
       "sonnet": {
@@ -933,10 +933,10 @@
       "input": 0.0105
     },
     "tokens": {
-      "cache_write": 9843195,
-      "cache_read": 56097989,
-      "output": 235231,
-      "input": 3492
+      "input": 27232,
+      "output": 849180,
+      "cache_write": 25969555,
+      "cache_read": 165444415
     },
     "by_model": {
       "sonnet": {
@@ -962,10 +962,10 @@
       "input": 0
     },
     "tokens": {
-      "input": 246,
-      "output": 593,
-      "cache_write": 18575,
-      "cache_read": 128168
+      "input": 247649,
+      "output": 594463,
+      "cache_write": 18575824,
+      "cache_read": 128168714
     },
     "by_model": {
       "sonnet": {
@@ -991,10 +991,10 @@
       "input": 0.0001
     },
     "tokens": {
-      "input": 15,
-      "output": 285,
-      "cache_write": 15217,
-      "cache_read": 40808
+      "input": 16851,
+      "output": 286408,
+      "cache_write": 15217695,
+      "cache_read": 40808521
     },
     "by_model": {
       "sonnet": {
@@ -1018,10 +1018,10 @@
       "input": 0
     },
     "tokens": {
-      "input": 1,
-      "output": 190,
-      "cache_write": 11232,
-      "cache_read": 48297
+      "input": 1215,
+      "output": 191031,
+      "cache_write": 11232595,
+      "cache_read": 48297304
     },
     "by_model": {
       "sonnet": {
@@ -1047,10 +1047,10 @@
       "input": 0
     },
     "tokens": {
-      "input": 1,
-      "output": 772,
-      "cache_write": 14799,
-      "cache_read": 65293
+      "input": 1478,
+      "output": 773184,
+      "cache_write": 14800525,
+      "cache_read": 65294062
     },
     "by_model": {
       "sonnet": {
@@ -1076,10 +1076,10 @@
       "input": 0
     },
     "tokens": {
-      "input": 3,
-      "output": 80,
-      "cache_write": 4984,
-      "cache_read": 12102
+      "input": 4584,
+      "output": 81324,
+      "cache_write": 4984823,
+      "cache_read": 12103647
     },
     "by_model": {
       "sonnet": {
@@ -1104,10 +1104,10 @@
       "input": 0
     },
     "tokens": {
-      "input": 0,
-      "output": 186,
-      "cache_write": 8504,
-      "cache_read": 49319
+      "input": 1077,
+      "output": 187150,
+      "cache_write": 8504019,
+      "cache_read": 49319756
     },
     "by_model": {
       "sonnet": {
@@ -1134,10 +1134,10 @@
       "input": 0.0
     },
     "tokens": {
-      "input": 2,
-      "output": 260,
-      "cache_write": 10907,
-      "cache_read": 48225
+      "input": 2788,
+      "output": 260613,
+      "cache_write": 10907008,
+      "cache_read": 48225307
     },
     "by_model": {
       "sonnet": {
@@ -1163,10 +1163,10 @@
       "input": 0.0
     },
     "tokens": {
-      "input": 12,
-      "output": 570,
-      "cache_write": 13906,
-      "cache_read": 83976
+      "input": 13336,
+      "output": 571177,
+      "cache_write": 13906363,
+      "cache_read": 83976166
     },
     "by_model": {
       "sonnet": {
@@ -1192,10 +1192,10 @@
       "input": 0.0
     },
     "tokens": {
-      "input": 0,
-      "output": 271,
-      "cache_write": 10273,
-      "cache_read": 41330
+      "input": 1062,
+      "output": 271919,
+      "cache_write": 10273253,
+      "cache_read": 41330031
     },
     "by_model": {
       "sonnet": {
@@ -1215,10 +1215,10 @@
     "cost": 94.9511,
     "note": "店匠Bedrock提额需求处理 + Kiro对比分析 + Q1季度洞察报告多轮打磨（v3-v4）+ EC2数据盘挂载 + 技术报错排查",
     "tokens": {
-      "input": 2,
-      "output": 293,
-      "cache_write": 19227,
-      "cache_read": 61472
+      "input": 2531,
+      "output": 293368,
+      "cache_write": 19227835,
+      "cache_read": 61472182
     }
   },
   {
@@ -1226,10 +1226,10 @@
     "cost": 4.8065,
     "note": "新客户档案建立（社交App记忆需求 + 游戏公司模型调用）+ AI Agent指南22图表升级完成 + Polymarket仓位分析",
     "tokens": {
-      "input": 2,
-      "output": 149,
-      "cache_write": 18456,
-      "cache_read": 53574
+      "input": 2835,
+      "output": 150282,
+      "cache_write": 18456471,
+      "cache_read": 53574251
     }
   },
   {
@@ -1237,10 +1237,10 @@
     "cost": 46.125,
     "note": "Q1 Insight Sharing 定稿交付 + AI Agent 完全指南图表归档（Cost Explorer 数据延迟，待次日更新）",
     "tokens": {
-      "input": 0,
-      "output": 77,
-      "cache_write": 12025,
-      "cache_read": 32721
+      "input": 845,
+      "output": 77256,
+      "cache_write": 12025067,
+      "cache_read": 32721761
     }
   },
   {
@@ -1248,10 +1248,10 @@
     "cost": 69.981,
     "note": "AgentCore 架构纠错、AI 指南配图全面完成（self-improving skill 安装日）— Cost Explorer 数据延迟，待次日更新",
     "tokens": {
-      "input": 4,
-      "output": 275,
-      "cache_write": 11522,
-      "cache_read": 75410
+      "input": 5084,
+      "output": 275695,
+      "cache_write": 11522732,
+      "cache_read": 75410404
     }
   },
   {
@@ -1259,10 +1259,10 @@
     "cost": 74.4597,
     "note": "GTMS知识库全量更新、多模型横评整理、PDF文件定稿、QBR文档撰写 — Cost Explorer 数据延迟，实际费用待更新",
     "tokens": {
-      "input": 3,
-      "output": 237,
-      "cache_write": 14543,
-      "cache_read": 58453
+      "input": 3744,
+      "output": 237560,
+      "cache_write": 14543145,
+      "cache_read": 58453223
     }
   },
   {
@@ -1270,10 +1270,10 @@
     "cost": 69.7444,
     "note": "Sporty pitch海报6轮迭代、物流AI外呼可行性分析、Bedrock推理模型全景整理、客户技术档案更新 — Cost Explorer 延迟，实际费用待更新",
     "tokens": {
-      "input": 7,
-      "output": 164,
-      "cache_write": 13954,
-      "cache_read": 49716
+      "input": 8762,
+      "output": 165152,
+      "cache_write": 13954017,
+      "cache_read": 49716971
     }
   },
   {
@@ -1281,10 +1281,10 @@
     "cost": 63.0639,
     "note": "A股关税落地首日、货拉拉AI外呼三段式架构方案深度讨论、Claude API故障排查、Polymarket仓位结算 — Cost Explorer 延迟，实际费用待更新",
     "tokens": {
-      "input": 3,
-      "output": 135,
-      "cache_write": 13295,
-      "cache_read": 45909
+      "input": 4078,
+      "output": 135562,
+      "cache_write": 13295352,
+      "cache_read": 45909383
     }
   },
   {
@@ -1292,10 +1292,10 @@
     "cost": 73.15,
     "note": "Kiro飞书机器人RAG架构设计·货拉拉东南亚AI外呼三段式方案·火山引擎免费包到期排查",
     "tokens": {
-      "input": 5,
-      "output": 139,
-      "cache_write": 15639,
-      "cache_read": 41329
+      "input": 5766,
+      "output": 139253,
+      "cache_write": 15639948,
+      "cache_read": 41329006
     }
   },
   {
@@ -1303,10 +1303,10 @@
     "cost": 91.36,
     "note": "OpenClaw自动更新踩坑·修复流程·自我提升系统深度使用",
     "tokens": {
-      "input": 14,
-      "output": 284,
-      "cache_write": 16483,
-      "cache_read": 84143
+      "input": 14546,
+      "output": 284286,
+      "cache_write": 16483185,
+      "cache_read": 84143011
     }
   },
   {
@@ -1314,10 +1314,10 @@
     "cost": 25.56,
     "note": "OpenClaw崩溃修复·磁盘架构重组·workspace迁至数据盘·提前还贷分析",
     "tokens": {
-      "input": 0,
-      "output": 52,
-      "cache_write": 5115,
-      "cache_read": 18625
+      "input": 993,
+      "output": 52595,
+      "cache_write": 5115610,
+      "cache_read": 18625589
     }
   }
 ]
