@@ -962,10 +962,10 @@
       "input": 0
     },
     "tokens": {
-      "input": 0,
-      "output": 0,
-      "cache_read": 0,
-      "cache_write": 0
+      "input": 246,
+      "output": 593,
+      "cache_write": 18575,
+      "cache_read": 128168
     },
     "by_model": {
       "sonnet": {
@@ -991,10 +991,10 @@
       "input": 0.0001
     },
     "tokens": {
-      "cache_write": 0,
-      "cache_read": 0,
-      "output": 0,
-      "input": 0
+      "input": 15,
+      "output": 285,
+      "cache_write": 15217,
+      "cache_read": 40808
     },
     "by_model": {
       "sonnet": {
@@ -1018,10 +1018,10 @@
       "input": 0
     },
     "tokens": {
-      "cache_write": 0,
-      "cache_read": 0,
-      "output": 0,
-      "input": 0
+      "input": 1,
+      "output": 190,
+      "cache_write": 11232,
+      "cache_read": 48297
     },
     "by_model": {
       "sonnet": {
@@ -1047,10 +1047,10 @@
       "input": 0
     },
     "tokens": {
-      "cache_write": 0,
-      "cache_read": 0,
-      "output": 0,
-      "input": 0
+      "input": 1,
+      "output": 772,
+      "cache_write": 14799,
+      "cache_read": 65293
     },
     "by_model": {
       "sonnet": {
@@ -1076,10 +1076,10 @@
       "input": 0
     },
     "tokens": {
-      "cache_write": 0,
-      "cache_read": 0,
-      "output": 0,
-      "input": 0
+      "input": 3,
+      "output": 80,
+      "cache_write": 4984,
+      "cache_read": 12102
     },
     "by_model": {
       "sonnet": {
@@ -1104,10 +1104,10 @@
       "input": 0
     },
     "tokens": {
-      "cache_write": 0,
-      "cache_read": 0,
-      "output": 0,
-      "input": 0
+      "input": 0,
+      "output": 186,
+      "cache_write": 8504,
+      "cache_read": 49319
     },
     "by_model": {
       "sonnet": {
@@ -1134,10 +1134,10 @@
       "input": 0.0
     },
     "tokens": {
-      "cache_write": 0,
-      "cache_read": 0,
-      "output": 0,
-      "input": 0
+      "input": 2,
+      "output": 260,
+      "cache_write": 10907,
+      "cache_read": 48225
     },
     "by_model": {
       "sonnet": {
@@ -1163,10 +1163,10 @@
       "input": 0.0
     },
     "tokens": {
-      "cache_write": 0,
-      "cache_read": 0,
-      "output": 0,
-      "input": 0
+      "input": 12,
+      "output": 570,
+      "cache_write": 13906,
+      "cache_read": 83976
     },
     "by_model": {
       "sonnet": {
@@ -1192,10 +1192,10 @@
       "input": 0.0
     },
     "tokens": {
-      "cache_write": 0,
-      "cache_read": 0,
-      "output": 0,
-      "input": 0
+      "input": 0,
+      "output": 271,
+      "cache_write": 10273,
+      "cache_read": 41330
     },
     "by_model": {
       "sonnet": {
@@ -1213,17 +1213,35 @@
   {
     "date": "2026-03-26",
     "cost": 94.9511,
-    "note": "店匠Bedrock提额需求处理 + Kiro对比分析 + Q1季度洞察报告多轮打磨（v3-v4）+ EC2数据盘挂载 + 技术报错排查"
+    "note": "店匠Bedrock提额需求处理 + Kiro对比分析 + Q1季度洞察报告多轮打磨（v3-v4）+ EC2数据盘挂载 + 技术报错排查",
+    "tokens": {
+      "input": 2,
+      "output": 293,
+      "cache_write": 19227,
+      "cache_read": 61472
+    }
   },
   {
     "date": "2026-03-27",
     "cost": 4.8065,
-    "note": "新客户档案建立（社交App记忆需求 + 游戏公司模型调用）+ AI Agent指南22图表升级完成 + Polymarket仓位分析"
+    "note": "新客户档案建立（社交App记忆需求 + 游戏公司模型调用）+ AI Agent指南22图表升级完成 + Polymarket仓位分析",
+    "tokens": {
+      "input": 2,
+      "output": 149,
+      "cache_write": 18456,
+      "cache_read": 53574
+    }
   },
   {
     "date": "2026-03-28",
     "cost": 46.125,
-    "note": "Q1 Insight Sharing 定稿交付 + AI Agent 完全指南图表归档（Cost Explorer 数据延迟，待次日更新）"
+    "note": "Q1 Insight Sharing 定稿交付 + AI Agent 完全指南图表归档（Cost Explorer 数据延迟，待次日更新）",
+    "tokens": {
+      "input": 0,
+      "output": 77,
+      "cache_write": 12025,
+      "cache_read": 32721
+    }
   },
   {
     "date": "2026-03-29",
@@ -1294,6 +1312,12 @@
   {
     "date": "2026-04-04",
     "cost": 25.56,
-    "note": "OpenClaw崩溃修复·磁盘架构重组·workspace迁至数据盘·提前还贷分析"
+    "note": "OpenClaw崩溃修复·磁盘架构重组·workspace迁至数据盘·提前还贷分析",
+    "tokens": {
+      "input": 0,
+      "output": 52,
+      "cache_write": 5115,
+      "cache_read": 18625
+    }
   }
 ]
