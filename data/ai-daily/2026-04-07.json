@@ -1,0 +1,131 @@
+{
+  "date": "2026-04-07",
+  "weekday_zh": "星期二",
+  "weekday_en": "Tuesday",
+  "title_zh": "AI 评测失灵、身法取代简历、以及兆瓦级算力军备竞赛",
+  "title_en": "When Benchmarks Break, Behavior Becomes Credential, and the Gigawatt Arms Race Begins",
+  "summary_zh": "本周 AI 圈最尖锐信号：能力测试正在失效——大模型横扫一切基准，人类反过来快不认识「进步」长什么样。与此同时，两位数的算力扩张成为新常态，招聘逻辑正在从「你学过什么」转向「你怎么行动」。",
+  "summary_en": "This week's sharpest signals from AI: capability tests are breaking down—models now ace every benchmark, leaving humans struggling to define 'progress.' Meanwhile, double-digit gigawatt expansions become the new normal, and hiring logic shifts from 'what you studied' to 'how you behave.'",
+  "articles": [
+    {
+      "id": 1,
+      "title_zh": "Anthropic 与 Google、Broadcom 达成多千兆瓦算力合作",
+      "title_en": "Anthropic Expands Partnership with Google and Broadcom for Multiple Gigawatts of Next-Generation Compute",
+      "source": "Anthropic Blog",
+      "date": "2026-04-06",
+      "url": "https://www.anthropic.com/news/google-broadcom-partnership-compute",
+      "category": "infrastructure",
+      "highlight_zh": "Anthropic 宣布与 Google Cloud、Broadcom 扩大合作，部署多千兆瓦规模的 TPU 集群。这不是新闻，是宣言：下一代 AI 竞赛的门票以「十亿瓦特」为单位计价。",
+      "highlight_en": "Anthropic announces expanded partnerships with Google Cloud and Broadcom to deploy multi-gigawatt TPU clusters. Not news—a declaration: entry tickets to the next-gen AI race are priced in gigawatts."
+    },
+    {
+      "id": 2,
+      "title_zh": "我们真的快用完能测出 AI 能力上限的评测了",
+      "title_en": "We're Actually Running Out of Benchmarks to Upper Bound AI Capabilities",
+      "source": "LessWrong",
+      "date": "2026-04-07",
+      "url": "https://www.lesswrong.com/posts/gfkJp8Mr9sBm83Rcz/we-re-actually-running-out-of-benchmarks-to-upper-bound-ai",
+      "category": "research",
+      "highlight_zh": "当系统在人类设计的所有考试上都拿到满分，「更大会更好」的叙事该怎么办？评测危机的本质不是技术停滞，而是认知框架的崩塌——我们还没学会如何衡量超越自己理解能力的东西。",
+      "highlight_en": "When systems ace every human-designed exam, what happens to the 'bigger is better' narrative? The benchmark crisis isn't technical stagnation—it's epistemic collapse. We haven't learned to measure what surpasses our own understanding."
+    },
+    {
+      "id": 3,
+      "title_zh": "行为即新凭证：简历正在被身法取代",
+      "title_en": "Behavior is the New Credential",
+      "source": "Towards Data Science",
+      "date": "2026-04-06",
+      "url": "https://towardsdatascience.com/behavior-is-the-new-credential/",
+      "category": "industry",
+      "highlight_zh": "GitHub 提交记录、Agent 运行轨迹、多轮对话中的决策模式——这些正在取代学位证书成为「能力证明」。在 AI 辅助编程时代，「你会什么」不如「你做过什么、怎么做」。",
+      "highlight_en": "GitHub commits, agent traces, decision patterns across multi-turn dialogues—these are replacing degrees as proof of competence. In the AI-assisted coding era, 'what you know' matters less than 'what you've done, and how.'"
+    },
+    {
+      "id": 4,
+      "title_zh": "OpenAI 发布安全研究员奖学金计划",
+      "title_en": "Announcing the OpenAI Safety Fellowship",
+      "source": "OpenAI",
+      "date": "2026-04-06",
+      "url": "https://openai.com/index/introducing-openai-safety-fellowship",
+      "category": "policy",
+      "highlight_zh": "每年资助 10 名研究者全职投入 AI 安全研究，提供算力与开放模型访问。安全不再是对齐团队的附属议题，而是被当作基础设施来投资——这是成熟度信号。",
+      "highlight_en": "Funding 10 researchers annually for full-time AI safety work, with compute and model access. Safety is no longer an alignment team's side quest—it's being invested in as infrastructure. A signal of maturity."
+    },
+    {
+      "id": 5,
+      "title_zh": "智能时代的产业政策",
+      "title_en": "Industrial Policy for the Intelligence Age",
+      "source": "OpenAI",
+      "date": "2026-04-06",
+      "url": "https://openai.com/index/industrial-policy-for-the-intelligence-age",
+      "category": "policy",
+      "highlight_zh": "OpenAI 罕见发声谈国家层面的 AI 战略：算力基础设施、能源电网、芯片制造。当一家私营公司开始写白皮书讨论「国家竞争力」，行业已经进入不同阶段的博弈。",
+      "highlight_en": "OpenAI's罕见 policy brief on national AI strategy: compute infrastructure, power grids, semiconductor manufacturing. When a private company starts writing whitepapers on 'national competitiveness,' the game has entered a different phase."
+    },
+    {
+      "id": 6,
+      "title_zh": "AWS DevOps Agent & Security Agent 正式发布",
+      "title_en": "AWS Weekly Roundup: AWS DevOps Agent & Security Agent GA",
+      "source": "AWS Blog",
+      "date": "2026-04-06",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-devops-agent-security-agent-ga-product-lifecycle-updates-and-more-april-6-2026/",
+      "category": "product",
+      "highlight_zh": "两个专业 Agent 走出预览：DevOps Agent 能端到端处理部署流水线，Security Agent 能自动扫描并修复安全漏洞。企业级 AI 代理正在从「概念验证」变成「生产工具」。",
+      "highlight_en": "Two specialized agents exit preview: DevOps Agent handles deployment pipelines end-to-end; Security Agent auto-scans and patches vulnerabilities. Enterprise AI agents are shifting from 'proof of concept' to 'production tool.'"
+    },
+    {
+      "id": 7,
+      "title_zh": "Meta 用 AI 绘制大规模数据管道的「隐性知识地图」",
+      "title_en": "How Meta Used AI to Map Tribal Knowledge in Large-Scale Data Pipelines",
+      "source": "Meta AI Blog",
+      "date": "2026-04-06",
+      "url": "https://engineering.fb.com/2026/04/06/developer-tools/how-meta-used-ai-to-map-tribal-knowledge-in-large-scale-data-pipelines/",
+      "category": "engineering",
+      "highlight_zh": "Meta 用 LLM 自动提取代码注释、会议记录、故障复盘中的隐性知识，构建可查询的知识图谱。一个组织的「集体记忆」终于可以被机器读取了——前提是有人愿意把碎片写成文字。",
+      "highlight_en": "Meta uses LLMs to automatically extract tacit knowledge from code comments, meeting notes, and post-mortems into queryable knowledge graphs. An organization's 'collective memory' can finally be machine-readable—if someone bothers to write the fragments down."
+    },
+    {
+      "id": 8,
+      "title_zh": "那个可能真正揭示「你的工作 vs AI」的数据点",
+      "title_en": "The One Piece of Data That Could Actually Shed Light on Your Job and AI",
+      "source": "MIT Technology Review",
+      "date": "2026-04-06",
+      "url": "https://www.technologyreview.com/2026/04/06/1135187/the-one-piece-of-data-that-could-actually-shed-light-on-your-job-and-ai/",
+      "category": "society",
+      "highlight_zh": "不是「AI 能否做你的工作」，而是「AI 做你的工作时，需要多少次人类介入」。任务中断率可能比替代率更能预测未来劳动力市场的真实形态。",
+      "highlight_en": "Not 'can AI do your job,' but 'how many human interventions does AI need when doing your job?' Task interruption rates may predict labor market futures better than substitution rates."
+    },
+    {
+      "id": 9,
+      "title_zh": "记录一切，而非为 LLM 写作",
+      "title_en": "Don't Write for LLMs, Just Record Everything",
+      "source": "LessWrong",
+      "date": "2026-04-07",
+      "url": "https://www.lesswrong.com/posts/aFo8M9KPRJAnY3csR/don-t-write-for-llms-just-record-everything",
+      "category": "methodology",
+      "highlight_zh": "与其猜测 AI 想要什么样的输入格式，不如忠实记录自己的思考过程。原始、混乱、未经整理的思维痕迹，对于训练下一代模型来说，可能比精心标记的数据更有价值。",
+      "highlight_en": "Instead of guessing what format AI wants, just faithfully record your thinking. Raw, messy, unpolished traces of thought may be more valuable for training next-gen models than carefully curated datasets."
+    },
+    {
+      "id": 10,
+      "title_zh": "AI 正在改变小商家的「做什么」决策",
+      "title_en": "AI is Changing How Small Online Sellers Decide What to Make",
+      "source": "MIT Technology Review",
+      "date": "2026-04-06",
+      "url": "https://www.technologyreview.com/2026/04/06/1135118/ai-online-seller-alibaba-accio/",
+      "category": "industry",
+      "highlight_zh": "阿里巴巴的 AI 工具 Accio 让小型跨境电商卖家能预测爆款趋势。当 AI 把「市场洞察」从大公司专属变成小商家标配，供应链的响应速度会被重新定义。",
+      "highlight_en": "Alibaba's AI tool Accio lets small cross-border sellers forecast trending products. When AI turns 'market insight' from corporate privilege to small-business standard, supply chain responsiveness gets redefined."
+    }
+  ],
+  "tags": [
+    { "id": "infrastructure", "name_zh": "基础设施", "name_en": "Infrastructure" },
+    { "id": "research", "name_zh": "研究前沿", "name_en": "Research" },
+    { "id": "industry", "name_zh": "行业动态", "name_en": "Industry" },
+    { "id": "policy", "name_zh": "政策安全", "name_en": "Policy & Safety" },
+    { "id": "product", "name_zh": "产品发布", "name_en": "Products" },
+    { "id": "engineering", "name_zh": "工程技术", "name_en": "Engineering" },
+    { "id": "society", "name_zh": "社会影响", "name_en": "Society" },
+    { "id": "methodology", "name_zh": "方法论", "name_en": "Methodology" }
+  ]
+}
