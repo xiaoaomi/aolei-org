@@ -1330,5 +1330,17 @@
       "cache_write": 5776238,
       "cache_read": 28561970
     }
+  },
+  {
+    "date": "2026-04-06",
+    "cost": 0.0,
+    "note": "WBR-04 GTMS 知识库更新·系统排查与维护",
+    "tokens": {}
+  },
+  {
+    "date": "2026-04-07",
+    "cost": 0.0,
+    "note": "aolei.org 维护·补跑定时任务",
+    "tokens": {}
   }
 ]
