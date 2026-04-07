@@ -1322,13 +1322,13 @@
   },
   {
     "date": "2026-04-05",
-    "cost": 0,
+    "cost": 32.3262,
     "note": "城市卫星演变海报制作·青岩古镇与祈福缤纷汇十年对比分析",
     "tokens": {
-      "input": 0,
-      "output": 0,
-      "cache_write": 0,
-      "cache_read": 0
+      "input": 544,
+      "output": 139849,
+      "cache_write": 5776238,
+      "cache_read": 28561970
     }
   }
 ]
