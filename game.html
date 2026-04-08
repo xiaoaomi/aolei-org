@@ -382,6 +382,7 @@ function newGame(){
   $('combo-txt').classList.remove('on');
   addRandom(); addRandom();
   updateUI(); render();
+  bindTouchEvents();
 }
 
 function addRandom(){
@@ -547,15 +548,33 @@ document.addEventListener('keydown',e=>{
   const m={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};
   if(m[e.key]){e.preventDefault();move(m[e.key]);}
 });
+
+// 触屏：只在棋盘区域内监听，防止与页面滚动冲突
 let tx,ty;
-document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
-document.addEventListener('touchend',e=>{
+const boardEl=()=>$('board');
+function onBoardTouchStart(e){
+  tx=e.touches[0].clientX;
+  ty=e.touches[0].clientY;
+}
+function onBoardTouchMove(e){
+  // 阻止页面滚动
+  e.preventDefault();
+}
+function onBoardTouchEnd(e){
   if(tx===undefined) return;
   const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+  tx=ty=undefined;
   if(Math.max(Math.abs(dx),Math.abs(dy))<20) return;
   move(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'));
-  tx=ty=undefined;
-},{passive:true});
+}
+// 在 newGame 后绑定（board DOM 已存在）
+function bindTouchEvents(){
+  const b=boardEl();
+  if(!b) return;
+  b.addEventListener('touchstart',onBoardTouchStart,{passive:true});
+  b.addEventListener('touchmove', onBoardTouchMove, {passive:false});
+  b.addEventListener('touchend',  onBoardTouchEnd,  {passive:true});
+}
 
 best=parseInt(localStorage.getItem('2048-aolei')||'0');
 $('best').textContent=best;
