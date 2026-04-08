@@ -1333,9 +1333,14 @@
   },
   {
     "date": "2026-04-06",
-    "cost": 0.0,
+    "cost": 49.4302,
     "note": "WBR-04 GTMS 知识库更新·系统排查与维护",
-    "tokens": {}
+    "tokens": {
+      "input": 4674,
+      "output": 95102,
+      "cache_write": 10482163,
+      "cache_read": 28949967
+    }
   },
   {
     "date": "2026-04-07",
