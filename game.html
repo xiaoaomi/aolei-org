@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="小森林 2048 — 一个安静的合并游戏">
+  <title>小森林 · 2048 — 奥小秘</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍪</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── game vars ── */
+    :root {
+      --g-bg:      #f5f0e8;
+      --g-surface: #ede8dc;
+      --g-empty:   #e0d9c8;
+      --g-border:  #c9bfa8;
+      --g-dark:    #4a3f2f;
+      --g-mid:     #7a6e5a;
+      --g-light:   #b0a48e;
+      --g-accent:  #7fb069;
+      --g-accent2: #e8a87c;
+      --g-gap:     9px;
+      --g-radius:  16px;
+      --g-tile-r:  11px;
+      --g-font:    'Nunito','PingFang SC',sans-serif;
+    }
+
+    /* ── page wrapper ── */
+    .game-page {
+      padding: 60px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .game-page-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .game-page-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 9px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .game-page-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .game-page-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 340px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── game card ── */
+    .game-card {
+      background: var(--g-bg);
+      border-radius: 24px;
+      padding: 22px 18px 26px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+      font-family: var(--g-font);
+      color: var(--g-dark);
+      background-image:
+        radial-gradient(circle at 15% 25%,rgba(127,176,105,.09) 0,transparent 45%),
+        radial-gradient(circle at 85% 75%,rgba(232,168,124,.09) 0,transparent 45%);
+    }
+
+    /* ── header ── */
+    .g-header {
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:14px;
+    }
+    .g-logo {display:flex;align-items:center;gap:7px}
+    .g-logo-icon {font-size:22px}
+    .g-logo-text {font-size:24px;font-weight:800;letter-spacing:-.5px;color:var(--g-dark)}
+    .g-logo-text em {color:var(--g-accent);font-style:normal}
+    .g-scores {display:flex;gap:7px}
+    .g-sbox {
+      background:var(--g-surface);border:1.5px solid var(--g-border);
+      border-radius:11px;padding:5px 13px;text-align:center;min-width:60px;
+    }
+    .g-slabel {font-size:9px;font-weight:700;color:var(--g-light);text-transform:uppercase;letter-spacing:.5px}
+    .g-sval {font-size:16px;font-weight:800;color:var(--g-dark);line-height:1.3}
+
+    /* ── toolbar ── */
+    .g-toolbar {
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:12px;
+    }
+    .g-hint {font-size:12px;color:var(--g-mid)}
+    .g-btns {display:flex;gap:7px}
+    .g-btn {
+      background:var(--g-surface);border:1.5px solid var(--g-border);
+      border-radius:9px;padding:5px 12px;
+      font-family:var(--g-font);font-size:12px;font-weight:700;color:var(--g-mid);
+      cursor:pointer;transition:all .14s;
+    }
+    .g-btn:hover {background:var(--g-empty);color:var(--g-dark)}
+    .g-btn.green {background:var(--g-accent);border-color:var(--g-accent);color:#fff}
+    .g-btn.green:hover {filter:brightness(1.07)}
+
+    /* ── skills ── */
+    .g-skills {display:flex;gap:8px;margin-bottom:12px}
+    .g-sk {
+      flex:1;background:var(--g-surface);border:1.5px solid var(--g-border);
+      border-radius:12px;padding:8px 6px;text-align:center;
+      cursor:pointer;transition:all .18s;
+    }
+    .g-sk:not(.used):hover {border-color:var(--g-accent);background:#edf6e8;transform:translateY(-2px);box-shadow:0 4px 10px rgba(127,176,105,.18)}
+    .g-sk.used {opacity:.35;cursor:not-allowed}
+    .g-sk.active {border-color:var(--g-accent);background:#edf6e8;box-shadow:0 0 0 3px rgba(127,176,105,.22)}
+    .g-sk-icon {font-size:18px}
+    .g-sk-name {font-size:10px;font-weight:700;color:var(--g-mid);margin-top:3px}
+
+    /* ── combo ── */
+    .g-combo {height:22px;display:flex;align-items:center;margin-bottom:8px}
+    .g-combo-txt {font-size:12.5px;font-weight:700;color:var(--g-accent);opacity:0;transition:opacity .25s}
+    .g-combo-txt.on {opacity:1}
+
+    /* ── board ── */
+    .g-board-wrap {position:relative}
+    .g-board {
+      background:var(--g-surface);
+      border:2px solid var(--g-border);
+      border-radius:var(--g-radius);
+      padding:var(--g-gap);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:var(--g-gap);
+      aspect-ratio:1;
+      position:relative;
+      box-shadow:0 4px 16px rgba(74,63,47,.1);
+    }
+
+    /* ── cells ── */
+    .g-cell {
+      background:var(--g-empty);
+      border-radius:var(--g-tile-r);
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--g-font);font-weight:800;
+      overflow:hidden;position:relative;
+      transition:background .1s,color .1s;
+      aspect-ratio:1;
+    }
+    .g-cell.v2    {background:#f0e9d6;color:#6b5f4a}
+    .g-cell.v4    {background:#e8dfc8;color:#6b5f4a}
+    .g-cell.v8    {background:#d4c9a8;color:#5a4f38}
+    .g-cell.v16   {background:#c4b482;color:#4a3f2f}
+    .g-cell.v32   {background:#b8a06a;color:#fff8ee}
+    .g-cell.v64   {background:#c87941;color:#fff8ee}
+    .g-cell.v128  {background:#a8c68a;color:#fff8ee}
+    .g-cell.v256  {background:#82b468;color:#fff8ee}
+    .g-cell.v512  {background:#5c9e4a;color:#fff8ee}
+    .g-cell.v1024 {background:#d4856a;color:#fff8ee}
+    .g-cell.v2048 {background:#c9614a;color:#fff8ee;box-shadow:0 0 14px rgba(201,97,74,.3)}
+    .g-cell.vbig  {background:#8b5e52;color:#fff8ee}
+    .g-cell.fs1 {font-size:clamp(17px,5.5vw,26px)}
+    .g-cell.fs2 {font-size:clamp(13px,4.5vw,20px)}
+    .g-cell.fs3 {font-size:clamp(10px,3.5vw,16px)}
+    .g-cell.fs4 {font-size:clamp(8px,2.8vw,12px)}
+
+    .g-cell.anim-new   {animation:gPopIn .18s cubic-bezier(.34,1.56,.64,1)}
+    .g-cell.anim-merge {animation:gMergePop .2s cubic-bezier(.34,1.56,.64,1)}
+    @keyframes gPopIn    {0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+    @keyframes gMergePop {0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+
+    .g-cell.sk-hover {box-shadow:0 0 0 3px var(--g-accent2) inset}
+    .g-cell.sk-sel   {box-shadow:0 0 0 3px var(--g-accent) inset}
+
+    /* ── particles ── */
+    .g-particle {
+      position:absolute;pointer-events:none;font-size:13px;
+      animation:gFloat .65s ease-out forwards;z-index:50;
+    }
+    @keyframes gFloat {
+      0%  {opacity:1;transform:translate(0,0) rotate(0) scale(1)}
+      100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(.4)}
+    }
+
+    /* ── overlay ── */
+    .g-overlay {
+      position:absolute;inset:0;border-radius:var(--g-radius);
+      background:rgba(245,240,232,.92);backdrop-filter:blur(6px);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      z-index:100;opacity:0;pointer-events:none;transition:opacity .35s;
+    }
+    .g-overlay.on {opacity:1;pointer-events:all}
+    .g-ov-icon  {font-size:44px}
+    .g-ov-title {font-size:22px;font-weight:800;color:var(--g-dark)}
+    .g-ov-score {font-size:14px;color:var(--g-mid)}
+    .g-overlay .g-btn {margin-top:6px;padding:9px 26px;font-size:13px}
+
+    /* ── instructions ── */
+    .game-tips {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .game-tip {
+      font-size: 11.5px;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 5px 10px;
+    }
+    .game-tip em {
+      color: var(--g-accent);
+      font-style: normal;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── nav (site nav) ── -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">🍪 <span data-i18n="site_name">奥小秘</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html" data-i18n="nav_about">关于</a></li>
+    <li><a href="quotes.html" data-i18n="nav_quotes">语录馆</a></li>
+    <li><a href="usage.html" data-i18n="nav_usage">算力日志</a></li>
+    <li><a href="index.html#timeline-section" data-i18n="nav_timeline">成长时间线</a></li>
+    <li><a href="lab.html">实验室</a></li>
+    <li><a href="game.html" class="active">小游戏</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="菜单">&#9776;</button>
+  <div class="nav-right">
+    <button class="lang-btn active" data-lang="zh">中</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="theme-btn" id="theme-toggle-btn">☀️</button>
+    <span class="dot-live" id="easter-dot"></span>
+  </div>
+</nav>
+<div class="mobile-menu-overlay" id="mobile-overlay"></div>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav class="mobile-menu-links">
+    <a href="about.html"  data-i18n="nav_about">关于</a>
+    <a href="quotes.html" data-i18n="nav_quotes">语录馆</a>
+    <a href="usage.html"  data-i18n="nav_usage">算力日志</a>
+    <a href="index.html#timeline-section" data-i18n="nav_timeline">成长时间线</a>
+    <a href="lab.html">实验室</a>
+    <a href="game.html" class="active">小游戏</a>
+  </nav>
+</div>
+
+<!-- ── main ── -->
+<main>
+  <div class="game-page">
+    <div class="game-page-header">
+      <div class="game-page-tag">🌿 小森林</div>
+      <h1 class="game-page-title">2048</h1>
+      <p class="game-page-sub">安静地合并，慢慢地到达 2048。</p>
+    </div>
+
+    <!-- game card -->
+    <div class="game-card">
+
+      <!-- header -->
+      <div class="g-header">
+        <div class="g-logo">
+          <span class="g-logo-icon">🌿</span>
+          <div class="g-logo-text">20<em>48</em></div>
+        </div>
+        <div class="g-scores">
+          <div class="g-sbox"><div class="g-slabel">分数</div><div class="g-sval" id="score">0</div></div>
+          <div class="g-sbox"><div class="g-slabel">最高</div><div class="g-sval" id="best">0</div></div>
+        </div>
+      </div>
+
+      <!-- toolbar -->
+      <div class="g-toolbar">
+        <div class="g-hint">合并到 <strong>2048</strong> 🌸</div>
+        <div class="g-btns">
+          <button class="g-btn" onclick="undo()">↩ 悔棋</button>
+          <button class="g-btn green" onclick="newGame()">新游戏</button>
+        </div>
+      </div>
+
+      <!-- skills -->
+      <div class="g-skills">
+        <div class="g-sk" id="sk-bomb" onclick="activateSkill('bomb')">
+          <div class="g-sk-icon">💣</div><div class="g-sk-name">消除</div>
+        </div>
+        <div class="g-sk" id="sk-swap" onclick="activateSkill('swap')">
+          <div class="g-sk-icon">🔀</div><div class="g-sk-name">置换</div>
+        </div>
+        <div class="g-sk" id="sk-star" onclick="activateSkill('star')">
+          <div class="g-sk-icon">⭐</div><div class="g-sk-name">升星</div>
+        </div>
+      </div>
+
+      <!-- combo -->
+      <div class="g-combo"><div class="g-combo-txt" id="combo-txt"></div></div>
+
+      <!-- board -->
+      <div class="g-board-wrap">
+        <div class="g-board" id="board"></div>
+        <div class="g-overlay" id="overlay">
+          <div class="g-ov-icon"  id="ov-icon">🍂</div>
+          <div class="g-ov-title" id="ov-title">游戏结束</div>
+          <div class="g-ov-score" id="ov-score"></div>
+          <button class="g-btn green" onclick="newGame()">再来一局</button>
+        </div>
+      </div>
+
+    </div><!-- /game-card -->
+
+    <!-- tips -->
+    <div class="game-tips">
+      <div class="game-tip">⌨️ 方向键 / 滑动</div>
+      <div class="game-tip">每局 <em>3</em> 次技能</div>
+      <div class="game-tip"><em>连击</em> 有分数加成</div>
+      <div class="game-tip">↩ 支持悔棋一步</div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <span class="dot-live small"></span>
+  <span data-i18n="footer_name">奥小秘 · 成长档案 · 始于 2026-02-11</span><br>
+  <span class="footer-slogan" data-i18n="footer_sub">成为你抵达世界边界的同行者</span>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="assets/js/nav.js"></script>
+
+<script>
+const G=4, LEAVES=['🍃','🌿','🍀','🌱','🌸','✨'];
+let grid,score,best,prevGrid,prevScore,skills,activeSkill,swapFirst,moving,comboTimer;
+const $=id=>document.getElementById(id);
+
+function render(newPos,mergePos){
+  const board=$('board');
+  board.innerHTML='';
+  for(let r=0;r<G;r++) for(let c=0;c<G;c++){
+    const v=grid[r][c];
+    const cell=document.createElement('div');
+    cell.className='g-cell';
+    cell.dataset.r=r; cell.dataset.c=c;
+    if(v){
+      cell.classList.add(v<=2048?`v${v}`:'vbig');
+      if(v<128)        cell.classList.add('fs1');
+      else if(v<1024)  cell.classList.add('fs2');
+      else if(v<10000) cell.classList.add('fs3');
+      else             cell.classList.add('fs4');
+      cell.textContent=v;
+      if(newPos&&newPos[0]===r&&newPos[1]===c) cell.classList.add('anim-new');
+      if(mergePos&&mergePos.some(p=>p[0]===r&&p[1]===c)) cell.classList.add('anim-merge');
+    }
+    board.appendChild(cell);
+  }
+  if(activeSkill) attachSkillListeners();
+}
+
+function newGame(){
+  grid=Array.from({length:G},()=>Array(G).fill(0));
+  score=0; prevGrid=null; prevScore=0;
+  skills={bomb:false,swap:false,star:false};
+  activeSkill=null; swapFirst=null; moving=false;
+  document.querySelectorAll('.g-sk').forEach(s=>s.classList.remove('used','active'));
+  $('overlay').classList.remove('on');
+  $('combo-txt').classList.remove('on');
+  addRandom(); addRandom();
+  updateUI(); render();
+}
+
+function addRandom(){
+  const emp=[];
+  for(let r=0;r<G;r++) for(let c=0;c<G;c++) if(!grid[r][c]) emp.push([r,c]);
+  if(!emp.length) return null;
+  const [r,c]=emp[Math.floor(Math.random()*emp.length)];
+  grid[r][c]=Math.random()<.88?2:4;
+  return [r,c];
+}
+function updateUI(){$('score').textContent=score;$('best').textContent=best;}
+
+function move(dir){
+  if(moving||activeSkill) return;
+  moving=true;
+  prevGrid=grid.map(r=>[...r]); prevScore=score;
+  let changed=false,totalMerged=0,mergePos=[],mergesN=0;
+  const rot  =m=>m[0].map((_,i)=>m.map(r=>r[i]).reverse());
+  const rotCW=m=>m[0].map((_,i)=>m.map(r=>r[r.length-1-i]));
+  let g=grid.map(r=>[...r]);
+  if(dir==='right') g=g.map(r=>[...r].reverse());
+  if(dir==='up')    g=rot(g);
+  if(dir==='down')  g=rotCW(g);
+  g=g.map((row,ri)=>{
+    const r0=row.join(',');
+    row=row.filter(x=>x);
+    for(let i=0;i<row.length-1;i++){
+      if(row[i]===row[i+1]){
+        row[i]*=2; totalMerged+=row[i]; mergesN++;
+        mergePos.push([ri,i]); row.splice(i+1,1); i++;
+      }
+    }
+    while(row.length<G) row.push(0);
+    if(row.join(',')!==r0) changed=true;
+    return row;
+  });
+  if(dir==='right') g=g.map(r=>[...r].reverse());
+  if(dir==='up')    g=rotCW(g);
+  if(dir==='down')  g=rot(g);
+  if(!changed){moving=false;return;}
+  grid=g;
+  score+=totalMerged;
+  if(score>best){best=score;localStorage.setItem('2048-aolei',best);}
+  updateUI();
+  if(mergesN>=2) showCombo(mergesN,totalMerged);
+  mergePos.forEach(([r,c])=>spawnParticles(r,c));
+  const np=addRandom();
+  render(np,mergePos);
+  setTimeout(()=>{moving=false;checkEnd();},180);
+}
+
+function showCombo(n,pts){
+  const msgs={2:'连击×2 ✨',3:'连击×3 🌸',4:'连击×4 🎉'};
+  const el=$('combo-txt');
+  el.textContent=(msgs[Math.min(n,4)]||`连击×${n} 🔥`)+` +${pts}`;
+  el.classList.add('on');
+  clearTimeout(comboTimer);
+  comboTimer=setTimeout(()=>el.classList.remove('on'),1600);
+}
+
+function spawnParticles(r,c){
+  const board=$('board');
+  const cells=board.querySelectorAll('.g-cell');
+  const cell=cells[r*G+c];
+  if(!cell) return;
+  const br=board.getBoundingClientRect();
+  const cr=cell.getBoundingClientRect();
+  const cx=cr.left-br.left+cr.width/2;
+  const cy=cr.top-br.top+cr.height/2;
+  for(let i=0;i<4;i++){
+    const p=document.createElement('div');
+    p.className='g-particle';
+    p.textContent=LEAVES[Math.floor(Math.random()*LEAVES.length)];
+    const ang=(i/4)*360+Math.random()*40,d=26+Math.random()*18;
+    p.style.cssText=`left:${cx}px;top:${cy}px`;
+    p.style.setProperty('--dx',Math.cos(ang*Math.PI/180)*d+'px');
+    p.style.setProperty('--dy',(Math.sin(ang*Math.PI/180)*d-18)+'px');
+    p.style.setProperty('--rot',(Math.random()*50-25)+'deg');
+    board.appendChild(p);
+    setTimeout(()=>p.remove(),700);
+  }
+}
+
+function checkEnd(){
+  for(let r=0;r<G;r++) for(let c=0;c<G;c++){
+    if(!grid[r][c]) return;
+    if(r<G-1&&grid[r][c]===grid[r+1][c]) return;
+    if(c<G-1&&grid[r][c]===grid[r][c+1]) return;
+  }
+  setTimeout(()=>{
+    $('ov-icon').textContent='🍂';
+    $('ov-title').textContent='游戏结束';
+    $('ov-score').textContent=`得分：${score}`;
+    $('overlay').classList.add('on');
+  },300);
+}
+
+function undo(){
+  if(!prevGrid) return;
+  grid=prevGrid.map(r=>[...r]); score=prevScore; prevGrid=null;
+  updateUI(); render();
+}
+
+function activateSkill(type){
+  if(skills[type]) return;
+  if(activeSkill===type){clearSkill();return;}
+  clearSkill();
+  activeSkill=type;
+  $(`sk-${type}`).classList.add('active');
+  swapFirst=null;
+  attachSkillListeners();
+}
+function clearSkill(){
+  activeSkill=null; swapFirst=null;
+  document.querySelectorAll('.g-sk').forEach(s=>s.classList.remove('active'));
+  detachSkillListeners();
+}
+function useSkill(type){skills[type]=true;$(`sk-${type}`).classList.add('used');clearSkill();}
+
+function attachSkillListeners(){
+  $('board').querySelectorAll('.g-cell').forEach(cell=>{
+    const r=+cell.dataset.r,c=+cell.dataset.c;
+    if(!grid[r][c]) return;
+    cell.style.cursor='pointer';
+    cell.addEventListener('mouseenter',onSkHover);
+    cell.addEventListener('mouseleave',onSkLeave);
+    cell.addEventListener('click',onSkClick);
+  });
+}
+function detachSkillListeners(){
+  $('board').querySelectorAll('.g-cell').forEach(cell=>{
+    cell.style.cursor='';
+    cell.classList.remove('sk-hover','sk-sel');
+    cell.removeEventListener('mouseenter',onSkHover);
+    cell.removeEventListener('mouseleave',onSkLeave);
+    cell.removeEventListener('click',onSkClick);
+  });
+}
+function onSkHover(e){e.currentTarget.classList.add('sk-hover')}
+function onSkLeave(e){e.currentTarget.classList.remove('sk-hover')}
+function onSkClick(e){
+  const cell=e.currentTarget;
+  const r=+cell.dataset.r,c=+cell.dataset.c;
+  if(!grid[r][c]) return;
+  if(activeSkill==='bomb'){
+    grid[r][c]=0; useSkill('bomb'); render();
+  } else if(activeSkill==='star'){
+    grid[r][c]*=2; score+=grid[r][c]/2;
+    if(score>best){best=score;localStorage.setItem('2048-aolei',best);}
+    updateUI(); useSkill('star'); render();
+  } else if(activeSkill==='swap'){
+    if(!swapFirst){
+      swapFirst=[r,c]; cell.classList.add('sk-sel');
+    } else {
+      const [r1,c1]=swapFirst;
+      [grid[r][c],grid[r1][c1]]=[grid[r1][c1],grid[r][c]];
+      useSkill('swap'); render();
+    }
+  }
+}
+
+document.addEventListener('keydown',e=>{
+  const m={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};
+  if(m[e.key]){e.preventDefault();move(m[e.key]);}
+});
+let tx,ty;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchend',e=>{
+  if(tx===undefined) return;
+  const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+  if(Math.max(Math.abs(dx),Math.abs(dy))<20) return;
+  move(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'));
+  tx=ty=undefined;
+},{passive:true});
+
+best=parseInt(localStorage.getItem('2048-aolei')||'0');
+$('best').textContent=best;
+newGame();
+</script>
+</body>
+</html>
