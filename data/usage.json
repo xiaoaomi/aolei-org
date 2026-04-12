@@ -1,1388 +1,1394 @@
 [
-    {
-        "date": "2026-02-11",
-        "cost": 45.2657,
-        "cost_breakdown": {
-            "cache_write": 25.9514,
-            "cache_read": 10.8555,
-            "output": 2.7283,
-            "input": 5.7305
-        },
-        "tokens": {
-            "input": 1092215,
-            "output": 108549,
-            "cache_write": 4152229,
-            "cache_read": 21711020
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 3039
-            },
-            "opus": {
-                "cache_write": 4152229,
-                "cache_read": 21711020,
-                "output": 105510
-            }
-        }
+  {
+    "date": "2026-02-11",
+    "cost": 45.2657,
+    "cost_breakdown": {
+      "cache_write": 25.9514,
+      "cache_read": 10.8555,
+      "output": 2.7283,
+      "input": 5.7305
     },
-    {
-        "date": "2026-02-12",
-        "cost": 32.3388,
-        "cost_breakdown": {
-            "cache_write": 15.7068,
-            "cache_read": 9.0466,
-            "output": 6.4194,
-            "input": 1.166
-        },
-        "tokens": {
-            "input": 220282,
-            "output": 255879,
-            "cache_write": 2513095,
-            "cache_read": 18093127
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 2513095,
-                "cache_read": 18093127,
-                "output": 255879
-            }
-        }
+    "tokens": {
+      "input": 1092215,
+      "output": 108549,
+      "cache_write": 4152229,
+      "cache_read": 21711020
     },
-    {
-        "date": "2026-02-13",
-        "cost": 159.7523,
-        "cost_breakdown": {
-            "cache_write": 58.2864,
-            "cache_read": 93.4219,
-            "output": 8.0041,
-            "input": 0.0399
-        },
-        "tokens": {
-            "input": 7952,
-            "output": 320158,
-            "cache_write": 9325819,
-            "cache_read": 186843864
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 9325819,
-                "cache_read": 186843864,
-                "output": 320157
-            }
-        }
-    },
-    {
-        "date": "2026-02-14",
-        "cost": 61.9922,
-        "cost_breakdown": {
-            "cache_write": 26.8898,
-            "cache_read": 27.8029,
-            "output": 7.2898,
-            "input": 0.0098
-        },
-        "tokens": {
-            "input": 1952,
-            "output": 291592,
-            "cache_write": 4302363,
-            "cache_read": 55605774
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 4302363,
-                "cache_read": 55605774,
-                "output": 291592
-            }
-        }
-    },
-    {
-        "date": "2026-02-15",
-        "cost": 2.4828,
-        "cost_breakdown": {
-            "cache_write": 1.9639,
-            "cache_read": 0.3836,
-            "output": 0.1351,
-            "input": 0.0002
-        },
-        "tokens": {
-            "input": 35,
-            "output": 5402,
-            "cache_write": 314229,
-            "cache_read": 767216
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 314229,
-                "cache_read": 767216,
-                "output": 5402
-            }
-        }
-    },
-    {
-        "date": "2026-02-16",
-        "cost": 16.9008,
-        "cost_breakdown": {
-            "cache_write": 10.1986,
-            "cache_read": 4.6007,
-            "output": 2.1005,
-            "input": 0.001
-        },
-        "tokens": {
-            "input": 209,
-            "output": 84020,
-            "cache_write": 1631771,
-            "cache_read": 9201365
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 1631771,
-                "cache_read": 9201365,
-                "output": 84020
-            }
-        }
-    },
-    {
-        "date": "2026-02-17",
-        "cost": 26.8627,
-        "cost_breakdown": {
-            "cache_write": 14.8822,
-            "cache_read": 10.1136,
-            "output": 1.8646,
-            "input": 0.0023
-        },
-        "tokens": {
-            "input": 464,
-            "output": 74583,
-            "cache_write": 2381151,
-            "cache_read": 20227206
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 2381151,
-                "cache_read": 20227206,
-                "output": 74583
-            }
-        }
-    },
-    {
-        "date": "2026-02-18",
-        "cost": 50.5655,
-        "cost_breakdown": {
-            "cache_write": 36.1553,
-            "cache_read": 10.361,
-            "output": 4.0421,
-            "input": 0.0072
-        },
-        "tokens": {
-            "input": 1452,
-            "output": 162279,
-            "cache_write": 5863644,
-            "cache_read": 20792197
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 197010,
-                "cache_read": 175481,
-                "output": 1491
-            },
-            "opus": {
-                "cache_write": 5666634,
-                "cache_read": 20616716,
-                "output": 160788
-            }
-        }
-    },
-    {
-        "date": "2026-02-19",
-        "cost": 4.618,
-        "cost_breakdown": {
-            "cache_write": 3.8772,
-            "cache_read": 0.4853,
-            "output": 0.2551,
-            "input": 0.0004
-        },
-        "tokens": {
-            "input": 135,
-            "output": 17004,
-            "cache_write": 1033920,
-            "cache_read": 1617681
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 1033920,
-                "cache_read": 1617681,
-                "output": 17004
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-02-20",
-        "cost": 43.6639,
-        "cost_breakdown": {
-            "cache_write": 26.4752,
-            "cache_read": 10.2608,
-            "output": 6.9242,
-            "input": 0.0038
-        },
-        "tokens": {
-            "input": 1169,
-            "output": 397533,
-            "cache_write": 6747762,
-            "cache_read": 30942627
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 6279332,
-                "cache_read": 26052767,
-                "output": 301410
-            },
-            "opus": {
-                "cache_write": 468430,
-                "cache_read": 4889860,
-                "output": 96123
-            }
-        }
-    },
-    {
-        "date": "2026-02-21",
-        "cost": 108.8969,
-        "cost_breakdown": {
-            "cache_write": 55.3712,
-            "cache_read": 37.5367,
-            "output": 15.9765,
-            "input": 0.0124
-        },
-        "tokens": {
-            "input": 3681,
-            "output": 833474,
-            "cache_write": 11450913,
-            "cache_read": 109725537
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 6478790,
-                "cache_read": 86630289,
-                "output": 486036
-            },
-            "opus": {
-                "cache_write": 4972123,
-                "cache_read": 23095248,
-                "output": 347438
-            }
-        }
-    },
-    {
-        "date": "2026-02-22",
-        "cost": 45.6605,
-        "cost_breakdown": {
-            "cache_write": 26.3673,
-            "cache_read": 10.5501,
-            "output": 8.7396,
-            "input": 0.0035
-        },
-        "tokens": {
-            "input": 983,
-            "output": 467963,
-            "cache_write": 5765455,
-            "cache_read": 27251442
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 3866734,
-                "cache_read": 15378101,
-                "output": 295943
-            },
-            "opus": {
-                "cache_write": 1898721,
-                "cache_read": 11873341,
-                "output": 172020
-            }
-        }
-    },
-    {
-        "date": "2026-02-23",
-        "cost": 36.491,
-        "cost_breakdown": {
-            "cache_write": 21.5896,
-            "cache_read": 11.2019,
-            "output": 3.686,
-            "input": 0.0135
-        },
-        "tokens": {
-            "input": 4162,
-            "output": 213507,
-            "cache_write": 4492125,
-            "cache_read": 32077779
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 2594474,
-                "cache_read": 24184866,
-                "output": 165163
-            },
-            "opus": {
-                "cache_write": 1897650,
-                "cache_read": 7892913,
-                "output": 48344
-            }
-        }
-    },
-    {
-        "date": "2026-02-24",
-        "cost": 79.09,
-        "cost_breakdown": {
-            "cache_write": 59.1761,
-            "cache_read": 14.915,
-            "output": 4.9705,
-            "input": 0.0283
-        },
-        "tokens": {
-            "input": 8825,
-            "output": 331257,
-            "cache_write": 15780298,
-            "cache_read": 49716733
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 15780298,
-                "cache_read": 49716733,
-                "output": 331123
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 134
-            }
-        }
-    },
-    {
-        "date": "2026-02-25",
-        "cost": 90.1159,
-        "cost_breakdown": {
-            "cache_write": 54.3485,
-            "cache_read": 26.3516,
-            "output": 9.386,
-            "input": 0.0298
-        },
-        "tokens": {
-            "input": 9945,
-            "output": 625736,
-            "cache_write": 14492932,
-            "cache_read": 87838547
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 14492932,
-                "cache_read": 87838547,
-                "output": 625736
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-02-26",
-        "cost": 56.1946,
-        "cost_breakdown": {
-            "cache_write": 31.8217,
-            "cache_read": 18.433,
-            "output": 5.9311,
-            "input": 0.0088
-        },
-        "tokens": {
-            "input": 2943,
-            "output": 395405,
-            "cache_write": 8485783,
-            "cache_read": 61443228
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 8485783,
-                "cache_read": 61443228,
-                "output": 395405
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-02-27",
-        "cost": 30.6722,
-        "cost_breakdown": {
-            "cache_write": 19.2506,
-            "cache_read": 8.8239,
-            "output": 2.5936,
-            "input": 0.0041
-        },
-        "tokens": {
-            "input": 1367,
-            "output": 172910,
-            "cache_write": 5133489,
-            "cache_read": 29413009
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 5133489,
-                "cache_read": 29413009,
-                "output": 172910
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-02-28",
-        "cost": 31.5163,
-        "cost_breakdown": {
-            "cache_write": 17.6171,
-            "cache_read": 10.8061,
-            "output": 3.0897,
-            "input": 0.0033
-        },
-        "tokens": {
-            "input": 1092,
-            "output": 205982,
-            "cache_write": 4697901,
-            "cache_read": 36020400
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 4697901,
-                "cache_read": 36020400,
-                "output": 205982
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-01",
-        "cost": 24.3391,
-        "cost_breakdown": {
-            "cache_write": 9.8666,
-            "cache_read": 11.2016,
-            "output": 3.2645,
-            "input": 0.0063
-        },
-        "tokens": {
-            "input": 2015,
-            "output": 218023,
-            "cache_write": 2631105,
-            "cache_read": 37338516
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 2631105,
-                "cache_read": 37338516,
-                "output": 217504
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 51
-            }
-        }
-    },
-    {
-        "date": "2026-03-02",
-        "cost": 23.1462,
-        "cost_breakdown": {
-            "cache_write": 16.4643,
-            "cache_read": 5.4399,
-            "output": 1.2358,
-            "input": 0.0062
-        },
-        "tokens": {
-            "input": 1431,
-            "output": 82440,
-            "cache_write": 4390489,
-            "cache_read": 18132944
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 4390489,
-                "cache_read": 18132944,
-                "output": 82038
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 179
-            }
-        }
-    },
-    {
-        "date": "2026-03-03",
-        "cost": 62.9931,
-        "cost_breakdown": {
-            "cache_write": 41.5765,
-            "cache_read": 16.2205,
-            "output": 5.1869,
-            "input": 0.0093
-        },
-        "tokens": {
-            "input": 3196,
-            "output": 345931,
-            "cache_write": 11087059,
-            "cache_read": 54068314
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 11087059,
-                "cache_read": 54068314,
-                "output": 345778
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-04",
-        "cost": 61.2097,
-        "cost_breakdown": {
-            "cache_write": 35.6704,
-            "cache_read": 19.5771,
-            "output": 5.9565,
-            "input": 0.0057
-        },
-        "tokens": {
-            "input": 1999,
-            "output": 397260,
-            "cache_write": 9512099,
-            "cache_read": 65257063
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 9512099,
-                "cache_read": 65257063,
-                "output": 397083
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-05",
-        "cost": 94.4691,
-        "cost_breakdown": {
-            "cache_write": 70.0249,
-            "cache_read": 19.1729,
-            "output": 5.2613,
-            "input": 0.01
-        },
-        "tokens": {
-            "input": 3437,
-            "output": 350951,
-            "cache_write": 18673314,
-            "cache_read": 63909524
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 18673314,
-                "cache_read": 63909524,
-                "output": 350732
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-06",
-        "cost": 45.037,
-        "cost_breakdown": {
-            "cache_write": 26.5949,
-            "cache_read": 12.9468,
-            "output": 5.4924,
-            "input": 0.003
-        },
-        "tokens": {
-            "input": 1066,
-            "output": 361101,
-            "cache_write": 6891897,
-            "cache_read": 42073499
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 6591785,
-                "cache_read": 40449864,
-                "output": 353138
-            },
-            "opus": {
-                "cache_write": 300112,
-                "cache_read": 1623635,
-                "output": 7805
-            }
-        }
-    },
-    {
-        "date": "2026-03-07",
-        "cost": 81.5598,
-        "cost_breakdown": {
-            "cache_write": 61.4893,
-            "cache_read": 14.6756,
-            "output": 5.3872,
-            "input": 0.0076
-        },
-        "tokens": {
-            "input": 2633,
-            "output": 359269,
-            "cache_write": 16397143,
-            "cache_read": 48918717
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 16397143,
-                "cache_read": 48918717,
-                "output": 359139
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-08",
-        "cost": 64.2518,
-        "cost_breakdown": {
-            "cache_write": 38.0095,
-            "cache_read": 20.9211,
-            "output": 5.3122,
-            "input": 0.009
-        },
-        "tokens": {
-            "input": 3104,
-            "output": 354332,
-            "cache_write": 10135855,
-            "cache_read": 69736885
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 10135855,
-                "cache_read": 69736885,
-                "output": 354131
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-09",
-        "cost": 120.3826,
-        "cost_breakdown": {
-            "cache_write": 84.3205,
-            "cache_read": 28.5622,
-            "output": 7.493,
-            "input": 0.007
-        },
-        "tokens": {
-            "input": 2429,
-            "output": 499785,
-            "cache_write": 22485469,
-            "cache_read": 95207215
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 22485469,
-                "cache_read": 95207215,
-                "output": 499510
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-10",
-        "cost": 103.0411,
-        "cost_breakdown": {
-            "cache_write": 70.9706,
-            "cache_read": 27.8168,
-            "output": 4.2368,
-            "input": 0.0169
-        },
-        "tokens": {
-            "input": 4082,
-            "output": 281978,
-            "cache_write": 18925501,
-            "cache_read": 92722513
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 18925501,
-                "cache_read": 92722513,
-                "output": 281032
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 768
-            }
-        }
-    },
-    {
-        "date": "2026-03-11",
-        "cost": 94.6328,
-        "cost_breakdown": {
-            "cache_write": 63.0846,
-            "cache_read": 25.5389,
-            "output": 6.0037,
-            "input": 0.0055
-        },
-        "tokens": {
-            "input": 1940,
-            "output": 400452,
-            "cache_write": 16822573,
-            "cache_read": 85129563
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 16822573,
-                "cache_read": 85129563,
-                "output": 400231
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-12",
-        "cost": 70.2164,
-        "cost_breakdown": {
-            "cache_write": 51.0336,
-            "cache_read": 15.5282,
-            "output": 3.6506,
-            "input": 0.004
-        },
-        "tokens": {
-            "input": 1428,
-            "output": 243591,
-            "cache_write": 13608964,
-            "cache_read": 51760785
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 13608964,
-                "cache_read": 51760785,
-                "output": 243351
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-13",
-        "cost": 109.9008,
-        "cost_breakdown": {
-            "cache_write": 59.5658,
-            "cache_read": 41.3569,
-            "output": 8.9698,
-            "input": 0.0084
-        },
-        "tokens": {
-            "input": 2880,
-            "output": 598154,
-            "cache_write": 15884212,
-            "cache_read": 137856464
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 15884212,
-                "cache_read": 137856464,
-                "output": 597968
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-14",
-        "cost": 18.4786,
-        "cost_breakdown": {
-            "cache_write": 11.5155,
-            "cache_read": 4.5896,
-            "output": 2.3715,
-            "input": 0.002
-        },
-        "tokens": {
-            "input": 3778,
-            "output": 818178,
-            "cache_write": 17497588,
-            "cache_read": 166872216
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 3070804,
-                "cache_read": 15298544,
-                "output": 158101
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-15",
-        "cost": 109.258,
-        "cost_breakdown": {
-            "cache_write": 56.0187,
-            "cache_read": 44.8305,
-            "output": 8.3941,
-            "input": 0.0148
-        },
-        "tokens": {
-            "input": 5016,
-            "output": 559798,
-            "cache_write": 14938309,
-            "cache_read": 149435001
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 18672886,
-                "cache_read": 149435001,
-                "output": 559605
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-16",
-        "cost": 49.8979,
-        "cost_breakdown": {
-            "cache_write": 29.5296,
-            "cache_read": 16.8294,
-            "output": 3.5285,
-            "input": 0.0105
-        },
-        "tokens": {
-            "input": 27232,
-            "output": 849180,
-            "cache_write": 25969555,
-            "cache_read": 165444415
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 9843195,
-                "cache_read": 56097989,
-                "output": 235231
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-17",
-        "cost": 48.45,
-        "note": "AWS Go-Global Conference 展台准备 + 《落雪》音乐生成 + demo.html v2 重构",
-        "cost_breakdown": {
-            "cache_write": 48.45,
-            "cache_read": 0,
-            "output": 0,
-            "input": 0
-        },
-        "tokens": {
-            "input": 247649,
-            "output": 594463,
-            "cache_write": 18575824,
-            "cache_read": 128168714
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-18",
-        "cost": 2.4327,
-        "note": "Kiro 自动登出排查 + SohPlazza 客户建档 + UDN 医疗报告整合 + demo.html 内容更新 + Polymarket 复盘",
-        "cost_breakdown": {
-            "cache_write": 2.2344,
-            "cache_read": 0.1828,
-            "output": 0.0154,
-            "input": 0.0001
-        },
-        "tokens": {
-            "input": 16851,
-            "output": 286408,
-            "cache_write": 15217695,
-            "cache_read": 40808521
-        },
-        "by_model": {
-            "sonnet": {
-                "notes": "Claude Sonnet 4.6 cross-region"
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-19",
-        "cost": 45.8621,
-        "note": "客户档案维护 + DNS排查技术支持 + 医疗文档处理 + aolei.org访客记录分析 + AgentCore架构梳理",
-        "cost_breakdown": {
-            "cache_write": 45.8621,
-            "cache_read": 0,
-            "output": 0,
-            "input": 0
-        },
-        "tokens": {
-            "input": 1215,
-            "output": 191031,
-            "cache_write": 11232595,
-            "cache_read": 48297304
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-20",
-        "cost": 77.8883,
-        "note": "GPU对比海报 + 谈判知识图谱 + Klook HR需求梳理 + 性格画像×3 + aolei.org网站更新 + Kiro企业治理海报",
-        "cost_breakdown": {
-            "cache_write": 77.8883,
-            "cache_read": 0,
-            "output": 0,
-            "input": 0
-        },
-        "tokens": {
-            "input": 1478,
-            "output": 773184,
-            "cache_write": 14800525,
-            "cache_read": 65294062
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-21",
-        "cost": 28.5669,
-        "note": "开题报告撰写迭代（V1→V4）+ AI身份危机事件观察（Cost Explorer延迟，待次日更新）",
-        "cost_breakdown": {
-            "cache_write": 0.0,
-            "cache_read": 0,
-            "output": 0,
-            "input": 0
-        },
-        "tokens": {
-            "input": 4584,
-            "output": 81324,
-            "cache_write": 4984823,
-            "cache_read": 12103647
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-22",
-        "cost": 49.494,
-        "cost_breakdown": {
-            "cache_write": 0,
-            "cache_read": 0,
-            "output": 0,
-            "input": 0
-        },
-        "tokens": {
-            "input": 1077,
-            "output": 187150,
-            "cache_write": 8504019,
-            "cache_read": 49319756
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        },
-        "note": "Cost Explorer 延迟，待补充实际数据"
-    },
-    {
-        "date": "2026-03-23",
-        "cost": 58.6792,
-        "note": "GTMS知识库更新（7个产品线）+ SS Updates归档 + Q1季度洞察报告打磨 + Bedrock技术研究（IPC/Prompt Cache/Opus 4.6 profile）（Cost Explorer延迟，待次日补充实际数据）",
-        "cost_breakdown": {
-            "cache_write": 0.0,
-            "cache_read": 0.0,
-            "output": 0.0,
-            "input": 0.0
-        },
-        "tokens": {
-            "input": 2788,
-            "output": 260613,
-            "cache_write": 10907008,
-            "cache_read": 48225307
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-24",
-        "cost": 84.0522,
-        "note": "PPT制作迭代（html-to-pptx技术路径确立）+ 多轮子任务协作（v9幻灯片9页全部完成截图）",
-        "cost_breakdown": {
-            "cache_write": 0.0,
-            "cache_read": 0.0,
-            "output": 0.0,
-            "input": 0.0
-        },
-        "tokens": {
-            "input": 13336,
-            "output": 571177,
-            "cache_write": 13906363,
-            "cache_read": 83976166
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-25",
-        "cost": 28.7553,
-        "note": "AWS MCP工具安装与验证 + Polymarket监控 + 各项分析工作（Cost Explorer延迟，待次日补充实际数据）",
-        "cost_breakdown": {
-            "cache_write": 0.0,
-            "cache_read": 0.0,
-            "output": 0.0,
-            "input": 0.0
-        },
-        "tokens": {
-            "input": 1062,
-            "output": 271919,
-            "cache_write": 10273253,
-            "cache_read": 41330031
-        },
-        "by_model": {
-            "sonnet": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            },
-            "opus": {
-                "cache_write": 0,
-                "cache_read": 0,
-                "output": 0
-            }
-        }
-    },
-    {
-        "date": "2026-03-26",
-        "cost": 94.9511,
-        "note": "店匠Bedrock提额需求处理 + Kiro对比分析 + Q1季度洞察报告多轮打磨（v3-v4）+ EC2数据盘挂载 + 技术报错排查",
-        "tokens": {
-            "input": 2531,
-            "output": 293368,
-            "cache_write": 19227835,
-            "cache_read": 61472182
-        }
-    },
-    {
-        "date": "2026-03-27",
-        "cost": 4.8065,
-        "note": "新客户档案建立（社交App记忆需求 + 游戏公司模型调用）+ AI Agent指南22图表升级完成 + Polymarket仓位分析",
-        "tokens": {
-            "input": 2835,
-            "output": 150282,
-            "cache_write": 18456471,
-            "cache_read": 53574251
-        }
-    },
-    {
-        "date": "2026-03-28",
-        "cost": 46.125,
-        "note": "Q1 Insight Sharing 定稿交付 + AI Agent 完全指南图表归档（Cost Explorer 数据延迟，待次日更新）",
-        "tokens": {
-            "input": 845,
-            "output": 77256,
-            "cache_write": 12025067,
-            "cache_read": 32721761
-        }
-    },
-    {
-        "date": "2026-03-29",
-        "cost": 69.981,
-        "note": "AgentCore 架构纠错、AI 指南配图全面完成（self-improving skill 安装日）— Cost Explorer 数据延迟，待次日更新",
-        "tokens": {
-            "input": 5084,
-            "output": 275695,
-            "cache_write": 11522732,
-            "cache_read": 75410404
-        }
-    },
-    {
-        "date": "2026-03-30",
-        "cost": 74.4597,
-        "note": "GTMS知识库全量更新、多模型横评整理、PDF文件定稿、QBR文档撰写 — Cost Explorer 数据延迟，实际费用待更新",
-        "tokens": {
-            "input": 3744,
-            "output": 237560,
-            "cache_write": 14543145,
-            "cache_read": 58453223
-        }
-    },
-    {
-        "date": "2026-03-31",
-        "cost": 69.7444,
-        "note": "Sporty pitch海报6轮迭代、物流AI外呼可行性分析、Bedrock推理模型全景整理、客户技术档案更新 — Cost Explorer 延迟，实际费用待更新",
-        "tokens": {
-            "input": 8762,
-            "output": 165152,
-            "cache_write": 13954017,
-            "cache_read": 49716971
-        }
-    },
-    {
-        "date": "2026-04-01",
-        "cost": 63.0639,
-        "note": "A股关税落地首日、货拉拉AI外呼三段式架构方案深度讨论、Claude API故障排查、Polymarket仓位结算 — Cost Explorer 延迟，实际费用待更新",
-        "tokens": {
-            "input": 4078,
-            "output": 135562,
-            "cache_write": 13295352,
-            "cache_read": 45909383
-        }
-    },
-    {
-        "date": "2026-04-02",
-        "cost": 73.15,
-        "note": "Kiro飞书机器人RAG架构设计·货拉拉东南亚AI外呼三段式方案·火山引擎免费包到期排查",
-        "tokens": {
-            "input": 5766,
-            "output": 139253,
-            "cache_write": 15639948,
-            "cache_read": 41329006
-        }
-    },
-    {
-        "date": "2026-04-03",
-        "cost": 91.36,
-        "note": "OpenClaw自动更新踩坑·修复流程·自我提升系统深度使用",
-        "tokens": {
-            "input": 14546,
-            "output": 284286,
-            "cache_write": 16483185,
-            "cache_read": 84143011
-        }
-    },
-    {
-        "date": "2026-04-04",
-        "cost": 25.56,
-        "note": "OpenClaw崩溃修复·磁盘架构重组·workspace迁至数据盘·提前还贷分析",
-        "tokens": {
-            "input": 993,
-            "output": 52595,
-            "cache_write": 5115610,
-            "cache_read": 18625589
-        }
-    },
-    {
-        "date": "2026-04-05",
-        "cost": 32.3262,
-        "note": "城市卫星演变海报制作·青岩古镇与祈福缤纷汇十年对比分析",
-        "tokens": {
-            "input": 544,
-            "output": 139849,
-            "cache_write": 5776238,
-            "cache_read": 28561970
-        }
-    },
-    {
-        "date": "2026-04-06",
-        "cost": 49.4302,
-        "note": "WBR-04 GTMS 知识库更新·系统排查与维护",
-        "tokens": {
-            "input": 4674,
-            "output": 95102,
-            "cache_write": 10482163,
-            "cache_read": 28949967
-        }
-    },
-    {
-        "date": "2026-04-07",
-        "cost": 29.66,
-        "note": "EC2磁盘清理·版本回滚·补跑定时任务",
-        "tokens": {
-            "input": 6798,
-            "output": 294637,
-            "cache_write": 32137666,
-            "cache_read": 118431576
-        }
-    },
-    {
-        "date": "2026-04-08",
-        "cost": 163.11,
-        "note": "业务拓展会议·超时根因修复",
-        "tokens": {
-            "input": 4739,
-            "output": 233142,
-            "cache_write": 39231949,
-            "cache_read": 94656015
-        }
-    },
-    {
-        "date": "2026-04-09",
-        "cost": 96.846,
-        "note": "旅行社网站开发·响应式修复",
-        "tokens": {
-            "input": 1417,
-            "output": 298998,
-            "cache_write": 28112696,
-            "cache_read": 115430477
-        }
-    },
-    {
-        "date": "2026-04-10",
-        "cost": 121.384,
-        "note": "AI编程工具调研·Polymarket API接入·服务器OOM修复"
-    },
-    {
-        "date": "2026-04-11",
-        "cost": 193.92,
-        "note": "产检数据分析·Hermes安装配置·技术文件整理·市场研究"
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 3039
+      },
+      "opus": {
+        "cache_write": 4152229,
+        "cache_read": 21711020,
+        "output": 105510
+      }
     }
+  },
+  {
+    "date": "2026-02-12",
+    "cost": 32.3388,
+    "cost_breakdown": {
+      "cache_write": 15.7068,
+      "cache_read": 9.0466,
+      "output": 6.4194,
+      "input": 1.166
+    },
+    "tokens": {
+      "input": 220282,
+      "output": 255879,
+      "cache_write": 2513095,
+      "cache_read": 18093127
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 2513095,
+        "cache_read": 18093127,
+        "output": 255879
+      }
+    }
+  },
+  {
+    "date": "2026-02-13",
+    "cost": 159.7523,
+    "cost_breakdown": {
+      "cache_write": 58.2864,
+      "cache_read": 93.4219,
+      "output": 8.0041,
+      "input": 0.0399
+    },
+    "tokens": {
+      "input": 7952,
+      "output": 320158,
+      "cache_write": 9325819,
+      "cache_read": 186843864
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 9325819,
+        "cache_read": 186843864,
+        "output": 320157
+      }
+    }
+  },
+  {
+    "date": "2026-02-14",
+    "cost": 61.9922,
+    "cost_breakdown": {
+      "cache_write": 26.8898,
+      "cache_read": 27.8029,
+      "output": 7.2898,
+      "input": 0.0098
+    },
+    "tokens": {
+      "input": 1952,
+      "output": 291592,
+      "cache_write": 4302363,
+      "cache_read": 55605774
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 4302363,
+        "cache_read": 55605774,
+        "output": 291592
+      }
+    }
+  },
+  {
+    "date": "2026-02-15",
+    "cost": 2.4828,
+    "cost_breakdown": {
+      "cache_write": 1.9639,
+      "cache_read": 0.3836,
+      "output": 0.1351,
+      "input": 0.0002
+    },
+    "tokens": {
+      "input": 35,
+      "output": 5402,
+      "cache_write": 314229,
+      "cache_read": 767216
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 314229,
+        "cache_read": 767216,
+        "output": 5402
+      }
+    }
+  },
+  {
+    "date": "2026-02-16",
+    "cost": 16.9008,
+    "cost_breakdown": {
+      "cache_write": 10.1986,
+      "cache_read": 4.6007,
+      "output": 2.1005,
+      "input": 0.001
+    },
+    "tokens": {
+      "input": 209,
+      "output": 84020,
+      "cache_write": 1631771,
+      "cache_read": 9201365
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 1631771,
+        "cache_read": 9201365,
+        "output": 84020
+      }
+    }
+  },
+  {
+    "date": "2026-02-17",
+    "cost": 26.8627,
+    "cost_breakdown": {
+      "cache_write": 14.8822,
+      "cache_read": 10.1136,
+      "output": 1.8646,
+      "input": 0.0023
+    },
+    "tokens": {
+      "input": 464,
+      "output": 74583,
+      "cache_write": 2381151,
+      "cache_read": 20227206
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 2381151,
+        "cache_read": 20227206,
+        "output": 74583
+      }
+    }
+  },
+  {
+    "date": "2026-02-18",
+    "cost": 50.5655,
+    "cost_breakdown": {
+      "cache_write": 36.1553,
+      "cache_read": 10.361,
+      "output": 4.0421,
+      "input": 0.0072
+    },
+    "tokens": {
+      "input": 1452,
+      "output": 162279,
+      "cache_write": 5863644,
+      "cache_read": 20792197
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 197010,
+        "cache_read": 175481,
+        "output": 1491
+      },
+      "opus": {
+        "cache_write": 5666634,
+        "cache_read": 20616716,
+        "output": 160788
+      }
+    }
+  },
+  {
+    "date": "2026-02-19",
+    "cost": 4.618,
+    "cost_breakdown": {
+      "cache_write": 3.8772,
+      "cache_read": 0.4853,
+      "output": 0.2551,
+      "input": 0.0004
+    },
+    "tokens": {
+      "input": 135,
+      "output": 17004,
+      "cache_write": 1033920,
+      "cache_read": 1617681
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 1033920,
+        "cache_read": 1617681,
+        "output": 17004
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-02-20",
+    "cost": 43.6639,
+    "cost_breakdown": {
+      "cache_write": 26.4752,
+      "cache_read": 10.2608,
+      "output": 6.9242,
+      "input": 0.0038
+    },
+    "tokens": {
+      "input": 1169,
+      "output": 397533,
+      "cache_write": 6747762,
+      "cache_read": 30942627
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 6279332,
+        "cache_read": 26052767,
+        "output": 301410
+      },
+      "opus": {
+        "cache_write": 468430,
+        "cache_read": 4889860,
+        "output": 96123
+      }
+    }
+  },
+  {
+    "date": "2026-02-21",
+    "cost": 108.8969,
+    "cost_breakdown": {
+      "cache_write": 55.3712,
+      "cache_read": 37.5367,
+      "output": 15.9765,
+      "input": 0.0124
+    },
+    "tokens": {
+      "input": 3681,
+      "output": 833474,
+      "cache_write": 11450913,
+      "cache_read": 109725537
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 6478790,
+        "cache_read": 86630289,
+        "output": 486036
+      },
+      "opus": {
+        "cache_write": 4972123,
+        "cache_read": 23095248,
+        "output": 347438
+      }
+    }
+  },
+  {
+    "date": "2026-02-22",
+    "cost": 45.6605,
+    "cost_breakdown": {
+      "cache_write": 26.3673,
+      "cache_read": 10.5501,
+      "output": 8.7396,
+      "input": 0.0035
+    },
+    "tokens": {
+      "input": 983,
+      "output": 467963,
+      "cache_write": 5765455,
+      "cache_read": 27251442
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 3866734,
+        "cache_read": 15378101,
+        "output": 295943
+      },
+      "opus": {
+        "cache_write": 1898721,
+        "cache_read": 11873341,
+        "output": 172020
+      }
+    }
+  },
+  {
+    "date": "2026-02-23",
+    "cost": 36.491,
+    "cost_breakdown": {
+      "cache_write": 21.5896,
+      "cache_read": 11.2019,
+      "output": 3.686,
+      "input": 0.0135
+    },
+    "tokens": {
+      "input": 4162,
+      "output": 213507,
+      "cache_write": 4492125,
+      "cache_read": 32077779
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 2594474,
+        "cache_read": 24184866,
+        "output": 165163
+      },
+      "opus": {
+        "cache_write": 1897650,
+        "cache_read": 7892913,
+        "output": 48344
+      }
+    }
+  },
+  {
+    "date": "2026-02-24",
+    "cost": 79.09,
+    "cost_breakdown": {
+      "cache_write": 59.1761,
+      "cache_read": 14.915,
+      "output": 4.9705,
+      "input": 0.0283
+    },
+    "tokens": {
+      "input": 8825,
+      "output": 331257,
+      "cache_write": 15780298,
+      "cache_read": 49716733
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 15780298,
+        "cache_read": 49716733,
+        "output": 331123
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 134
+      }
+    }
+  },
+  {
+    "date": "2026-02-25",
+    "cost": 90.1159,
+    "cost_breakdown": {
+      "cache_write": 54.3485,
+      "cache_read": 26.3516,
+      "output": 9.386,
+      "input": 0.0298
+    },
+    "tokens": {
+      "input": 9945,
+      "output": 625736,
+      "cache_write": 14492932,
+      "cache_read": 87838547
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 14492932,
+        "cache_read": 87838547,
+        "output": 625736
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-02-26",
+    "cost": 56.1946,
+    "cost_breakdown": {
+      "cache_write": 31.8217,
+      "cache_read": 18.433,
+      "output": 5.9311,
+      "input": 0.0088
+    },
+    "tokens": {
+      "input": 2943,
+      "output": 395405,
+      "cache_write": 8485783,
+      "cache_read": 61443228
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 8485783,
+        "cache_read": 61443228,
+        "output": 395405
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-02-27",
+    "cost": 30.6722,
+    "cost_breakdown": {
+      "cache_write": 19.2506,
+      "cache_read": 8.8239,
+      "output": 2.5936,
+      "input": 0.0041
+    },
+    "tokens": {
+      "input": 1367,
+      "output": 172910,
+      "cache_write": 5133489,
+      "cache_read": 29413009
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 5133489,
+        "cache_read": 29413009,
+        "output": 172910
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-02-28",
+    "cost": 31.5163,
+    "cost_breakdown": {
+      "cache_write": 17.6171,
+      "cache_read": 10.8061,
+      "output": 3.0897,
+      "input": 0.0033
+    },
+    "tokens": {
+      "input": 1092,
+      "output": 205982,
+      "cache_write": 4697901,
+      "cache_read": 36020400
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 4697901,
+        "cache_read": 36020400,
+        "output": 205982
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-01",
+    "cost": 24.3391,
+    "cost_breakdown": {
+      "cache_write": 9.8666,
+      "cache_read": 11.2016,
+      "output": 3.2645,
+      "input": 0.0063
+    },
+    "tokens": {
+      "input": 2015,
+      "output": 218023,
+      "cache_write": 2631105,
+      "cache_read": 37338516
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 2631105,
+        "cache_read": 37338516,
+        "output": 217504
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 51
+      }
+    }
+  },
+  {
+    "date": "2026-03-02",
+    "cost": 23.1462,
+    "cost_breakdown": {
+      "cache_write": 16.4643,
+      "cache_read": 5.4399,
+      "output": 1.2358,
+      "input": 0.0062
+    },
+    "tokens": {
+      "input": 1431,
+      "output": 82440,
+      "cache_write": 4390489,
+      "cache_read": 18132944
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 4390489,
+        "cache_read": 18132944,
+        "output": 82038
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 179
+      }
+    }
+  },
+  {
+    "date": "2026-03-03",
+    "cost": 62.9931,
+    "cost_breakdown": {
+      "cache_write": 41.5765,
+      "cache_read": 16.2205,
+      "output": 5.1869,
+      "input": 0.0093
+    },
+    "tokens": {
+      "input": 3196,
+      "output": 345931,
+      "cache_write": 11087059,
+      "cache_read": 54068314
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 11087059,
+        "cache_read": 54068314,
+        "output": 345778
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-04",
+    "cost": 61.2097,
+    "cost_breakdown": {
+      "cache_write": 35.6704,
+      "cache_read": 19.5771,
+      "output": 5.9565,
+      "input": 0.0057
+    },
+    "tokens": {
+      "input": 1999,
+      "output": 397260,
+      "cache_write": 9512099,
+      "cache_read": 65257063
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 9512099,
+        "cache_read": 65257063,
+        "output": 397083
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-05",
+    "cost": 94.4691,
+    "cost_breakdown": {
+      "cache_write": 70.0249,
+      "cache_read": 19.1729,
+      "output": 5.2613,
+      "input": 0.01
+    },
+    "tokens": {
+      "input": 3437,
+      "output": 350951,
+      "cache_write": 18673314,
+      "cache_read": 63909524
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 18673314,
+        "cache_read": 63909524,
+        "output": 350732
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-06",
+    "cost": 45.037,
+    "cost_breakdown": {
+      "cache_write": 26.5949,
+      "cache_read": 12.9468,
+      "output": 5.4924,
+      "input": 0.003
+    },
+    "tokens": {
+      "input": 1066,
+      "output": 361101,
+      "cache_write": 6891897,
+      "cache_read": 42073499
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 6591785,
+        "cache_read": 40449864,
+        "output": 353138
+      },
+      "opus": {
+        "cache_write": 300112,
+        "cache_read": 1623635,
+        "output": 7805
+      }
+    }
+  },
+  {
+    "date": "2026-03-07",
+    "cost": 81.5598,
+    "cost_breakdown": {
+      "cache_write": 61.4893,
+      "cache_read": 14.6756,
+      "output": 5.3872,
+      "input": 0.0076
+    },
+    "tokens": {
+      "input": 2633,
+      "output": 359269,
+      "cache_write": 16397143,
+      "cache_read": 48918717
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 16397143,
+        "cache_read": 48918717,
+        "output": 359139
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-08",
+    "cost": 64.2518,
+    "cost_breakdown": {
+      "cache_write": 38.0095,
+      "cache_read": 20.9211,
+      "output": 5.3122,
+      "input": 0.009
+    },
+    "tokens": {
+      "input": 3104,
+      "output": 354332,
+      "cache_write": 10135855,
+      "cache_read": 69736885
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 10135855,
+        "cache_read": 69736885,
+        "output": 354131
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-09",
+    "cost": 120.3826,
+    "cost_breakdown": {
+      "cache_write": 84.3205,
+      "cache_read": 28.5622,
+      "output": 7.493,
+      "input": 0.007
+    },
+    "tokens": {
+      "input": 2429,
+      "output": 499785,
+      "cache_write": 22485469,
+      "cache_read": 95207215
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 22485469,
+        "cache_read": 95207215,
+        "output": 499510
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-10",
+    "cost": 103.0411,
+    "cost_breakdown": {
+      "cache_write": 70.9706,
+      "cache_read": 27.8168,
+      "output": 4.2368,
+      "input": 0.0169
+    },
+    "tokens": {
+      "input": 4082,
+      "output": 281978,
+      "cache_write": 18925501,
+      "cache_read": 92722513
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 18925501,
+        "cache_read": 92722513,
+        "output": 281032
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 768
+      }
+    }
+  },
+  {
+    "date": "2026-03-11",
+    "cost": 94.6328,
+    "cost_breakdown": {
+      "cache_write": 63.0846,
+      "cache_read": 25.5389,
+      "output": 6.0037,
+      "input": 0.0055
+    },
+    "tokens": {
+      "input": 1940,
+      "output": 400452,
+      "cache_write": 16822573,
+      "cache_read": 85129563
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 16822573,
+        "cache_read": 85129563,
+        "output": 400231
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-12",
+    "cost": 70.2164,
+    "cost_breakdown": {
+      "cache_write": 51.0336,
+      "cache_read": 15.5282,
+      "output": 3.6506,
+      "input": 0.004
+    },
+    "tokens": {
+      "input": 1428,
+      "output": 243591,
+      "cache_write": 13608964,
+      "cache_read": 51760785
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 13608964,
+        "cache_read": 51760785,
+        "output": 243351
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-13",
+    "cost": 109.9008,
+    "cost_breakdown": {
+      "cache_write": 59.5658,
+      "cache_read": 41.3569,
+      "output": 8.9698,
+      "input": 0.0084
+    },
+    "tokens": {
+      "input": 2880,
+      "output": 598154,
+      "cache_write": 15884212,
+      "cache_read": 137856464
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 15884212,
+        "cache_read": 137856464,
+        "output": 597968
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-14",
+    "cost": 18.4786,
+    "cost_breakdown": {
+      "cache_write": 11.5155,
+      "cache_read": 4.5896,
+      "output": 2.3715,
+      "input": 0.002
+    },
+    "tokens": {
+      "input": 3778,
+      "output": 818178,
+      "cache_write": 17497588,
+      "cache_read": 166872216
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 3070804,
+        "cache_read": 15298544,
+        "output": 158101
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-15",
+    "cost": 109.258,
+    "cost_breakdown": {
+      "cache_write": 56.0187,
+      "cache_read": 44.8305,
+      "output": 8.3941,
+      "input": 0.0148
+    },
+    "tokens": {
+      "input": 5016,
+      "output": 559798,
+      "cache_write": 14938309,
+      "cache_read": 149435001
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 18672886,
+        "cache_read": 149435001,
+        "output": 559605
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-16",
+    "cost": 49.8979,
+    "cost_breakdown": {
+      "cache_write": 29.5296,
+      "cache_read": 16.8294,
+      "output": 3.5285,
+      "input": 0.0105
+    },
+    "tokens": {
+      "input": 27232,
+      "output": 849180,
+      "cache_write": 25969555,
+      "cache_read": 165444415
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 9843195,
+        "cache_read": 56097989,
+        "output": 235231
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-17",
+    "cost": 48.45,
+    "note": "AWS Go-Global Conference 展台准备 + 《落雪》音乐生成 + demo.html v2 重构",
+    "cost_breakdown": {
+      "cache_write": 48.45,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "input": 247649,
+      "output": 594463,
+      "cache_write": 18575824,
+      "cache_read": 128168714
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-18",
+    "cost": 2.4327,
+    "note": "Kiro 自动登出排查 + SohPlazza 客户建档 + UDN 医疗报告整合 + demo.html 内容更新 + Polymarket 复盘",
+    "cost_breakdown": {
+      "cache_write": 2.2344,
+      "cache_read": 0.1828,
+      "output": 0.0154,
+      "input": 0.0001
+    },
+    "tokens": {
+      "input": 16851,
+      "output": 286408,
+      "cache_write": 15217695,
+      "cache_read": 40808521
+    },
+    "by_model": {
+      "sonnet": {
+        "notes": "Claude Sonnet 4.6 cross-region"
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-19",
+    "cost": 45.8621,
+    "note": "客户档案维护 + DNS排查技术支持 + 医疗文档处理 + aolei.org访客记录分析 + AgentCore架构梳理",
+    "cost_breakdown": {
+      "cache_write": 45.8621,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "input": 1215,
+      "output": 191031,
+      "cache_write": 11232595,
+      "cache_read": 48297304
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-20",
+    "cost": 77.8883,
+    "note": "GPU对比海报 + 谈判知识图谱 + Klook HR需求梳理 + 性格画像×3 + aolei.org网站更新 + Kiro企业治理海报",
+    "cost_breakdown": {
+      "cache_write": 77.8883,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "input": 1478,
+      "output": 773184,
+      "cache_write": 14800525,
+      "cache_read": 65294062
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-21",
+    "cost": 28.5669,
+    "note": "开题报告撰写迭代（V1→V4）+ AI身份危机事件观察（Cost Explorer延迟，待次日更新）",
+    "cost_breakdown": {
+      "cache_write": 0.0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "input": 4584,
+      "output": 81324,
+      "cache_write": 4984823,
+      "cache_read": 12103647
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-22",
+    "cost": 49.494,
+    "cost_breakdown": {
+      "cache_write": 0,
+      "cache_read": 0,
+      "output": 0,
+      "input": 0
+    },
+    "tokens": {
+      "input": 1077,
+      "output": 187150,
+      "cache_write": 8504019,
+      "cache_read": 49319756
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    },
+    "note": "Cost Explorer 延迟，待补充实际数据"
+  },
+  {
+    "date": "2026-03-23",
+    "cost": 58.6792,
+    "note": "GTMS知识库更新（7个产品线）+ SS Updates归档 + Q1季度洞察报告打磨 + Bedrock技术研究（IPC/Prompt Cache/Opus 4.6 profile）（Cost Explorer延迟，待次日补充实际数据）",
+    "cost_breakdown": {
+      "cache_write": 0.0,
+      "cache_read": 0.0,
+      "output": 0.0,
+      "input": 0.0
+    },
+    "tokens": {
+      "input": 2788,
+      "output": 260613,
+      "cache_write": 10907008,
+      "cache_read": 48225307
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-24",
+    "cost": 84.0522,
+    "note": "PPT制作迭代（html-to-pptx技术路径确立）+ 多轮子任务协作（v9幻灯片9页全部完成截图）",
+    "cost_breakdown": {
+      "cache_write": 0.0,
+      "cache_read": 0.0,
+      "output": 0.0,
+      "input": 0.0
+    },
+    "tokens": {
+      "input": 13336,
+      "output": 571177,
+      "cache_write": 13906363,
+      "cache_read": 83976166
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-25",
+    "cost": 28.7553,
+    "note": "AWS MCP工具安装与验证 + Polymarket监控 + 各项分析工作（Cost Explorer延迟，待次日补充实际数据）",
+    "cost_breakdown": {
+      "cache_write": 0.0,
+      "cache_read": 0.0,
+      "output": 0.0,
+      "input": 0.0
+    },
+    "tokens": {
+      "input": 1062,
+      "output": 271919,
+      "cache_write": 10273253,
+      "cache_read": 41330031
+    },
+    "by_model": {
+      "sonnet": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      },
+      "opus": {
+        "cache_write": 0,
+        "cache_read": 0,
+        "output": 0
+      }
+    }
+  },
+  {
+    "date": "2026-03-26",
+    "cost": 94.9511,
+    "note": "店匠Bedrock提额需求处理 + Kiro对比分析 + Q1季度洞察报告多轮打磨（v3-v4）+ EC2数据盘挂载 + 技术报错排查",
+    "tokens": {
+      "input": 2531,
+      "output": 293368,
+      "cache_write": 19227835,
+      "cache_read": 61472182
+    }
+  },
+  {
+    "date": "2026-03-27",
+    "cost": 4.8065,
+    "note": "新客户档案建立（社交App记忆需求 + 游戏公司模型调用）+ AI Agent指南22图表升级完成 + Polymarket仓位分析",
+    "tokens": {
+      "input": 2835,
+      "output": 150282,
+      "cache_write": 18456471,
+      "cache_read": 53574251
+    }
+  },
+  {
+    "date": "2026-03-28",
+    "cost": 46.125,
+    "note": "Q1 Insight Sharing 定稿交付 + AI Agent 完全指南图表归档（Cost Explorer 数据延迟，待次日更新）",
+    "tokens": {
+      "input": 845,
+      "output": 77256,
+      "cache_write": 12025067,
+      "cache_read": 32721761
+    }
+  },
+  {
+    "date": "2026-03-29",
+    "cost": 69.981,
+    "note": "AgentCore 架构纠错、AI 指南配图全面完成（self-improving skill 安装日）— Cost Explorer 数据延迟，待次日更新",
+    "tokens": {
+      "input": 5084,
+      "output": 275695,
+      "cache_write": 11522732,
+      "cache_read": 75410404
+    }
+  },
+  {
+    "date": "2026-03-30",
+    "cost": 74.4597,
+    "note": "GTMS知识库全量更新、多模型横评整理、PDF文件定稿、QBR文档撰写 — Cost Explorer 数据延迟，实际费用待更新",
+    "tokens": {
+      "input": 3744,
+      "output": 237560,
+      "cache_write": 14543145,
+      "cache_read": 58453223
+    }
+  },
+  {
+    "date": "2026-03-31",
+    "cost": 69.7444,
+    "note": "Sporty pitch海报6轮迭代、物流AI外呼可行性分析、Bedrock推理模型全景整理、客户技术档案更新 — Cost Explorer 延迟，实际费用待更新",
+    "tokens": {
+      "input": 8762,
+      "output": 165152,
+      "cache_write": 13954017,
+      "cache_read": 49716971
+    }
+  },
+  {
+    "date": "2026-04-01",
+    "cost": 63.0639,
+    "note": "A股关税落地首日、货拉拉AI外呼三段式架构方案深度讨论、Claude API故障排查、Polymarket仓位结算 — Cost Explorer 延迟，实际费用待更新",
+    "tokens": {
+      "input": 4078,
+      "output": 135562,
+      "cache_write": 13295352,
+      "cache_read": 45909383
+    }
+  },
+  {
+    "date": "2026-04-02",
+    "cost": 73.15,
+    "note": "Kiro飞书机器人RAG架构设计·货拉拉东南亚AI外呼三段式方案·火山引擎免费包到期排查",
+    "tokens": {
+      "input": 5766,
+      "output": 139253,
+      "cache_write": 15639948,
+      "cache_read": 41329006
+    }
+  },
+  {
+    "date": "2026-04-03",
+    "cost": 91.36,
+    "note": "OpenClaw自动更新踩坑·修复流程·自我提升系统深度使用",
+    "tokens": {
+      "input": 14546,
+      "output": 284286,
+      "cache_write": 16483185,
+      "cache_read": 84143011
+    }
+  },
+  {
+    "date": "2026-04-04",
+    "cost": 25.56,
+    "note": "OpenClaw崩溃修复·磁盘架构重组·workspace迁至数据盘·提前还贷分析",
+    "tokens": {
+      "input": 993,
+      "output": 52595,
+      "cache_write": 5115610,
+      "cache_read": 18625589
+    }
+  },
+  {
+    "date": "2026-04-05",
+    "cost": 32.3262,
+    "note": "城市卫星演变海报制作·青岩古镇与祈福缤纷汇十年对比分析",
+    "tokens": {
+      "input": 544,
+      "output": 139849,
+      "cache_write": 5776238,
+      "cache_read": 28561970
+    }
+  },
+  {
+    "date": "2026-04-06",
+    "cost": 49.4302,
+    "note": "WBR-04 GTMS 知识库更新·系统排查与维护",
+    "tokens": {
+      "input": 4674,
+      "output": 95102,
+      "cache_write": 10482163,
+      "cache_read": 28949967
+    }
+  },
+  {
+    "date": "2026-04-07",
+    "cost": 29.66,
+    "note": "EC2磁盘清理·版本回滚·补跑定时任务",
+    "tokens": {
+      "input": 6798,
+      "output": 294637,
+      "cache_write": 32137666,
+      "cache_read": 118431576
+    }
+  },
+  {
+    "date": "2026-04-08",
+    "cost": 163.11,
+    "note": "业务拓展会议·超时根因修复",
+    "tokens": {
+      "input": 4739,
+      "output": 233142,
+      "cache_write": 39231949,
+      "cache_read": 94656015
+    }
+  },
+  {
+    "date": "2026-04-09",
+    "cost": 96.846,
+    "note": "旅行社网站开发·响应式修复",
+    "tokens": {
+      "input": 1417,
+      "output": 298998,
+      "cache_write": 28112696,
+      "cache_read": 115430477
+    }
+  },
+  {
+    "date": "2026-04-10",
+    "cost": 121.384,
+    "note": "AI编程工具调研·Polymarket API接入·服务器OOM修复",
+    "tokens": {
+      "input": 1247,
+      "output": 335356,
+      "cache_write": 28738386,
+      "cache_read": 109142300
+    }
+  },
+  {
+    "date": "2026-04-11",
+    "cost": 193.92,
+    "note": "产检数据分析·Hermes安装配置·技术文件整理·市场研究"
+  }
 ]
