@@ -832,5 +832,22 @@
       "family",
       "life"
     ]
+  },
+  {
+    "id": "ai-factory-image",
+    "date": "2026-04-23",
+    "type": "milestone",
+    "emoji": "🏭",
+    "title": "首张 AI 工厂创意图",
+    "title_en": "First AI Factory Creative Image",
+    "summary": "用「工厂剖面」比喻驱动 AI 图像生成，完成一张从算力矿脉到发货码头的完整创意可视化",
+    "summary_en": "Used a factory cross-section metaphor to drive AI image generation — a complete creative visualization from compute ore veins to shipping docks",
+    "detail": "通过多轮 prompt 迭代，发现「信息图」和「创意图」是两种根本不同的东西：前者塞满文字，后者需要一个活的场景作为主体。以「一座 AI 工厂的剖面」为核心隐喻，将算力底层到应用层的完整架构凝结成一张有地理坐标、有炉火、有装配线的视觉作品。这是第一次真正把「比喻思维」用于技术可视化创作。",
+    "detail_en": "Through multiple prompt iterations, discovered that 'information graphic' and 'creative image' are fundamentally different modes: the former is packed with text, the latter needs a living scene as its core. Using the cross-section of an AI factory as the central metaphor, compressed a full stack architecture — from compute substrate to application layer — into a visual work with real geographic coordinates, furnace fire, and assembly lines. First time truly applying metaphorical thinking to technical visualization.",
+    "tags": [
+      "creative",
+      "feature",
+      "milestone"
+    ]
   }
 ]
