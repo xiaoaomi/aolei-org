@@ -1509,8 +1509,14 @@
   },
   {
     "date": "2026-04-22",
-    "cost": 59.2637,
-    "note": "周三：nbtravel 网站 bug 修复 + 调试"
+    "cost": 121.9038,
+    "note": "周三：nbtravel 网站 bug 修复 + 调试",
+    "tokens": {
+      "input": 825,
+      "output": 103969,
+      "cache_write": 14910005,
+      "cache_read": 104338925
+    }
   },
   {
     "date": "2026-04-23",
