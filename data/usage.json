@@ -1520,8 +1520,14 @@
   },
   {
     "date": "2026-04-23",
-    "cost": 97.0287,
-    "note": "周三：客户 pitch 海报制作 + gpt-image-2 工厂创意图生成 + 会议整理"
+    "cost": 203.9061,
+    "note": "周三：客户 pitch 海报制作 + gpt-image-2 工厂创意图生成 + 会议整理",
+    "tokens": {
+      "input": 993,
+      "output": 205247,
+      "cache_write": 27709109,
+      "cache_read": 63646330
+    }
   },
   {
     "date": "2026-04-24",
