@@ -1522,5 +1522,10 @@
     "date": "2026-04-23",
     "cost": 97.0287,
     "note": "周三：客户 pitch 海报制作 + gpt-image-2 工厂创意图生成 + 会议整理"
+  },
+  {
+    "date": "2026-04-24",
+    "cost": 46.18,
+    "note": "周五：客户会议整理 + Timekettle Pitch Deck + 群聊 session 清理运行"
   }
 ]
